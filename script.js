@@ -471,9 +471,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var cinemaFmtBtns = document.querySelectorAll('.cinema-fmt-btn');
   var timeBtns = document.querySelectorAll('.time-btn');
   var cinemaMovieItems = document.querySelectorAll('.cinema-movie-item');
-  var cinemaMallTabs = document.querySelectorAll('.cinema-mall-tab');
 
-  // Cinema mall metadata
+  // Complete metadata for all 6 cinemas
   var CINEMA_DATA = {
     // 1. GLORIETTA 4
     glorietta: {
@@ -484,69 +483,224 @@ document.addEventListener('DOMContentLoaded', function () {
       pos: 'center 55%'
     },
 
-    // 2. ROBINSON'S GALLERIA
-    robinsons: {
-      title: "Robinson's Galleria",
-      location: "Level 3, Robinson's Galleria<br>Ortigas Avenue, Quezon City",
-      desc: "Robinson's Galleria Cinemas in Ortigas provides a premium cinematic haven in the heart of Quezon City. Featuring plush comfortable seating, state-of-the-art Christie Laser Projection, and multi-channel surround sound, moviegoers can experience Hollywood blockbusters and local favorites in maximum fidelity and comfort.",
-      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/robinsons-cinema.jpeg')",
+    // 2. SM MALL OF ASIA
+    moa: {
+      title: 'SM Mall of Asia',
+      location: 'Entertainment Mall, SM Mall of Asia<br>Pasay City',
+      desc: 'SM Mall of Asia Cinemas is home to one of the largest IMAX laser projection screens in Southeast Asia. Boasting cutting-edge stadium seating, crystal clear digital audio, and comfortable spacious lounges, it is the premier destination for massive Hollywood blockbusters.',
+      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/cinema-sm-moa.svg')",
       pos: 'center 50%'
     },
-    // Alias for galleria
+
+    // 3. ROBINSONS GALLERIA
     galleria: {
-      title: "Robinson's Galleria",
-      location: "Level 3, Robinson's Galleria<br>Ortigas Avenue, Quezon City",
-      desc: "Robinson's Galleria Cinemas in Ortigas provides a premium cinematic haven in the heart of Quezon City. Featuring plush comfortable seating, state-of-the-art Christie Laser Projection, and multi-channel surround sound, moviegoers can experience Hollywood blockbusters and local favorites in maximum fidelity and comfort.",
+      title: 'Robinsons Galleria',
+      location: "Level 3, Robinsons Galleria<br>Ortigas Avenue, Quezon City",
+      desc: "Robinsons Galleria Cinemas in Ortigas provides a premium cinematic haven in the heart of Quezon City. Featuring plush comfortable seating, state-of-the-art Christie Laser Projection, and multi-channel surround sound, moviegoers can experience Hollywood blockbusters and local favorites in maximum fidelity and comfort.",
       bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/robinsons-cinema.jpeg')",
       pos: 'center 50%'
     },
 
-    // 3. UPTOWN MALL
+    // 4. NEWPORT MALL
+    newport: {
+      title: 'Newport Mall',
+      location: '4th Level Newport Mall, Newport World Resorts<br>Newport Blvd, Pasay City',
+      desc: 'Newport Mall Cinemas at Newport World Resorts offers an upscale entertainment experience with stadium-configured theaters, luxurious VIP Director’s Club recliners, and precision Dolby Atmos sound.',
+      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/cinema-newport.svg')",
+      pos: 'center 50%'
+    },
+
+    // 5. UPTOWN MALL
     uptown: {
       title: 'Uptown Mall',
       location: '3rd Floor, Uptown Mall<br>9th Ave, Taguig City',
       desc: 'Uptown Mall Cinemas at Bonifacio Global City delivers an ultra-luxurious movie entertainment destination. Boasting VIP Cinema lounges with motorized leather recliners, gourmet snack delivery directly to your seat, and Dolby Atmos audio systems for true acoustic perfection.',
       bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/uptown-cinema.jpg')",
       pos: 'center 50%'
+    },
+
+    // 6. SM CITY NORTH EDSA
+    'north-edsa': {
+      title: 'SM City North Edsa',
+      location: '4th Floor, The Block, SM City North Edsa<br>North Avenue, Quezon City',
+      desc: 'SM City North EDSA Cinema is one of the busiest and most iconic cinema complexes in Metro Manila, offering IMAX with Laser, regular digital cinemas, and top-tier stadium seating.',
+      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/cinema-sm-north.svg')",
+      pos: 'center 50%'
     }
   };
 
-  var currentSelectedMall = 'glorietta';
+  var currentSelectedCinema = 'glorietta';
 
-  // 1. Mall Switching
-  if (cinemaMallTabs.length > 0) {
-    cinemaMallTabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        var mallKey = tab.getAttribute('data-mall');
-        if (!CINEMA_DATA[mallKey]) return;
+  // DIRECTORY VIEW ELEMENTS
+  var directoryView = document.getElementById('cinemaDirectoryView');
+  var detailView = document.getElementById('cinemaDetailView');
+  var backToDirectoryBtn = document.getElementById('cinemaBackBtn');
+  var cinemaCards = document.querySelectorAll('.cinema-card');
+  var viewShowtimesBtns = document.querySelectorAll('.cinema-view-showtimes-btn');
 
-        currentSelectedMall = mallKey;
+  var locationSearchInput = document.getElementById('cinemaLocationSearch');
+  var searchClearBtn = document.getElementById('cinemaSearchClear');
+  var cityPills = document.querySelectorAll('#cityFilterPills .cinema-pill');
+  var expPills = document.querySelectorAll('#expFilterPills .cinema-pill');
+  var countTextEl = document.getElementById('cinemaCountText');
+  var emptyStateEl = document.getElementById('cinemaEmptyState');
+  var resetFiltersBtn = document.getElementById('cinemaResetFiltersBtn');
 
-        cinemaMallTabs.forEach(function (t) {
-          t.classList.remove('is-active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('is-active');
-        tab.setAttribute('aria-selected', 'true');
+  var activeCityFilter = 'all';
+  var activeExpFilter = 'all';
 
-        var data = CINEMA_DATA[mallKey];
-        var titleEl = document.getElementById('cinemaTitle');
-        var locEl = document.getElementById('cinemaLocation');
-        var descEl = document.getElementById('cinemaDesc');
-        var heroEl = document.getElementById('cinemaHero');
+  // Open Cinema Detail View
+  function openCinemaDetail(cinemaId) {
+    var data = CINEMA_DATA[cinemaId];
+    if (!data) return;
 
-        if (titleEl) titleEl.textContent = data.title;
-        if (locEl) locEl.innerHTML = data.location;
-        if (descEl) descEl.textContent = data.desc;
-        if (heroEl && data.bg) {
-          heroEl.style.backgroundImage = data.bg;
-          heroEl.style.backgroundPosition = data.pos || 'center 50%';
-        }
+    currentSelectedCinema = cinemaId;
+
+    var titleEl = document.getElementById('cinemaTitle');
+    var locEl = document.getElementById('cinemaLocation');
+    var descEl = document.getElementById('cinemaDesc');
+    var heroEl = document.getElementById('cinemaHero');
+
+    if (titleEl) titleEl.textContent = data.title;
+    if (locEl) locEl.innerHTML = data.location;
+    if (descEl) descEl.textContent = data.desc;
+    if (heroEl && data.bg) {
+      heroEl.style.backgroundImage = data.bg;
+      heroEl.style.backgroundPosition = data.pos || 'center 50%';
+    }
+
+    if (directoryView) directoryView.hidden = true;
+    if (detailView) {
+      detailView.hidden = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  // Back to Cinema Directory View
+  if (backToDirectoryBtn) {
+    backToDirectoryBtn.addEventListener('click', function () {
+      if (detailView) detailView.hidden = true;
+      if (directoryView) {
+        directoryView.hidden = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
+
+  // Click handler for "View Showtimes" on each Cinema Card
+  if (viewShowtimesBtns.length > 0) {
+    viewShowtimesBtns.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var cinemaId = btn.getAttribute('data-cinema');
+        openCinemaDetail(cinemaId);
       });
     });
   }
 
-  // 2. Date selection
+  // Also make clicking the whole cinema card open its details
+  if (cinemaCards.length > 0) {
+    cinemaCards.forEach(function (card) {
+      card.addEventListener('click', function () {
+        var cinemaId = card.getAttribute('data-id');
+        openCinemaDetail(cinemaId);
+      });
+    });
+  }
+
+  // Filter logic for Cinema Directory
+  function filterCinemas() {
+    var query = locationSearchInput ? locationSearchInput.value.trim().toLowerCase() : '';
+    var visibleCount = 0;
+
+    cinemaCards.forEach(function (card) {
+      var name = (card.querySelector('.cinema-card-name')?.textContent || '').toLowerCase();
+      var addr = (card.querySelector('.cinema-card-address')?.textContent || '').toLowerCase();
+      var city = (card.getAttribute('data-city') || '').toLowerCase();
+      var formats = (card.getAttribute('data-formats') || '').toLowerCase();
+
+      var matchesQuery = !query || name.includes(query) || addr.includes(query) || city.includes(query);
+      var matchesCity = activeCityFilter === 'all' || city === activeCityFilter.toLowerCase();
+      var matchesExp = activeExpFilter === 'all' || formats.includes(activeExpFilter.toLowerCase());
+
+      if (matchesQuery && matchesCity && matchesExp) {
+        card.classList.remove('is-filtered-out');
+        visibleCount++;
+      } else {
+        card.classList.add('is-filtered-out');
+      }
+    });
+
+    if (countTextEl) {
+      countTextEl.textContent = 'Showing ' + visibleCount + ' cinema' + (visibleCount === 1 ? '' : 's');
+    }
+
+    if (emptyStateEl) {
+      emptyStateEl.hidden = visibleCount > 0;
+    }
+  }
+
+  // Search input listeners
+  if (locationSearchInput) {
+    locationSearchInput.addEventListener('input', function () {
+      if (searchClearBtn) searchClearBtn.hidden = !locationSearchInput.value;
+      filterCinemas();
+    });
+  }
+
+  if (searchClearBtn) {
+    searchClearBtn.addEventListener('click', function () {
+      locationSearchInput.value = '';
+      searchClearBtn.hidden = true;
+      locationSearchInput.focus();
+      filterCinemas();
+    });
+  }
+
+  // City Pills Listener
+  if (cityPills.length > 0) {
+    cityPills.forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        cityPills.forEach(function (p) { p.classList.remove('is-active'); });
+        pill.classList.add('is-active');
+        activeCityFilter = pill.getAttribute('data-city');
+        filterCinemas();
+      });
+    });
+  }
+
+  // Experience Pills Listener
+  if (expPills.length > 0) {
+    expPills.forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        expPills.forEach(function (p) { p.classList.remove('is-active'); });
+        pill.classList.add('is-active');
+        activeExpFilter = pill.getAttribute('data-exp');
+        filterCinemas();
+      });
+    });
+  }
+
+  // Reset Filters Button
+  if (resetFiltersBtn) {
+    resetFiltersBtn.addEventListener('click', function () {
+      if (locationSearchInput) locationSearchInput.value = '';
+      if (searchClearBtn) searchClearBtn.hidden = true;
+      activeCityFilter = 'all';
+      activeExpFilter = 'all';
+
+      cityPills.forEach(function (p) {
+        p.classList.toggle('is-active', p.getAttribute('data-city') === 'all');
+      });
+      expPills.forEach(function (p) {
+        p.classList.toggle('is-active', p.getAttribute('data-exp') === 'all');
+      });
+
+      filterCinemas();
+    });
+  }
+
+  // 1. Date selection
   if (dateCards.length > 0) {
     dateCards.forEach(function (card) {
       card.addEventListener('click', function () {
@@ -560,7 +714,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // 3. Format filtering
+  // 2. Format filtering inside Showtimes
   if (cinemaFmtBtns.length > 0) {
     cinemaFmtBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -606,7 +760,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (existingToast) existingToast.remove();
     if (activeToastTimer) clearTimeout(activeToastTimer);
 
-    var mallTitle = CINEMA_DATA[currentSelectedMall] ? CINEMA_DATA[currentSelectedMall].title : 'Glorietta 4';
+    var mallTitle = CINEMA_DATA[currentSelectedCinema] ? CINEMA_DATA[currentSelectedCinema].title : 'Glorietta 4';
 
     var toast = document.createElement('div');
     toast.className = 'booking-toast';

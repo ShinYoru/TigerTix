@@ -67,45 +67,215 @@
 
   <main>
 
-    <!-- ================= CINEMA HERO ================= -->
-    <!-- 
-      ============================================================================
-      [CINEMA BACKGROUND IMAGES GUIDE]
-      The background image changes dynamically when switching malls via script.js!
-      - GLORIETTA 4: Configured in styles.css & script.js as 'images/glorietta-4-cinema.avif'
-      - ROBINSON'S GALLERIA: Configured in script.js (CINEMA_DATA.galleria.bg)
-      - UPTOWN MALL: Configured in script.js (CINEMA_DATA.uptown.bg)
-      
-      To insert images for Robinson's Galleria or Uptown Mall, simply drop your photo
-      into the images/ folder and update their background image path in script.js!
-      ============================================================================
-    -->
-    <section class="cinema-hero" id="cinemaHero" aria-label="Cinema Details">
+    <!-- ================= CINEMA DIRECTORY VIEW (Search & Grid) ================= -->
+    <div id="cinemaDirectoryView">
+      <section class="cinema-search-section">
+        <div class="cinema-search-container">
+          <h1 class="cinema-search-title">Search for your cinema</h1>
+          <p class="cinema-search-subtitle">Pick a city or experience to see where your movie is playing</p>
 
-      <!-- Mall Switcher Pill Filter (Glorietta 4, Robinson's Galleria, Uptown Mall) -->
-      <div class="cinema-mall-switcher" role="tablist" aria-label="Select Cinema Location">
-        <button type="button" class="cinema-mall-tab is-active" data-mall="glorietta" role="tab" aria-selected="true">
-          Glorietta 4
-        </button>
-        <button type="button" class="cinema-mall-tab" data-mall="galleria" role="tab" aria-selected="false">
-          Robinson's Galleria
-        </button>
-        <button type="button" class="cinema-mall-tab" data-mall="uptown" role="tab" aria-selected="false">
-          Uptown Mall
-        </button>
+          <!-- Search Filter Box -->
+          <div class="cinema-filter-card">
+            <!-- Search Input -->
+            <div class="cinema-search-bar">
+              <svg class="cinema-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="cinemaLocationSearch" placeholder="Search city, area or location" autocomplete="off" spellcheck="false">
+              <button type="button" id="cinemaSearchClear" class="cinema-clear-btn" aria-label="Clear search" hidden>&times;</button>
+            </div>
+
+            <!-- City Filter Pills -->
+            <div class="cinema-filter-row">
+              <span class="cinema-filter-label">CITY</span>
+              <div class="cinema-filter-pills" id="cityFilterPills">
+                <button type="button" class="cinema-pill is-active" data-city="all">All cities</button>
+                <button type="button" class="cinema-pill" data-city="Makati">Makati</button>
+                <button type="button" class="cinema-pill" data-city="Quezon City">Quezon City</button>
+                <button type="button" class="cinema-pill" data-city="Pasay">Pasay</button>
+                <button type="button" class="cinema-pill" data-city="Taguig">Taguig</button>
+              </div>
+            </div>
+
+            <!-- Experience Filter Pills -->
+            <div class="cinema-filter-row">
+              <span class="cinema-filter-label">EXPERIENCE</span>
+              <div class="cinema-filter-pills" id="expFilterPills">
+                <button type="button" class="cinema-pill is-active" data-exp="all">All Experience</button>
+                <button type="button" class="cinema-pill" data-exp="regular">Regular</button>
+                <button type="button" class="cinema-pill" data-exp="imax">IMAX</button>
+                <button type="button" class="cinema-pill" data-exp="screenx">ScreenX</button>
+                <button type="button" class="cinema-pill" data-exp="directors-club">Director's Club</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cinemas Grid Section -->
+      <section class="cinema-grid-section">
+        <div class="cinema-grid-container">
+          <div class="cinema-count-row">
+            <span class="cinema-count-text" id="cinemaCountText">Showing 6 cinemas</span>
+          </div>
+
+          <!-- 6 Cinemas Grid -->
+          <div class="cinema-card-grid" id="cinemaCardGrid">
+
+            <!-- 1. Glorietta 4 -->
+            <article class="cinema-card" data-id="glorietta" data-city="Makati" data-formats="regular screenx directors-club">
+              <div class="cinema-card-media">
+                <img src="images/glorietta-4-cinema.avif" alt="Glorietta 4 Cinema Hall" class="cinema-card-img">
+              </div>
+              <div class="cinema-card-body">
+                <h3 class="cinema-card-name">Glorietta 4</h3>
+                <p class="cinema-card-address">
+                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <span>Ayala Center, Makati City</span>
+                </p>
+                <div class="cinema-card-tags">
+                  <span class="cinema-tag cinema-tag--regular">Regular</span>
+                  <span class="cinema-tag cinema-tag--screenx">ScreenX</span>
+                  <span class="cinema-tag cinema-tag--dc">Director's Club</span>
+                </div>
+                <button type="button" class="cinema-view-showtimes-btn" data-cinema="glorietta">View Showtimes</button>
+              </div>
+            </article>
+
+            <!-- 2. SM Mall of Asia -->
+            <article class="cinema-card" data-id="moa" data-city="Pasay" data-formats="regular imax">
+              <div class="cinema-card-media">
+                <img src="images/cinema-sm-moa.svg" alt="SM Mall of Asia Cinema" class="cinema-card-img">
+              </div>
+              <div class="cinema-card-body">
+                <h3 class="cinema-card-name">SM Mall of Asia</h3>
+                <p class="cinema-card-address">
+                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <span>Pasay City</span>
+                </p>
+                <div class="cinema-card-tags">
+                  <span class="cinema-tag cinema-tag--regular">Regular</span>
+                  <span class="cinema-tag cinema-tag--imax">IMAX</span>
+                </div>
+                <button type="button" class="cinema-view-showtimes-btn" data-cinema="moa">View Showtimes</button>
+              </div>
+            </article>
+
+            <!-- 3. Robinsons Galleria -->
+            <article class="cinema-card" data-id="galleria" data-city="Quezon City" data-formats="regular">
+              <div class="cinema-card-media">
+                <img src="images/robinsons-cinema.jpeg" alt="Robinsons Galleria Cinema" class="cinema-card-img">
+              </div>
+              <div class="cinema-card-body">
+                <h3 class="cinema-card-name">Robinsons Galleria</h3>
+                <p class="cinema-card-address">
+                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <span>Ortigas Avenue, Quezon City</span>
+                </p>
+                <div class="cinema-card-tags">
+                  <span class="cinema-tag cinema-tag--regular">Regular</span>
+                </div>
+                <button type="button" class="cinema-view-showtimes-btn" data-cinema="galleria">View Showtimes</button>
+              </div>
+            </article>
+
+            <!-- 4. Newport Mall -->
+            <article class="cinema-card" data-id="newport" data-city="Pasay" data-formats="regular directors-club">
+              <div class="cinema-card-media">
+                <img src="images/cinema-newport.svg" alt="Newport Mall Cinema" class="cinema-card-img">
+              </div>
+              <div class="cinema-card-body">
+                <h3 class="cinema-card-name">Newport Mall</h3>
+                <p class="cinema-card-address">
+                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <span>Newport Blvd, Pasay City</span>
+                </p>
+                <div class="cinema-card-tags">
+                  <span class="cinema-tag cinema-tag--regular">Regular</span>
+                  <span class="cinema-tag cinema-tag--dc">Director's Club</span>
+                </div>
+                <button type="button" class="cinema-view-showtimes-btn" data-cinema="newport">View Showtimes</button>
+              </div>
+            </article>
+
+            <!-- 5. Uptown Mall -->
+            <article class="cinema-card" data-id="uptown" data-city="Taguig" data-formats="regular screenx">
+              <div class="cinema-card-media">
+                <img src="images/uptown-cinema.jpg" alt="Uptown Mall Cinema" class="cinema-card-img">
+              </div>
+              <div class="cinema-card-body">
+                <h3 class="cinema-card-name">Uptown Mall</h3>
+                <p class="cinema-card-address">
+                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <span>9th Ave, Taguig City</span>
+                </p>
+                <div class="cinema-card-tags">
+                  <span class="cinema-tag cinema-tag--regular">Regular</span>
+                  <span class="cinema-tag cinema-tag--screenx">ScreenX</span>
+                </div>
+                <button type="button" class="cinema-view-showtimes-btn" data-cinema="uptown">View Showtimes</button>
+              </div>
+            </article>
+
+            <!-- 6. SM City North Edsa -->
+            <article class="cinema-card" data-id="north-edsa" data-city="Quezon City" data-formats="regular imax">
+              <div class="cinema-card-media">
+                <img src="images/cinema-sm-north.svg" alt="SM City North Edsa Cinema" class="cinema-card-img">
+              </div>
+              <div class="cinema-card-body">
+                <h3 class="cinema-card-name">SM City North Edsa</h3>
+                <p class="cinema-card-address">
+                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <span>North Avenue, Quezon City</span>
+                </p>
+                <div class="cinema-card-tags">
+                  <span class="cinema-tag cinema-tag--regular">Regular</span>
+                  <span class="cinema-tag cinema-tag--imax">IMAX</span>
+                </div>
+                <button type="button" class="cinema-view-showtimes-btn" data-cinema="north-edsa">View Showtimes</button>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Empty Search State -->
+          <div class="cinema-empty-state" id="cinemaEmptyState" hidden>
+            <p>No cinemas found matching your search or filters.</p>
+            <button type="button" class="btn btn-outline btn-sm" id="cinemaResetFiltersBtn">Reset Filters</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= CINEMA DETAIL VIEW (Selected Cinema Showtimes) ================= -->
+    <div id="cinemaDetailView" hidden>
+      <!-- Back to All Cinemas Breadcrumb Bar -->
+      <div class="cinema-back-bar">
+        <div class="cinema-back-container">
+          <button type="button" class="cinema-back-btn" id="cinemaBackBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to All Cinemas</span>
+          </button>
+        </div>
       </div>
 
-      <div class="cinema-hero-content">
-        <h1 class="cinema-title" id="cinemaTitle">Glorietta 4</h1>
-        <p class="cinema-location" id="cinemaLocation">
-          5th Level Glorietta 4<br>
-          Ayala Center, Makati City
-        </p>
-        <p class="cinema-desc" id="cinemaDesc">
-          Glorietta Cinemas in Makati offers a modern moviegoing experience with stylish interiors and advanced technology. Its spacious lobby features one of the largest immersive LED screens in the country, creating an exciting atmosphere as soon as you enter. Inside the theaters, Dolby Atmos sound and laser projection provide stunning visuals and clear audio, while the A-Luxe cinemas feature comfortable motorized recliners for a more luxurious viewing experience.
-        </p>
-      </div>
-    </section>
+      <!-- Cinema Hero -->
+      <section class="cinema-hero" id="cinemaHero" aria-label="Cinema Details">
+        <div class="cinema-hero-content">
+          <h1 class="cinema-title" id="cinemaTitle">Glorietta 4</h1>
+          <p class="cinema-location" id="cinemaLocation">
+            5th Level Glorietta 4<br>
+            Ayala Center, Makati City
+          </p>
+          <p class="cinema-desc" id="cinemaDesc">
+            Glorietta Cinemas in Makati offers a modern moviegoing experience with stylish interiors and advanced technology. Its spacious lobby features one of the largest immersive LED screens in the country, creating an exciting atmosphere as soon as you enter. Inside the theaters, Dolby Atmos sound and laser projection provide stunning visuals and clear audio, while the A-Luxe cinemas feature comfortable motorized recliners for a more luxurious viewing experience.
+          </p>
+        </div>
+      </section>
 
     <!-- ================= SHOWTIMES SECTION ================= -->
     <section class="cinema-showtimes" aria-label="Cinema Showtimes">
@@ -244,7 +414,7 @@
 
       </div>
     </section>
-
+  </div>
   </main>
 
   <!-- ================= FOOTER ================= -->

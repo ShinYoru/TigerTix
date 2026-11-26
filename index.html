@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TigerTix | Movie Reservation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <a href="index.html" class="brand" aria-label="TigerTix home">
+      <img src="images/logo.jpeg" alt="TigerTix logo" class="brand-logo">
+      <span class="brand-text">TIGER<span>TIX</span></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html" class="active">Movies</a>
+      <a href="cinema.html">Cinema</a>
+      <a href="experience.html">Experience</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Search Feature: Glides open to the right with a curved pill shape similar to Sign In -->
+      <div class="search-widget" id="searchWidget">
+        <div class="search-pill" id="searchPill">
+          <button class="search-btn" id="searchBtn" type="button" aria-label="Search movies" aria-expanded="false"
+            title="Search movies">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          <input type="text" class="search-input" id="searchInput" placeholder="Search movies..."
+            aria-label="Search movies" autocomplete="off" spellcheck="false">
+          <button class="search-clear" id="searchClear" type="button" aria-label="Clear search" title="Clear">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Live Search Dropdown -->
+        <div class="search-dropdown" id="searchDropdown" role="listbox" aria-label="Search results" hidden>
+          <div class="search-dropdown-header">
+            <span class="search-dropdown-title">Movies</span>
+            <span class="search-count-badge" id="searchCountBadge">0 found</span>
+          </div>
+          <div class="search-results-list" id="searchResultsList"></div>
+        </div>
+      </div>
+
+      <a href="#" class="btn btn-outline btn-sm">Sign In</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= HERO CAROUSEL ================= -->
+    <section class="hero" aria-label="Featured movies" aria-roledescription="carousel">
+      <div class="hero-stage">
+
+        <!-- ========================================================
+             SLIDE 1 of 5
+             ======================================================== -->
+        <article class="hero-slide" role="group" aria-roledescription="slide" aria-label="1 of 5">
+          <!-- [SLIDE 1 IMAGE]
+               Insert your featured movie banner/backdrop image here (approx 1200x500px, wide landscape).
+               Remove the <div class="hero-image-slot"> placeholder below and add your image:
+               Example: <img src="images/toy-story-5-banner.jpg" alt="Toy Story 5 banner">
+          -->
+          <img src="images/toy-story-5-slide.jpeg" alt="">
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <!-- [SLIDE 1 TITLE] Movie Title -->
+            <h1 class="hero-title">Toy Story 5</h1>
+
+            <!-- [SLIDE 1 GENRE & RUNTIME] -->
+            <p class="hero-meta">
+              <!-- Genre -->
+              <span>Animation</span>
+              <span class="dot">&bull;</span>
+              <!-- Runtime / Duration -->
+              <span>1hr 42m</span>
+              <span class="badge">PG</span>
+            </p>
+
+            <!-- [SLIDE 1 DESCRIPTION] Short movie synopsis -->
+            <p class="hero-desc">
+              When toys face a new challenge with the arrival of high-tech gadgets, Woody, Buzz
+              Lightyear, and their friends must navigate a world where playtime is changing. Can
+              these beloved toys find their place in a world of technology? This heartwarming
+              animated adventure is a fun-filled treat for the whole family!
+            </p>
+            <div class="hero-buttons">
+              <a href="#" class="btn btn-solid btn-sm">Play Trailer</a>
+              <a href="booking.html?movie=Toy+Story+5" class="btn btn-outline btn-sm">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ========================================================
+             SLIDE 2 of 5
+             ======================================================== -->
+        <article class="hero-slide" role="group" aria-roledescription="slide" aria-label="2 of 5">
+          <!-- [SLIDE 2 IMAGE]
+               Insert your featured movie banner/backdrop image here (approx 1200x500px, wide landscape).
+               Remove the <div class="hero-image-slot"> placeholder below and add your image:
+               Example: <img src="images/the-odyssey-banner.jpg" alt="The Odyssey banner">
+          -->
+          <img src="images/2-valid-ids-slide.jpg" alt="">
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <!-- [SLIDE 2 TITLE] Movie Title -->
+            <h2 class="hero-title">2 Valid Ids</h2>
+
+            <!-- [SLIDE 2 GENRE & RUNTIME] -->
+            <p class="hero-meta">
+              <!-- Genre -->
+              <span>Drama</span>
+              <span class="dot">&bull;</span>
+              <!-- Runtime / Duration -->
+              <span>1hr 33m</span>
+              <span class="badge">PG</span>
+            </p>
+
+            <!-- [SLIDE 2 DESCRIPTION] Short movie synopsis -->
+            <p class="hero-desc">
+              When a poor farmer needs two valid IDs to claim remittance money for her ailing husband’s medical
+              treatment, a simple requirement turns into an impossible hurdle. Desperate and out of options, she turns
+              to a fixer as bureaucracy and dwindling funds push her faith and humanity to the brink. This moving drama
+              is a powerful look at survival and dignity.
+            </p>
+            <div class="hero-buttons">
+              <a href="#" class="btn btn-solid btn-sm">Play Trailer</a>
+              <a href="#" class="btn btn-outline btn-sm">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ========================================================
+             SLIDE 3 of 5
+             ======================================================== -->
+        <article class="hero-slide" role="group" aria-roledescription="slide" aria-label="3 of 5">
+          <!-- [SLIDE 3 IMAGE]
+               Insert your featured movie banner/backdrop image here (approx 1200x500px, wide landscape).
+               Remove the <div class="hero-image-slot"> placeholder below and add your image:
+               Example: <img src="images/2-valid-ids-banner.jpg" alt="2 Valid IDs banner">
+          -->
+          <img src="images/the-odyssey-slide.jpeg" alt="">
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <!-- [SLIDE 3 TITLE] Movie Title -->
+            <h2 class="hero-title">The Odyssey</h2>
+
+            <!-- [SLIDE 3 GENRE & RUNTIME] -->
+            <p class="hero-meta">
+              <!-- Genre -->
+              <span>Action/Fantasy</span>
+              <span class="dot">&bull;</span>
+              <!-- Runtime / Duration -->
+              <span>1hr 52m</span>
+              <span class="badge">PG</span>
+            </p>
+
+            <!-- [SLIDE 3 DESCRIPTION] Short movie synopsis -->
+            <p class="hero-desc">
+              When the Trojan War finally ends, Odysseus embarks on a perilous voyage home to Ithaca, facing deadly
+              mythical threats like the Cyclops Polyphemus, the enchanting Sirens, and the nymph Calypso. Can he outwit
+              gods and monsters to reclaim his kingdom? This epic adventure is a thrilling journey of survival and
+              resilience!
+            </p>
+            <div class="hero-buttons">
+              <a href="#" class="btn btn-solid btn-sm">Play Trailer</a>
+              <a href="#" class="btn btn-outline btn-sm">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ========================================================
+             SLIDE 4 of 5
+             ======================================================== -->
+        <article class="hero-slide" role="group" aria-roledescription="slide" aria-label="4 of 5">
+          <!-- [SLIDE 4 IMAGE]
+               Insert your featured movie banner/backdrop image here (approx 1200x500px, wide landscape).
+               Remove the <div class="hero-image-slot"> placeholder below and add your image:
+               Example: <img src="images/wicked-banner.jpg" alt="Wicked banner">
+          -->
+          <img src="images/the-wicked-slide.jpeg" alt="">
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <!-- [SLIDE 4 TITLE] Movie Title -->
+            <h2 class="hero-title">The Wicked: For Good</h2>
+
+            <!-- [SLIDE 4 GENRE & RUNTIME] -->
+            <p class="hero-meta">
+              <!-- Genre -->
+              <span>Fantasy/Adventure</span>
+              <span class="dot">&bull;</span>
+              <!-- Runtime / Duration -->
+              <span>2h 18m</span>
+              <span class="badge">PG</span>
+            </p>
+
+            <!-- [SLIDE 4 DESCRIPTION] Short movie synopsis -->
+            <p class="hero-desc">
+              When their paths diverge in the Land of Oz, Elphaba, the future Wicked Witch of the West, and Glinda, the
+              Good Witch of the North, face the ultimate test of their friendship. Can their bond survive the destiny
+              awaiting them in this thrilling conclusion to the two-part adaptation? This spellbinding musical event is
+              a must-see for fans everywhere!
+            </p>
+            <div class="hero-buttons">
+              <a href="#" class="btn btn-solid btn-sm">Play Trailer</a>
+              <a href="#" class="btn btn-outline btn-sm">Remind Me</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ========================================================
+             SLIDE 5 of 5
+             ======================================================== -->
+        <article class="hero-slide" role="group" aria-roledescription="slide" aria-label="5 of 5">
+          <!-- [SLIDE 5 IMAGE]
+               Insert your featured movie banner/backdrop image here (approx 1200x500px, wide landscape).
+               Remove the <div class="hero-image-slot"> placeholder below and add your image:
+               Example: <img src="images/spiderman-banner.jpg" alt="Spider-Man banner">
+          -->
+          <img src="images/spiderman-slide.jpeg" alt="">
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <!-- [SLIDE 5 TITLE] Movie Title -->
+            <h2 class="hero-title">Spider-Man: Brand New Day</h2>
+
+            <!-- [SLIDE 5 GENRE & RUNTIME] -->
+            <p class="hero-meta">
+              <!-- Genre -->
+              <span>Action/Adventure</span>
+              <span class="dot">&bull;</span>
+              <!-- Runtime / Duration -->
+              <span>2h 25m</span>
+              <span class="badge">PG</span>
+            </p>
+
+            <!-- [SLIDE 5 DESCRIPTION] Short movie synopsis -->
+            <p class="hero-desc">
+              When a world that has forgotten Peter Parker pushes him into an uncontrollable transformation, he must
+              embrace his darkest change yet to stop a shocking new villain no one can even see. Can Spider-Man save the
+              city and the friends who moved on without him? This thrilling superhero adventure is an action-packed
+              spectacle!
+            </p>
+            <div class="hero-buttons">
+              <a href="#" class="btn btn-solid btn-sm">Play Trailer</a>
+              <a href="#" class="btn btn-outline btn-sm">Remind Me</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Left & Right Arrows (flashes on hover, centered in gap between pages) -->
+        <button type="button" class="hero-arrow hero-arrow--prev" aria-label="Previous slide" title="Previous slide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <button type="button" class="hero-arrow hero-arrow--next" aria-label="Next slide" title="Next slide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Pause button + slide dots -->
+        <div class="hero-controls">
+          <button type="button" class="hero-pause" aria-label="Pause slideshow">
+            <svg class="ico-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <rect x="5" y="4" width="5" height="16" rx="1"></rect>
+              <rect x="14" y="4" width="5" height="16" rx="1"></rect>
+            </svg>
+            <svg class="ico-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"></path>
+            </svg>
+          </button>
+          <div class="hero-dots">
+            <button type="button" class="hero-dot" aria-label="Go to slide 1"></button>
+            <button type="button" class="hero-dot" aria-label="Go to slide 2"></button>
+            <button type="button" class="hero-dot" aria-label="Go to slide 3"></button>
+            <button type="button" class="hero-dot" aria-label="Go to slide 4"></button>
+            <button type="button" class="hero-dot" aria-label="Go to slide 5"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= NOW SHOWING / COMING SOON ================= -->
+    <section class="movies" aria-label="Movies">
+      <input type="radio" name="movie-tab" id="tab-now" class="sr-only" checked>
+      <input type="radio" name="movie-tab" id="tab-soon" class="sr-only">
+
+      <div class="tabs" role="tablist">
+        <label for="tab-now" class="tab tab-now" role="tab">Now Showing</label>
+        <label for="tab-soon" class="tab tab-soon" role="tab">Coming Soon</label>
+      </div>
+
+      <!-- NOW SHOWING -->
+      <div class="movie-grid panel-now">
+
+        <article class="movie-card">
+          <img src="images/2-valid-ids.jpeg" alt="2 Valid IDs poster">
+          <div class="movie-info">
+            <!-- TITLE: Movie title goes here -->
+            <h3 class="movie-title">2 Valid IDs <span class="badge">PG</span></h3>
+            <p class="movie-meta">Drama &bull; 1hr 33m</p>
+            <a href="booking.html?movie=2+Valid+IDs" class="btn btn-outline btn-xs">Book Now</a>
+          </div>
+        </article>
+
+        <article class="movie-card">
+          <img src="images/the-odyssey.jpg" alt="The Odyssey poster">
+          <div class="movie-info">
+            <!-- TITLE: Movie title goes here -->
+            <h3 class="movie-title">The Odyssey <span class="badge">PG</span></h3>
+            <p class="movie-meta">Action/Fantasy &bull; 1hr 52m</p>
+            <a href="booking.html?movie=The+Odyssey" class="btn btn-outline btn-xs">Book Now</a>
+          </div>
+        </article>
+
+        <article class="movie-card">
+          <img src="images/toystory-5.jpg" alt="Toy Story 5 poster">
+          <div class="movie-info">
+            <!-- TITLE: Movie title goes here -->
+            <h3 class="movie-title">Toy Story 5 <span class="badge">PG</span></h3>
+            <p class="movie-meta">Comedy/Adventure &bull; 1hr 42m</p>
+            <a href="booking.html?movie=Toy+Story+5" class="btn btn-outline btn-xs">Book Now</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- COMING SOON -->
+      <div class="movie-grid panel-soon">
+
+        <article class="movie-card">
+          <img src="images/wicked.jpeg" alt="Wicked: For Good poster">
+          <div class="movie-info">
+            <!-- TITLE: Movie title goes here -->
+            <h3 class="movie-title">Wicked: For Good <span class="badge">PG</span></h3>
+            <p class="movie-meta">Fantasy/Adventure &bull; 2hr 18m</p>
+            <a href="#" class="btn btn-outline btn-xs">Remind Me</a>
+          </div>
+        </article>
+
+        <article class="movie-card">
+          <img src="images/moana.jpeg" alt="Moana poster">
+          <div class="movie-info">
+            <!-- TITLE: Movie title goes here -->
+            <h3 class="movie-title">Moana <span class="badge">PG</span></h3>
+            <p class="movie-meta">Animation &bull; 1hr 55m</p>
+            <a href="#" class="btn btn-outline btn-xs">Remind Me</a>
+          </div>
+        </article>
+
+        <article class="movie-card">
+          <img src="images/spiderman.jpeg" alt="Spider-Man: Brand New Day poster">
+          <div class="movie-info">
+            <!-- TITLE: Movie title goes here -->
+            <h3 class="movie-title">Spider-Man: Brand New Day <span class="badge">PG</span></h3>
+            <p class="movie-meta">Action/Adventure &bull; 2hr 55m</p>
+            <a href="#" class="btn btn-outline btn-xs">Remind Me</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="index.html" class="brand brand--lg" aria-label="TigerTix home">
+          <img src="images/logo.jpeg" alt="TigerTix logo" class="brand-logo brand-logo--lg">
+          <span class="brand-text">TIGER<span>TIX</span></span>
+        </a>
+
+        <p class="connect-label">Let's Connect</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+            </svg>
+          </a>
+          <a href="#" aria-label="X (Twitter)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <nav class="footer-col" aria-label="Categories">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html">Movies</a></li>
+          <li><a href="cinema.html">Cinemas</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Customer care">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Corporate">
+        <h4>Corporate</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </nav>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="legal">
+        <a href="#">Terms and Conditions</a>
+        <a href="#">Privacy Notice</a>
+      </div>
+      <p>&copy; 2026 TigerTix. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* Hero carousel: centre banner keeps a fixed size, neighbours peek in from the sides */
+    (function () {
+      var hero = document.querySelector('.hero');
+      if (!hero) return;
+
+      var slides = Array.prototype.slice.call(hero.querySelectorAll('.hero-slide'));
+      var dots = Array.prototype.slice.call(hero.querySelectorAll('.hero-dot'));
+      var pauseBtn = hero.querySelector('.hero-pause');
+      var stage = hero.querySelector('.hero-stage');
+      var n = slides.length;
+      if (!n) return;
+
+      var half = Math.floor(n / 2);
+      var DELAY = 5000;
+      var current = 0;
+      var timer = null;
+      var playing = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+      function render() {
+        slides.forEach(function (slide, i) {
+          var d = ((i - current + n + half) % n) - half;
+          var active = d === 0;
+          slide.style.setProperty('--d', d);
+          slide.classList.toggle('is-active', active);
+          slide.classList.toggle('is-hidden', Math.abs(d) > 1);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+          Array.prototype.forEach.call(slide.querySelectorAll('a, button'), function (el) {
+            el.tabIndex = active ? 0 : -1;
+          });
+        });
+        dots.forEach(function (dot, i) {
+          dot.classList.toggle('is-active', i === current);
+          dot.setAttribute('aria-current', i === current ? 'true' : 'false');
+        });
+      }
+
+      function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      function start() {
+        stop();
+        if (playing && n > 1 && !document.hidden) {
+          timer = setInterval(function () { current = (current + 1) % n; render(); }, DELAY);
+        }
+      }
+
+      function go(i) {
+        current = (i + n) % n;
+        render();
+        start();
+      }
+
+      function setPlaying(value) {
+        playing = value;
+        hero.classList.toggle('is-paused', !value);
+        pauseBtn.setAttribute('aria-label', value ? 'Pause slideshow' : 'Play slideshow');
+        start();
+      }
+
+      dots.forEach(function (dot, i) {
+        dot.addEventListener('click', function () { go(i); });
+      });
+
+      slides.forEach(function (slide, i) {
+        slide.addEventListener('click', function () {
+          if (i !== current && !slide.classList.contains('is-hidden')) go(i);
+        });
+      });
+
+      pauseBtn.addEventListener('click', function () { setPlaying(!playing); });
+
+      /* Arrow buttons */
+      var prevBtn = hero.querySelector('.hero-arrow--prev');
+      var nextBtn = hero.querySelector('.hero-arrow--next');
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          go(current - 1);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          go(current + 1);
+        });
+      }
+
+      /* Slideable Drag / Swipe Support (Mouse & Touch) */
+      var isDragging = false;
+      var dragStartX = 0;
+      var dragDiffX = 0;
+      var hasMoved = false;
+
+      function onDragStart(clientX) {
+        isDragging = true;
+        hasMoved = false;
+        dragStartX = clientX;
+        dragDiffX = 0;
+        stage.classList.add('is-dragging');
+        stop();
+      }
+
+      function onDragMove(clientX) {
+        if (!isDragging) return;
+        dragDiffX = clientX - dragStartX;
+        if (Math.abs(dragDiffX) > 6) {
+          hasMoved = true;
+        }
+        stage.style.setProperty('--drag-x', dragDiffX + 'px');
+      }
+
+      function onDragEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        stage.classList.remove('is-dragging');
+        stage.style.removeProperty('--drag-x');
+
+        if (Math.abs(dragDiffX) > 40) {
+          go(current + (dragDiffX < 0 ? 1 : -1));
+        } else {
+          start();
+        }
+        dragDiffX = 0;
+      }
+
+      // Pointer events support both mouse drag & touch swipe
+      stage.addEventListener('pointerdown', function (e) {
+        if (e.target.closest('button') || e.target.closest('.hero-controls')) return;
+        onDragStart(e.clientX);
+        try { stage.setPointerCapture(e.pointerId); } catch (_) { }
+      });
+
+      stage.addEventListener('pointermove', function (e) {
+        onDragMove(e.clientX);
+      });
+
+      stage.addEventListener('pointerup', function (e) {
+        try {
+          if (stage.hasPointerCapture && stage.hasPointerCapture(e.pointerId)) {
+            stage.releasePointerCapture(e.pointerId);
+          }
+        } catch (_) { }
+        onDragEnd();
+      });
+
+      stage.addEventListener('pointercancel', function (e) {
+        try {
+          if (stage.hasPointerCapture && stage.hasPointerCapture(e.pointerId)) {
+            stage.releasePointerCapture(e.pointerId);
+          }
+        } catch (_) { }
+        onDragEnd();
+      });
+
+      // Prevent accidental link clicks when dragging slides
+      stage.addEventListener('click', function (e) {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation();
+          hasMoved = false;
+        }
+      }, true);
+
+      // Pause carousel while hovering slider
+      hero.addEventListener('mouseenter', stop);
+      hero.addEventListener('mouseleave', function () {
+        if (playing && !isDragging) start();
+      });
+
+      // Keyboard arrow navigation
+      hero.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') {
+          go(current - 1);
+        } else if (e.key === 'ArrowRight') {
+          go(current + 1);
+        }
+      });
+
+      document.addEventListener('visibilitychange', start);
+
+      hero.classList.toggle('is-paused', !playing);
+      pauseBtn.setAttribute('aria-label', playing ? 'Pause slideshow' : 'Play slideshow');
+      render();
+      start();
+    })();
+  </script>
+  <script src="script.js"></script>
+
+</body>
+
+</html>

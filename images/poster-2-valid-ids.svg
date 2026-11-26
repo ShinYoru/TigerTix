@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450" width="300" height="450">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141414"/>
+      <stop offset="40%" stop-color="#2a221b"/>
+      <stop offset="70%" stop-color="#3d2f24"/>
+      <stop offset="100%" stop-color="#120e0a"/>
+    </linearGradient>
+    <linearGradient id="idCardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5e6ca"/>
+      <stop offset="50%" stop-color="#e8d5b5"/>
+      <stop offset="100%" stop-color="#d4be99"/>
+    </linearGradient>
+    <linearGradient id="idBanner" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0038a8"/>
+      <stop offset="50%" stop-color="#ce1126"/>
+      <stop offset="100%" stop-color="#fcd116"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.8"/>
+    </filter>
+    <filter id="stampBlur" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background with dramatic movie lighting -->
+  <rect width="300" height="450" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle background texture & overlay -->
+  <g opacity="0.15">
+    <circle cx="150" cy="120" r="140" fill="#f2c935"/>
+    <path d="M0,300 Q150,220 300,320 L300,450 L0,450 Z" fill="#000000"/>
+  </g>
+
+  <!-- Philippine ID Card Graphic -->
+  <g transform="translate(25, 45)" filter="url(#shadow)">
+    <!-- ID Card Base -->
+    <rect width="250" height="155" rx="10" fill="url(#idCardGrad)" stroke="#c2a77f" stroke-width="1.5"/>
+    
+    <!-- Top Micro Stripe -->
+    <rect x="0" y="0" width="250" height="6" rx="4" fill="url(#idBanner)" opacity="0.85"/>
+    
+    <!-- Header Text -->
+    <text x="125" y="19" font-family="'Montserrat', sans-serif" font-size="5.5" font-weight="700" fill="#2d3748" text-anchor="middle" letter-spacing="0.5">REPUBLIKA NG PILIPINAS</text>
+    <text x="125" y="26" font-family="'Montserrat', sans-serif" font-size="4.5" font-weight="600" fill="#555" text-anchor="middle">PAMBANSANG PAGKAKAKILANLAN / NATIONAL ID</text>
+    
+    <!-- ID Photo Slot -->
+    <rect x="18" y="34" width="70" height="88" rx="4" fill="#d8c5a8" stroke="#8c7355" stroke-width="1"/>
+    
+    <!-- Stylized Portrait Silhouette of Woman -->
+    <g transform="translate(18, 34)">
+      <!-- Head and Shoulders -->
+      <path d="M12,88 C12,68 22,60 35,60 C48,60 58,68 58,88 Z" fill="#4a3b32"/>
+      <ellipse cx="35" cy="40" rx="16" ry="20" fill="#a88970"/>
+      <!-- Hair -->
+      <path d="M18,38 C18,22 24,18 35,18 C46,18 52,22 52,38 C52,42 50,48 48,50 C46,38 42,28 35,28 C28,28 24,38 22,50 Z" fill="#261b14"/>
+      <!-- Facial contours -->
+      <path d="M28,38 Q35,42 42,38" stroke="#6b4c35" stroke-width="1" fill="none"/>
+      <path d="M30,47 Q35,51 40,47" stroke="#823c3c" stroke-width="1.2" fill="none"/>
+      <!-- Watermark / Stamp across photo -->
+      <path d="M5,55 L65,25" stroke="#ce1126" stroke-width="2" opacity="0.35" stroke-dasharray="3,2"/>
+    </g>
+
+    <!-- ID Card Information Text Fields -->
+    <g transform="translate(98, 38)">
+      <text x="0" y="8" font-family="'Montserrat', sans-serif" font-size="4" font-weight="700" fill="#888">APELYIDO / LAST NAME</text>
+      <text x="0" y="17" font-family="'Montserrat', sans-serif" font-size="7" font-weight="700" fill="#1a202c">DELA CRUZ</text>
+      
+      <text x="0" y="28" font-family="'Montserrat', sans-serif" font-size="4" font-weight="700" fill="#888">MGA PANGALAN / GIVEN NAMES</text>
+      <text x="0" y="37" font-family="'Montserrat', sans-serif" font-size="6.5" font-weight="700" fill="#1a202c">MA. SYLVIA L.</text>
+      
+      <text x="0" y="47" font-family="'Montserrat', sans-serif" font-size="4" font-weight="700" fill="#888">PETSA NG KAPANGANAKAN / DATE OF BIRTH</text>
+      <text x="0" y="55" font-family="'Montserrat', sans-serif" font-size="5.5" font-weight="600" fill="#2d3748">OCTOBER 14, 1982</text>
+      
+      <text x="0" y="65" font-family="'Montserrat', sans-serif" font-size="4" font-weight="700" fill="#888">KASARIAN / SEX</text>
+      <text x="0" y="73" font-family="'Montserrat', sans-serif" font-size="5.5" font-weight="600" fill="#2d3748">FEMALE</text>
+      
+      <!-- Barcode Graphic -->
+      <g transform="translate(0, 80)" opacity="0.7">
+        <rect x="0" y="0" width="2" height="12" fill="#000"/>
+        <rect x="3" y="0" width="1" height="12" fill="#000"/>
+        <rect x="5" y="0" width="3" height="12" fill="#000"/>
+        <rect x="10" y="0" width="1" height="12" fill="#000"/>
+        <rect x="13" y="0" width="2" height="12" fill="#000"/>
+        <rect x="17" y="0" width="1" height="12" fill="#000"/>
+        <rect x="20" y="0" width="4" height="12" fill="#000"/>
+        <rect x="26" y="0" width="1" height="12" fill="#000"/>
+        <rect x="29" y="0" width="2" height="12" fill="#000"/>
+        <rect x="33" y="0" width="3" height="12" fill="#000"/>
+        <rect x="38" y="0" width="1" height="12" fill="#000"/>
+        <rect x="42" y="0" width="2" height="12" fill="#000"/>
+        <rect x="46" y="0" width="3" height="12" fill="#000"/>
+        <rect x="52" y="0" width="1" height="12" fill="#000"/>
+        <rect x="55" y="0" width="4" height="12" fill="#000"/>
+        <rect x="62" y="0" width="2" height="12" fill="#000"/>
+        <rect x="66" y="0" width="1" height="12" fill="#000"/>
+        <rect x="70" y="0" width="3" height="12" fill="#000"/>
+        <rect x="75" y="0" width="2" height="12" fill="#000"/>
+        <rect x="80" y="0" width="4" height="12" fill="#000"/>
+        <rect x="86" y="0" width="2" height="12" fill="#000"/>
+        <rect x="90" y="0" width="3" height="12" fill="#000"/>
+        <rect x="95" y="0" width="2" height="12" fill="#000"/>
+        <rect x="100" y="0" width="4" height="12" fill="#000"/>
+        <rect x="106" y="0" width="1" height="12" fill="#000"/>
+        <rect x="110" y="0" width="3" height="12" fill="#000"/>
+        <rect x="115" y="0" width="2" height="12" fill="#000"/>
+        <rect x="120" y="0" width="3" height="12" fill="#000"/>
+        <rect x="125" y="0" width="1" height="12" fill="#000"/>
+        <rect x="128" y="0" width="2" height="12" fill="#000"/>
+      </g>
+    </g>
+
+    <!-- Official Red Stamp Overlay -->
+    <g transform="translate(160, 95) rotate(-12)" filter="url(#stampBlur)" opacity="0.75">
+      <rect x="0" y="0" width="70" height="24" rx="3" fill="none" stroke="#ce1126" stroke-width="1.8" stroke-dasharray="4,1"/>
+      <text x="35" y="11" font-family="'Montserrat', sans-serif" font-size="6" font-weight="800" fill="#ce1126" text-anchor="middle" letter-spacing="1">VERIFIED</text>
+      <text x="35" y="19" font-family="'Montserrat', sans-serif" font-size="4" font-weight="700" fill="#ce1126" text-anchor="middle">OFFICIAL COPY</text>
+    </g>
+  </g>
+
+  <!-- Film Title Section -->
+  <g transform="translate(150, 260)" text-anchor="middle">
+    <!-- Movie Title Banner -->
+    <text x="0" y="0" font-family="'Montserrat', sans-serif" font-size="30" font-weight="800" fill="#ffffff" letter-spacing="1.5">2 VALID IDs</text>
+    <text x="0" y="18" font-family="'Montserrat', sans-serif" font-size="8.5" font-weight="600" fill="#f2c935" letter-spacing="3">AN OFFICIAL SELECTION</text>
+  </g>
+
+  <!-- Movie Tagline & Credits -->
+  <g transform="translate(150, 315)" text-anchor="middle">
+    <text x="0" y="0" font-family="'Montserrat', sans-serif" font-size="8" font-weight="500" fill="#d1d5db" letter-spacing="0.5">HOW FAR WOULD YOU GO TO PROVE WHO YOU ARE?</text>
+    
+    <!-- Cast Billing -->
+    <text x="0" y="24" font-family="'Montserrat', sans-serif" font-size="7" font-weight="600" fill="#9ca3af" letter-spacing="1">JOEY MARQUEZ  •  POKWANG  •  ZAIJAN JARANILLA</text>
+    <text x="0" y="36" font-family="'Montserrat', sans-serif" font-size="6.5" font-weight="500" fill="#9ca3af" letter-spacing="1">MERYL SORIANO  •  JOEM BASCON</text>
+    
+    <!-- Release Date Badge -->
+    <rect x="-65" y="55" width="130" height="24" rx="12" fill="rgba(242, 201, 53, 0.15)" stroke="#f2c935" stroke-width="1.2"/>
+    <text x="0" y="70" font-family="'Montserrat', sans-serif" font-size="8" font-weight="700" fill="#f2c935" letter-spacing="1.5">OCTOBER 14, 2026</text>
+  </g>
+
+  <!-- PG Rating Emblem -->
+  <g transform="translate(252, 20)">
+    <rect width="28" height="18" rx="3" fill="#3b82f6"/>
+    <text x="14" y="13" font-family="'Montserrat', sans-serif" font-size="9" font-weight="800" fill="#ffffff" text-anchor="middle">PG</text>
+  </g>
+</svg>

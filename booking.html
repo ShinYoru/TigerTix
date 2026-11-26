@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Tickets | TigerTix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="booking.css">
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <a href="index.html" class="brand" aria-label="TigerTix home">
+      <img src="images/logo.jpeg" alt="TigerTix logo" class="brand-logo">
+      <span class="brand-text">TIGER<span>TIX</span></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html">Movies</a>
+      <a href="cinema.html">Cinema</a>
+      <a href="experience.html">Experience</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#" class="btn btn-outline btn-sm">Sign In</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= MOVIE HERO BANNER ================= -->
+    <section class="bk-movie-hero" id="bkMovieHero">
+      <div class="bk-movie-hero-bg" id="bkMovieBg" aria-hidden="true"></div>
+      <div class="bk-movie-hero-content">
+
+        <span class="bk-eyebrow">Now Showing</span>
+
+        <div class="bk-movie-row">
+          <!-- Poster -->
+          <div class="bk-poster-wrap">
+            <div class="bk-poster-img" id="bkPosterImg" aria-hidden="true">
+              <img id="bkPosterImgTag" src="images/2-valid-ids.jpeg" alt="Movie poster">
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="bk-movie-info">
+            <h1 class="bk-movie-title" id="bkMovieTitle">
+              2 Valid IDs <span class="badge">PG</span>
+            </h1>
+            <p class="bk-movie-meta" id="bkMovieMeta">Drama &bull; 1hr 33m &bull; Released October 14 2026</p>
+            <p class="bk-movie-desc" id="bkMovieDesc">
+              Sylvia, a poor farmer, needs two valid IDs to claim money sent for her husband's medical care. But she doesn't have a single one. A quietly gripping drama about faith, identity and humanity.
+            </p>
+            <p class="bk-movie-cast" id="bkMovieCast">
+              <strong>Cast:</strong> Joey Marquez, Pokwang, Zalijan Jaranilla, Meryl Soriano, Joem Bascon
+            </p>
+            <div class="bk-movie-actions">
+              <button class="btn btn-outline btn-sm bk-btn-trailer" id="bkOpenTrailerBtn" type="button">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right:5px;vertical-align:middle"><path d="M8 5v14l11-7z"/></svg>
+                Watch Trailer
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= BOOKING FLOW ================= -->
+    <section class="bk-flow-section" id="bkFlowSection">
+
+      <h2 class="bk-flow-heading">Book Tickets</h2>
+
+      <!-- 5-Step Progress Bar (Capsule Pill) -->
+      <nav class="bk-stepper" aria-label="Booking steps">
+        <div class="bk-step is-active" data-step="1">
+          <div class="bk-step-num">1</div>
+          <span class="bk-step-label">Cinema</span>
+        </div>
+        <div class="bk-step-arrow" data-after-step="1" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+        <div class="bk-step" data-step="2">
+          <div class="bk-step-num">2</div>
+          <span class="bk-step-label">Date &amp; Time</span>
+        </div>
+        <div class="bk-step-arrow" data-after-step="2" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+        <div class="bk-step" data-step="3">
+          <div class="bk-step-num">3</div>
+          <span class="bk-step-label">Seats</span>
+        </div>
+        <div class="bk-step-arrow" data-after-step="3" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+        <div class="bk-step" data-step="4">
+          <div class="bk-step-num">4</div>
+          <span class="bk-step-label">Payment</span>
+        </div>
+        <div class="bk-step-arrow" data-after-step="4" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+        <div class="bk-step" data-step="5">
+          <div class="bk-step-num">5</div>
+          <span class="bk-step-label">E - Ticket</span>
+        </div>
+      </nav>
+
+      <!-- ============= STEP 1: SELECT CINEMA ============= -->
+      <div class="bk-panel is-active" id="bkPanel1">
+        <h3 class="bk-panel-title">Select a cinema</h3>
+        <p class="bk-panel-sub">Search by name or area, or filter by city.</p>
+
+        <!-- Search Box -->
+        <div class="bk-cinema-search-wrap">
+          <svg class="bk-search-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="bk-cinema-search" id="cinemaSearch" placeholder="Search city, area or location" autocomplete="off">
+        </div>
+
+        <!-- City Filter Pills -->
+        <div class="bk-city-pills" role="tablist" aria-label="Filter by city">
+          <button class="bk-city-pill is-active" data-city="all" role="tab" aria-selected="true">All areas <span class="city-count">6</span></button>
+          <button class="bk-city-pill" data-city="Makati" role="tab" aria-selected="false">Makati <span class="city-count">1</span></button>
+          <button class="bk-city-pill" data-city="Pasay" role="tab" aria-selected="false">Pasay <span class="city-count">2</span></button>
+          <button class="bk-city-pill" data-city="Quezon" role="tab" aria-selected="false">Quezon <span class="city-count">2</span></button>
+          <button class="bk-city-pill" data-city="Taguig" role="tab" aria-selected="false">Taguig <span class="city-count">1</span></button>
+        </div>
+
+        <p class="bk-cinema-count" id="cinemaCount">6 cinemas</p>
+
+        <!-- Cinema Grid -->
+        <div class="bk-cinema-grid" id="cinemaGrid">
+
+          <label class="bk-cinema-card is-selected" data-city="Makati" data-cinema="Glorietta 4" data-addr="Ayala Center, Makati City" data-formats="Regular,Director's Club">
+            <input type="radio" name="cinema" value="Glorietta 4" checked>
+            <div class="bk-cinema-card-inner">
+              <div class="bk-cinema-top">
+                <div class="bk-cinema-name-wrap">
+                  <span class="bk-cinema-name">Glorietta 4</span>
+                </div>
+                <div class="bk-cinema-radio-dot"></div>
+              </div>
+              <p class="bk-cinema-addr">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right:3px;color:#f2c935;flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Ayala Center, Makati City
+              </p>
+              <div class="bk-cinema-formats">
+                <span class="bk-fmt-tag">Regular</span>
+                <span class="bk-fmt-tag">Director's Club</span>
+              </div>
+            </div>
+          </label>
+
+          <label class="bk-cinema-card" data-city="Pasay" data-cinema="SM Mall of Asia" data-addr="Pasay City" data-formats="Regular,ScreenX">
+            <input type="radio" name="cinema" value="SM Mall of Asia">
+            <div class="bk-cinema-card-inner">
+              <div class="bk-cinema-top">
+                <div class="bk-cinema-name-wrap">
+                  <span class="bk-cinema-name">SM Mall of Asia</span>
+                </div>
+                <div class="bk-cinema-radio-dot"></div>
+              </div>
+              <p class="bk-cinema-addr">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right:3px;color:#f2c935;flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Pasay City
+              </p>
+              <div class="bk-cinema-formats">
+                <span class="bk-fmt-tag">Regular</span>
+                <span class="bk-fmt-tag">ScreenX</span>
+              </div>
+            </div>
+          </label>
+
+          <label class="bk-cinema-card" data-city="Quezon" data-cinema="Robinson's Galleria" data-addr="Ortigas Avenue, Quezon City" data-formats="Regular">
+            <input type="radio" name="cinema" value="Robinson's Galleria">
+            <div class="bk-cinema-card-inner">
+              <div class="bk-cinema-top">
+                <div class="bk-cinema-name-wrap">
+                  <span class="bk-cinema-name">Robinson's Galleria</span>
+                </div>
+                <div class="bk-cinema-radio-dot"></div>
+              </div>
+              <p class="bk-cinema-addr">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right:3px;color:#f2c935;flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Ortigas Avenue, Quezon City
+              </p>
+              <div class="bk-cinema-formats">
+                <span class="bk-fmt-tag">Regular</span>
+              </div>
+            </div>
+          </label>
+
+          <label class="bk-cinema-card" data-city="Pasay" data-cinema="Newport Mall" data-addr="Newport Blvd, Pasay City" data-formats="Regular,Director's Club">
+            <input type="radio" name="cinema" value="Newport Mall">
+            <div class="bk-cinema-card-inner">
+              <div class="bk-cinema-top">
+                <div class="bk-cinema-name-wrap">
+                  <span class="bk-cinema-name">Newport Mall</span>
+                </div>
+                <div class="bk-cinema-radio-dot"></div>
+              </div>
+              <p class="bk-cinema-addr">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right:3px;color:#f2c935;flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Newport Blvd, Pasay City
+              </p>
+              <div class="bk-cinema-formats">
+                <span class="bk-fmt-tag">Regular</span>
+                <span class="bk-fmt-tag">Director's Club</span>
+              </div>
+            </div>
+          </label>
+
+          <label class="bk-cinema-card" data-city="Taguig" data-cinema="Uptown Mall" data-addr="9th Ave, Taguig City" data-formats="Regular,ScreenX,Director's Club">
+            <input type="radio" name="cinema" value="Uptown Mall">
+            <div class="bk-cinema-card-inner">
+              <div class="bk-cinema-top">
+                <div class="bk-cinema-name-wrap">
+                  <span class="bk-cinema-name">Uptown Mall</span>
+                </div>
+                <div class="bk-cinema-radio-dot"></div>
+              </div>
+              <p class="bk-cinema-addr">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right:3px;color:#f2c935;flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                9th Ave, Taguig City
+              </p>
+              <div class="bk-cinema-formats">
+                <span class="bk-fmt-tag">Regular</span>
+                <span class="bk-fmt-tag">ScreenX</span>
+                <span class="bk-fmt-tag">Director's Club</span>
+              </div>
+            </div>
+          </label>
+
+          <label class="bk-cinema-card" data-city="Quezon" data-cinema="SM City North EDSA" data-addr="North Avenue, Quezon City" data-formats="Regular,ScreenX">
+            <input type="radio" name="cinema" value="SM City North EDSA">
+            <div class="bk-cinema-card-inner">
+              <div class="bk-cinema-top">
+                <div class="bk-cinema-name-wrap">
+                  <span class="bk-cinema-name">SM City North EDSA</span>
+                </div>
+                <div class="bk-cinema-radio-dot"></div>
+              </div>
+              <p class="bk-cinema-addr">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right:3px;color:#f2c935;flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                North Avenue, Quezon City
+              </p>
+              <div class="bk-cinema-formats">
+                <span class="bk-fmt-tag">Regular</span>
+                <span class="bk-fmt-tag">ScreenX</span>
+              </div>
+            </div>
+          </label>
+
+        </div>
+      </div>
+
+      <!-- ============= STEP 2: DATE & TIME ============= -->
+      <div class="bk-panel" id="bkPanel2">
+        <h3 class="bk-panel-title">Select date and time</h3>
+        <p class="bk-panel-sub">Choose a day, filter by experience if you like, then pick a showtime.</p>
+
+        <!-- Outer Container Card -->
+        <div class="bk-dt-card-container">
+
+          <!-- Section 1: Date -->
+          <div class="bk-dt-section">
+            <h4 class="bk-dt-section-title">Date</h4>
+            <div class="bk-dt-date-grid" id="bkDateRow">
+              <button type="button" class="bk-dt-date-card is-active" data-date="Today" data-day="29" data-month="Nov" data-day-name="Sun">
+                <span class="bk-dt-day-name">Today</span>
+                <div class="bk-dt-day-val">
+                  <span class="bk-dt-num">29</span>
+                  <span class="bk-dt-month">Nov</span>
+                </div>
+              </button>
+
+              <button type="button" class="bk-dt-date-card" data-date="Tomorrow" data-day="30" data-month="Nov" data-day-name="Mon">
+                <span class="bk-dt-day-name">Tomorrow</span>
+                <div class="bk-dt-day-val">
+                  <span class="bk-dt-num">30</span>
+                  <span class="bk-dt-month">Nov</span>
+                </div>
+              </button>
+
+              <button type="button" class="bk-dt-date-card" data-date="Tue" data-day="1" data-month="Dec" data-day-name="Tue">
+                <span class="bk-dt-day-name">Tue</span>
+                <div class="bk-dt-day-val">
+                  <span class="bk-dt-num">1</span>
+                  <span class="bk-dt-month">Dec</span>
+                </div>
+              </button>
+
+              <button type="button" class="bk-dt-date-card" data-date="Wed" data-day="2" data-month="Dec" data-day-name="Wed">
+                <span class="bk-dt-day-name">Wed</span>
+                <div class="bk-dt-day-val">
+                  <span class="bk-dt-num">2</span>
+                  <span class="bk-dt-month">Dec</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Section 2: Format Filter Capsule -->
+          <div class="bk-dt-section">
+            <h4 class="bk-dt-section-title">Experience</h4>
+            <div class="bk-dt-format-track" role="tablist" aria-label="Filter showtimes by experience">
+              <div class="bk-dt-fmt-glider" id="bkFmtGlider" aria-hidden="true"></div>
+              <button type="button" class="bk-dt-fmt-btn is-active" data-format="all" role="tab" aria-selected="true">
+                <span class="bk-dt-fmt-label">All Experience</span>
+                <span class="bk-dt-fmt-count">4</span>
+              </button>
+              <button type="button" class="bk-dt-fmt-btn" data-format="Regular" role="tab" aria-selected="false">
+                <span class="bk-dt-fmt-label">Regular</span>
+                <span class="bk-dt-fmt-count">4</span>
+              </button>
+              <button type="button" class="bk-dt-fmt-btn" data-format="ScreenX" role="tab" aria-selected="false">
+                <span class="bk-dt-fmt-label">ScreenX</span>
+                <span class="bk-dt-fmt-count">4</span>
+              </button>
+              <button type="button" class="bk-dt-fmt-btn" data-format="Director's Club" role="tab" aria-selected="false">
+                <span class="bk-dt-fmt-label">Director's Club</span>
+                <span class="bk-dt-fmt-count">4</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Horizontal Divider -->
+          <div class="bk-dt-divider" aria-hidden="true"></div>
+
+          <!-- Section 3: Showtime -->
+          <div class="bk-dt-section">
+            <h4 class="bk-dt-section-title" style="margin-bottom: 0.95rem;">Showtime</h4>
+
+            <!-- Regular Category -->
+            <div class="bk-dt-showtime-group" data-group-format="Regular">
+              <div class="bk-dt-cat-header">
+                <span class="bk-dt-cat-name">Regular</span>
+                <span class="bk-dt-cat-count">4 showtimes</span>
+              </div>
+              <div class="bk-dt-time-row">
+                <button type="button" class="bk-dt-time-btn" data-format="Regular" data-time="11:30 AM">
+                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  11:30 AM
+                </button>
+                <button type="button" class="bk-dt-time-btn is-active" data-format="Regular" data-time="12:10 PM">
+                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  12:10 PM
+                </button>
+                <button type="button" class="bk-dt-time-btn" data-format="Regular" data-time="2:35 PM">
+                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  2:35 PM
+                </button>
+                <button type="button" class="bk-dt-time-btn" data-format="Regular" data-time="5:30 PM">
+                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  5:30 PM
+                </button>
+              </div>
+            </div>
+
+            <!-- ScreenX Category -->
+            <div class="bk-dt-showtime-group" data-group-format="ScreenX" style="margin-top: 1.4rem;">
+              <div class="bk-dt-cat-header">
+                <span class="bk-dt-cat-name">ScreenX</span>
+                <span class="bk-dt-cat-count">2 showtimes</span>
+              </div>
+              <div class="bk-dt-time-row">
+                <button type="button" class="bk-dt-time-btn" data-format="ScreenX" data-time="7:30 PM">
+                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  7:30 PM
+                </button>
+                <button type="button" class="bk-dt-time-btn" data-format="ScreenX" data-time="9:45 PM">
+                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  9:45 PM
+                </button>
+              </div>
+            </div>
+
+            <!-- Director's Club Category -->
+            <div class="bk-dt-showtime-group" data-group-format="Director's Club" style="margin-top: 1.4rem;">
+              <div class="bk-dt-cat-header">
+                <span class="bk-dt-cat-name">Director's Club</span>
+                <span class="bk-dt-cat-count">2 showtimes</span>
+              </div>
+              <div class="bk-dt-time-row">
+                <button type="button" class="bk-dt-time-btn" data-format="Director's Club" data-time="7:30 PM">
+                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  7:30 PM
+                </button>
+                <button type="button" class="bk-dt-time-btn" data-format="Director's Club" data-time="9:45 PM">
+                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  9:45 PM
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div> <!-- /.bk-dt-card-container -->
+      </div>
+
+      <!-- ============= STEP 3: SEATS ============= -->
+      <div class="bk-panel" id="bkPanel3">
+        <h3 class="bk-panel-title">Select Seats</h3>
+        <p class="bk-panel-sub">Click on available seats to reserve</p>
+
+        <!-- Outer Seat Card Container -->
+        <div class="bk-seat-card-container">
+
+          <!-- Cinema Screen Indicator -->
+          <div class="bk-screen-container">
+            <div class="bk-screen-bar-wrap">
+              <div class="bk-screen-endpoint"></div>
+              <div class="bk-screen-line"></div>
+              <div class="bk-screen-endpoint"></div>
+            </div>
+            <p class="bk-screen-sub">Cinema screen this way</p>
+          </div>
+
+          <!-- Inner Seats Card -->
+          <div class="bk-seats-inner-card">
+            <div class="bk-seat-map" id="bkSeatMap" aria-label="Seat selection grid">
+              <!-- Rows generated by JS -->
+            </div>
+
+            <!-- Legend -->
+            <div class="bk-seat-legend">
+              <div class="bk-legend-item">
+                <span class="bk-legend-box available"></span>
+                <span class="bk-legend-text">Available</span>
+              </div>
+              <div class="bk-legend-item">
+                <span class="bk-legend-box unavailable"></span>
+                <span class="bk-legend-text">Unavailable</span>
+              </div>
+              <div class="bk-legend-item">
+                <span class="bk-legend-box selected"></span>
+                <span class="bk-legend-text is-gold">Selected</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Seat Selection Summary Strip (Clean in-content display) -->
+          <div class="bk-seat-summary-strip">
+            <div class="bk-seat-strip-col">
+              <span class="bk-seat-strip-label">Selected Seats:</span>
+              <span class="bk-seat-strip-val is-gold" id="sumSeats">F10</span>
+            </div>
+            <div class="bk-seat-strip-col bk-seat-strip-price-col">
+              <span class="bk-seat-strip-label">Total Price:</span>
+              <span class="bk-seat-strip-price" id="sumTotal">₱350.00</span>
+            </div>
+          </div>
+
+        </div> <!-- /.bk-seat-card-container -->
+      </div>
+
+      <!-- ============= STEP 4: PAYMENT ============= -->
+      <div class="bk-panel" id="bkPanel4">
+        <h3 class="bk-panel-title">Booking summary and payment</h3>
+        <p class="bk-panel-sub">Check your order, then choose how to pay.</p>
+
+        <!-- Outer Card Container (2-Column Grid) -->
+        <div class="bk-pay-card-container">
+
+          <!-- Left Column: Ticket Summary -->
+          <div class="bk-ts-card">
+            <h4 class="bk-ts-title">Ticket Summary</h4>
+            <div class="bk-ts-title-divider"></div>
+
+            <!-- Movie -->
+            <div class="bk-ts-block">
+              <span class="bk-ts-label">MOVIE</span>
+              <div class="bk-ts-val" id="tsMovie">2 Valid IDs</div>
+            </div>
+            <div class="bk-ts-divider"></div>
+
+            <!-- Cinema -->
+            <div class="bk-ts-block">
+              <div class="bk-ts-row-header">
+                <span class="bk-ts-label">CINEMA</span>
+                <button type="button" class="bk-ts-change-btn" data-goto="1">Change</button>
+              </div>
+              <div class="bk-ts-val" id="tsCinema">Glorietta 4</div>
+              <div class="bk-ts-sub" id="tsCinemaAddr">Ayala Center, Makati City</div>
+            </div>
+            <div class="bk-ts-divider"></div>
+
+            <!-- Date and Time -->
+            <div class="bk-ts-block">
+              <div class="bk-ts-row-header">
+                <span class="bk-ts-label">DATE AND TIME</span>
+                <button type="button" class="bk-ts-change-btn" data-goto="2">Change</button>
+              </div>
+              <div class="bk-ts-val" id="tsDateTime">Sun 29 Nov &bull; 7:30 PM</div>
+              <div class="bk-ts-sub" id="tsFormat">Regular &bull; 2D</div>
+            </div>
+            <div class="bk-ts-divider"></div>
+
+            <!-- Seats -->
+            <div class="bk-ts-block">
+              <div class="bk-ts-row-header">
+                <span class="bk-ts-label">SEATS</span>
+                <button type="button" class="bk-ts-change-btn" data-goto="3">Change</button>
+              </div>
+              <div class="bk-ts-val" id="tsSeats">F10</div>
+              <div class="bk-ts-sub" id="tsSeatCalc">1 ticket x ₱350.00</div>
+            </div>
+            <div class="bk-ts-divider"></div>
+
+            <!-- Total -->
+            <div class="bk-ts-total-row">
+              <span class="bk-ts-total-label">Total</span>
+              <span class="bk-ts-total-val" id="tsTotal">₱350.00</span>
+            </div>
+          </div>
+
+          <!-- Right Column: Payment Method -->
+          <div class="bk-pm-section">
+            <h4 class="bk-pm-title">Payment Method</h4>
+
+            <!-- Option 1: Credit or debit card -->
+            <div class="bk-pay-box is-active" data-method="card">
+              <div class="bk-pay-header" role="button" tabindex="0">
+                <div class="bk-pay-header-left">
+                  <div class="bk-radio-outer"><div class="bk-radio-inner"></div></div>
+                  <span class="bk-pay-title">Credit or debit card</span>
+                </div>
+                <div class="bk-card-logos">
+                  <!-- PayPal -->
+                  <span class="bk-brand-badge paypal">
+                    <svg width="38" height="13" viewBox="0 0 60 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.4 2.5H2.8C2.5 2.5 2.2 2.7 2.1 3L0.2 15.3C0.1 15.6 0.3 15.8 0.6 15.8H2.8C3.1 15.8 3.3 15.6 3.4 15.3L4.3 9.4C4.4 9.1 4.6 8.9 4.9 8.9H6.3C9.7 8.9 12 7.5 12.5 4.3C12.7 3 12.3 2.5 11.2 2.5H7.4ZM8.4 6C8.1 7.6 6.8 7.6 5.3 7.6H4.7L5.3 3.9H6.2C7.3 3.9 8.6 3.9 8.4 6Z" fill="#003087"/><path d="M12.9 5.5H8.3C8 5.5 7.7 5.7 7.6 6L5.7 18.3C5.6 18.6 5.8 18.8 6.1 18.8H8.3C8.6 18.8 8.8 18.6 8.9 18.3L9.8 12.4C9.9 12.1 10.1 11.9 10.4 11.9H11.8C15.2 11.9 17.5 10.5 18 7.3C18.2 6 17.8 5.5 16.7 5.5H12.9ZM13.9 9C13.6 10.6 12.3 10.6 10.8 10.6H10.2L10.8 6.9H11.7C12.8 6.9 14.1 6.9 13.9 9Z" fill="#0079C1"/></svg>
+                  </span>
+                  <!-- Mastercard -->
+                  <span class="bk-brand-badge mastercard">
+                    <svg width="26" height="16" viewBox="0 0 36 22" fill="none"><circle cx="13" cy="11" r="10" fill="#EB001B"/><circle cx="23" cy="11" r="10" fill="#F79E1B" fill-opacity="0.85"/></svg>
+                  </span>
+                  <!-- VISA -->
+                  <span class="bk-brand-badge visa">
+                    <span class="bk-visa-text">VISA</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Card Input Fields -->
+              <div class="bk-pay-fields">
+                <div class="bk-pay-field">
+                  <label class="bk-field-label" for="cardNum">Card Number</label>
+                  <input type="text" class="bk-form-input" id="cardNum" placeholder="1234 1234 1234 1234" maxlength="19" autocomplete="cc-number">
+                </div>
+
+                <div class="bk-pay-row-2">
+                  <div class="bk-pay-field">
+                    <label class="bk-field-label" for="cardExp">Expiration Date</label>
+                    <input type="text" class="bk-form-input" id="cardExp" placeholder="1234 1234 1234 1234" maxlength="7" autocomplete="cc-exp">
+                  </div>
+                  <div class="bk-pay-field">
+                    <label class="bk-field-label" for="cardCvc">CVV / CVC</label>
+                    <input type="password" class="bk-form-input" id="cardCvc" placeholder="CVC" maxlength="4" autocomplete="cc-csc">
+                  </div>
+                </div>
+
+                <div class="bk-pay-field">
+                  <label class="bk-field-label" for="cardName">Name on card</label>
+                  <input type="text" class="bk-form-input" id="cardName" placeholder="First and Last Name" autocomplete="cc-name">
+                </div>
+
+                <div class="bk-pay-field">
+                  <label class="bk-field-label" for="payEmail">Email</label>
+                  <input type="email" class="bk-form-input" id="payEmail" placeholder="Your email" autocomplete="email">
+                </div>
+              </div>
+            </div>
+
+            <!-- Option 2: GCash -->
+            <div class="bk-pay-box" data-method="gcash" data-label="GCash">
+              <div class="bk-pay-header" role="button" tabindex="0">
+                <div class="bk-pay-header-left">
+                  <div class="bk-radio-outer"><div class="bk-radio-inner"></div></div>
+                  <span class="bk-pay-title">Gcash</span>
+                </div>
+                <div class="bk-card-logos">
+                  <span class="bk-brand-badge gcash-badge">
+                    <span class="bk-gcash-text">G! GCash</span>
+                  </span>
+                </div>
+              </div>
+              <div class="bk-pay-fields bk-wallet-fields" style="display: none;">
+                <div class="bk-wallet-amount-row">
+                  <span class="bk-wallet-amount-label">Amount to approve</span>
+                  <span class="bk-wallet-amount-val" id="gcashAmountVal">&#8369;350.00</span>
+                </div>
+                <div class="bk-wallet-steps">
+                  <div class="bk-wallet-step">
+                    <span class="bk-wallet-step-num">1</span>
+                    <span class="bk-wallet-step-txt">Continue to GCash. you will be redirected to GCash website to make payment.</span>
+                  </div>
+                  <div class="bk-wallet-step">
+                    <span class="bk-wallet-step-num">2</span>
+                    <span class="bk-wallet-step-txt">Approve the <span id="gcashStepAmt">&#8369;350.00</span> payment in GCash</span>
+                  </div>
+                  <div class="bk-wallet-step">
+                    <span class="bk-wallet-step-num">3</span>
+                    <span class="bk-wallet-step-txt">You'll be brought back here, and your e-ticket will be emailed to you.</span>
+                  </div>
+                </div>
+                <div class="bk-wallet-security">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <span>You'll sign in on GCash's official page. We will never ask for your PIN or password here.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Option 3: Maya -->
+            <div class="bk-pay-box" data-method="maya" data-label="Maya">
+              <div class="bk-pay-header" role="button" tabindex="0">
+                <div class="bk-pay-header-left">
+                  <div class="bk-radio-outer"><div class="bk-radio-inner"></div></div>
+                  <span class="bk-pay-title">Maya</span>
+                </div>
+                <div class="bk-card-logos">
+                  <span class="bk-brand-badge maya-badge">
+                    <span class="bk-maya-text">maya</span>
+                  </span>
+                </div>
+              </div>
+              <div class="bk-pay-fields bk-wallet-fields" style="display: none;">
+                <div class="bk-wallet-amount-row">
+                  <span class="bk-wallet-amount-label">Amount to approve</span>
+                  <span class="bk-wallet-amount-val" id="mayaAmountVal">&#8369;350.00</span>
+                </div>
+                <div class="bk-wallet-steps">
+                  <div class="bk-wallet-step">
+                    <span class="bk-wallet-step-num">1</span>
+                    <span class="bk-wallet-step-txt">Continue to Maya. you will be redirected to Maya website to make payment.</span>
+                  </div>
+                  <div class="bk-wallet-step">
+                    <span class="bk-wallet-step-num">2</span>
+                    <span class="bk-wallet-step-txt">Approve the <span id="mayaStepAmt">&#8369;350.00</span> payment in Maya</span>
+                  </div>
+                  <div class="bk-wallet-step">
+                    <span class="bk-wallet-step-num">3</span>
+                    <span class="bk-wallet-step-txt">You'll be brought back here, and your e-ticket will be emailed to you.</span>
+                  </div>
+                </div>
+                <div class="bk-wallet-security">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <span>You'll sign in on Maya's official page. We will never ask for your PIN or password here.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Option 4: GrabPay -->
+            <div class="bk-pay-box" data-method="grabpay" data-label="GrabPay">
+              <div class="bk-pay-header" role="button" tabindex="0">
+                <div class="bk-pay-header-left">
+                  <div class="bk-radio-outer"><div class="bk-radio-inner"></div></div>
+                  <span class="bk-pay-title">GrabPay</span>
+                </div>
+                <div class="bk-card-logos">
+                  <span class="bk-brand-badge grabpay-badge">
+                    <span class="bk-grabpay-text">GrabPay</span>
+                  </span>
+                </div>
+              </div>
+              <div class="bk-pay-fields bk-wallet-fields" style="display: none;">
+                <div class="bk-wallet-amount-row">
+                  <span class="bk-wallet-amount-label">Amount to approve</span>
+                  <span class="bk-wallet-amount-val" id="grabpayAmountVal">&#8369;350.00</span>
+                </div>
+                <div class="bk-wallet-steps">
+                  <div class="bk-wallet-step">
+                    <span class="bk-wallet-step-num">1</span>
+                    <span class="bk-wallet-step-txt">Continue to GrabPay. you will be redirected to GrabPay website to make payment.</span>
+                  </div>
+                  <div class="bk-wallet-step">
+                    <span class="bk-wallet-step-num">2</span>
+                    <span class="bk-wallet-step-txt">Approve the <span id="grabpayStepAmt">&#8369;350.00</span> payment in GrabPay</span>
+                  </div>
+                  <div class="bk-wallet-step">
+                    <span class="bk-wallet-step-num">3</span>
+                    <span class="bk-wallet-step-txt">You'll be brought back here, and your e-ticket will be emailed to you.</span>
+                  </div>
+                </div>
+                <div class="bk-wallet-security">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <span>You'll sign in on GrabPay's official page. We will never ask for your PIN or password here.</span>
+                </div>
+              </div>
+            </div>
+
+          </div> <!-- /.bk-pm-section -->
+
+        </div> <!-- /.bk-pay-card-container -->
+      </div>
+
+      <!-- ============= STEP 5: E-TICKET ============= -->
+      <div class="bk-panel" id="bkPanel5">
+        <div class="bk-confirm-hero">
+          <div class="bk-success-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3 class="bk-confirm-title">Reservation Confirmed!</h3>
+          <p class="bk-confirm-sub">Your movie seats have been confirmed. An e-ticket voucher has been sent to your registered email.</p>
+        </div>
+
+        <!-- Outer Dark Card Wrapper -->
+        <div class="bk-ticket-outer-container">
+          <!-- The Voucher Pass -->
+          <div class="bk-pass-ticket">
+            <!-- Left Pass Portion -->
+            <div class="bk-pass-left">
+              <div class="bk-pass-top-row">
+                <div class="bk-pass-brand">
+                  <span class="bk-pass-logo-icon">🎬</span>
+                  <span class="bk-pass-brand-text">TIGERTIX PASS</span>
+                </div>
+                <div class="bk-pass-paid-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  PAID
+                </div>
+              </div>
+
+              <div class="bk-pass-divider"></div>
+
+              <div class="bk-pass-ref-row">
+                <div class="bk-pass-ref-col">
+                  <span class="bk-pass-label">REFERENCE CODE</span>
+                  <span class="bk-pass-ref-val" id="eTicketRef">TIX - 0001</span>
+                </div>
+                <button type="button" class="bk-pass-copy-btn" id="bkCopyRefBtn">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <span id="bkCopyBtnTxt">Copy</span>
+                </button>
+              </div>
+
+              <div class="bk-pass-divider"></div>
+
+              <div class="bk-pass-info-body">
+                <div class="bk-pass-movie-block">
+                  <span class="bk-pass-label">MOVIE</span>
+                  <span class="bk-pass-movie-title" id="etTitle">Toy Story 5</span>
+                </div>
+
+                <div class="bk-pass-datetime-grid">
+                  <div class="bk-pass-dt-col">
+                    <span class="bk-pass-label">DATE</span>
+                    <span class="bk-pass-val" id="etDate">Sun 29 Nov</span>
+                  </div>
+                  <div class="bk-pass-dt-col">
+                    <span class="bk-pass-label">TIME</span>
+                    <span class="bk-pass-val" id="etTime">7:30 PM</span>
+                  </div>
+                  <div class="bk-pass-dt-col">
+                    <span class="bk-pass-label">SEATS</span>
+                    <span class="bk-pass-val bk-pass-val-gold" id="etSeats">F10</span>
+                  </div>
+                </div>
+
+                <div class="bk-pass-location-row">
+                  <div class="bk-pass-loc-col">
+                    <span class="bk-pass-label">CINEMA</span>
+                    <span class="bk-pass-val" id="etCinema">Glorietta 4</span>
+                    <span class="bk-pass-sub" id="etAddr">Ayala Center, Makati City</span>
+                  </div>
+                  <div class="bk-pass-loc-col">
+                    <span class="bk-pass-label">FORMAT</span>
+                    <span class="bk-pass-val" id="etFormat">Regular &bull; 2D</span>
+                    <span class="bk-pass-sub" id="etOrderSub">Order #1234 &bull; &#8369;350.00 paid</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vertical Perforated Stub Line -->
+            <div class="bk-pass-stub-divider">
+              <div class="bk-stub-notch top"></div>
+              <div class="bk-stub-dashed-line"></div>
+              <div class="bk-stub-notch bottom"></div>
+            </div>
+
+            <!-- Right QR Stub Portion -->
+            <div class="bk-pass-right">
+              <div class="bk-pass-qr-box">
+                <svg class="bk-pass-qr-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="100" height="100" fill="#ffffff" rx="6"/>
+                  <!-- Top-left finder -->
+                  <rect x="7" y="7" width="24" height="24" rx="3" fill="#000000"/>
+                  <rect x="11" y="11" width="16" height="16" rx="2" fill="#ffffff"/>
+                  <rect x="14" y="14" width="10" height="10" rx="1" fill="#000000"/>
+                  <!-- Top-right finder -->
+                  <rect x="69" y="7" width="24" height="24" rx="3" fill="#000000"/>
+                  <rect x="73" y="11" width="16" height="16" rx="2" fill="#ffffff"/>
+                  <rect x="76" y="14" width="10" height="10" rx="1" fill="#000000"/>
+                  <!-- Bottom-left finder -->
+                  <rect x="7" y="69" width="24" height="24" rx="3" fill="#000000"/>
+                  <rect x="11" y="73" width="16" height="16" rx="2" fill="#ffffff"/>
+                  <rect x="14" y="76" width="10" height="10" rx="1" fill="#000000"/>
+                  <!-- Inner details & patterns -->
+                  <rect x="36" y="8" width="5" height="5" fill="#000000"/><rect x="46" y="8" width="5" height="5" fill="#000000"/><rect x="56" y="8" width="5" height="5" fill="#000000"/>
+                  <rect x="36" y="18" width="5" height="5" fill="#000000"/><rect x="51" y="18" width="5" height="5" fill="#000000"/><rect x="61" y="18" width="5" height="5" fill="#000000"/>
+                  <rect x="36" y="28" width="5" height="5" fill="#000000"/><rect x="44" y="28" width="5" height="5" fill="#000000"/><rect x="56" y="28" width="5" height="5" fill="#000000"/>
+                  <rect x="8" y="36" width="5" height="5" fill="#000000"/><rect x="18" y="36" width="5" height="5" fill="#000000"/><rect x="28" y="36" width="5" height="5" fill="#000000"/><rect x="38" y="36" width="5" height="5" fill="#000000"/><rect x="48" y="36" width="5" height="5" fill="#000000"/><rect x="58" y="36" width="5" height="5" fill="#000000"/><rect x="68" y="36" width="5" height="5" fill="#000000"/><rect x="78" y="36" width="5" height="5" fill="#000000"/><rect x="88" y="36" width="5" height="5" fill="#000000"/>
+                  <rect x="12" y="44" width="5" height="5" fill="#000000"/><rect x="24" y="44" width="5" height="5" fill="#000000"/><rect x="36" y="44" width="5" height="5" fill="#000000"/><rect x="44" y="44" width="5" height="5" fill="#000000"/><rect x="56" y="44" width="5" height="5" fill="#000000"/><rect x="68" y="44" width="5" height="5" fill="#000000"/><rect x="76" y="44" width="5" height="5" fill="#000000"/><rect x="84" y="44" width="5" height="5" fill="#000000"/>
+                  <rect x="8" y="52" width="5" height="5" fill="#000000"/><rect x="20" y="52" width="5" height="5" fill="#000000"/><rect x="32" y="52" width="5" height="5" fill="#000000"/><rect x="48" y="52" width="5" height="5" fill="#000000"/><rect x="64" y="52" width="5" height="5" fill="#000000"/><rect x="72" y="52" width="5" height="5" fill="#000000"/><rect x="88" y="52" width="5" height="5" fill="#000000"/>
+                  <rect x="14" y="60" width="5" height="5" fill="#000000"/><rect x="26" y="60" width="5" height="5" fill="#000000"/><rect x="38" y="60" width="5" height="5" fill="#000000"/><rect x="52" y="60" width="5" height="5" fill="#000000"/><rect x="60" y="60" width="5" height="5" fill="#000000"/><rect x="78" y="60" width="5" height="5" fill="#000000"/>
+                  <rect x="36" y="68" width="5" height="5" fill="#000000"/><rect x="46" y="68" width="5" height="5" fill="#000000"/><rect x="56" y="68" width="5" height="5" fill="#000000"/><rect x="66" y="68" width="5" height="5" fill="#000000"/><rect x="76" y="68" width="5" height="5" fill="#000000"/><rect x="86" y="68" width="5" height="5" fill="#000000"/>
+                  <rect x="40" y="78" width="5" height="5" fill="#000000"/><rect x="50" y="78" width="5" height="5" fill="#000000"/><rect x="62" y="78" width="5" height="5" fill="#000000"/><rect x="72" y="78" width="5" height="5" fill="#000000"/><rect x="84" y="78" width="5" height="5" fill="#000000"/>
+                  <rect x="36" y="86" width="5" height="5" fill="#000000"/><rect x="46" y="86" width="5" height="5" fill="#000000"/><rect x="58" y="86" width="5" height="5" fill="#000000"/><rect x="78" y="86" width="5" height="5" fill="#000000"/><rect x="88" y="86" width="5" height="5" fill="#000000"/>
+                </svg>
+              </div>
+              <p class="bk-pass-scan-hint">Scan at the cinema turnstile</p>
+              <p class="bk-pass-engine-tag">Issued by TIGERTIX Ticketing Engine</p>
+            </div>
+          </div>
+
+          <!-- Bottom Action Buttons -->
+          <div class="bk-pass-actions">
+            <button type="button" class="bk-btn-print" id="bkPrintTicketBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Print E - Ticket
+            </button>
+            <a href="index.html" class="bk-btn-return-home">
+              Return to Home
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============= STICKY BOTTOM BAR ============= -->
+      <div class="bk-bottom-bar" id="bkBottomBar">
+
+        <!-- Normal nav mode -->
+        <div class="bk-bar-normal" id="bkBarNormal">
+          <button class="bk-nav-btn bk-back-btn" id="bkBackBtn" aria-label="Go back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back
+          </button>
+
+          <div class="bk-selection-info" id="bkSelectionInfo">
+            <span class="bk-sel-label">YOUR SELECTION</span>
+            <span class="bk-sel-val" id="bkSelVal">Glorietta 4 &bull; Ayala Center, Makati City</span>
+          </div>
+
+          <button class="bk-nav-btn bk-continue-btn" id="bkContinueBtn">
+            Continue
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+        <!-- Change mode — replaces normal nav inside same pill -->
+        <div class="bk-bar-change" id="bkBarChange" style="display:none">
+          <button class="bk-nav-btn bk-back-btn" id="bkChangeCancelBtn" aria-label="Cancel change">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back
+          </button>
+
+          <div class="bk-selection-info">
+            <span class="bk-sel-label">CHANGING</span>
+            <span class="bk-sel-val" id="bkChangeSectionName">Cinema</span>
+          </div>
+
+          <button class="bk-nav-btn bk-continue-btn" id="bkChangeDoneBtn" aria-label="Done changing">
+            Done
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="index.html" class="brand brand--lg" aria-label="TigerTix home">
+          <img src="images/logo.jpeg" alt="TigerTix logo" class="brand-logo brand-logo--lg">
+          <span class="brand-text">TIGER<span>TIX</span></span>
+        </a>
+        <p class="connect-label">Let's Connect</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook" class="social-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="social-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="#" aria-label="X (Twitter)" class="social-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <nav class="footer-col" aria-label="Categories">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html">Movies</a></li>
+          <li><a href="cinema.html">Cinemas</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Customer care">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Corporate">
+        <h4>Corporate</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </nav>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="legal">
+        <a href="#">Terms and Conditions</a>
+        <a href="#">Privacy Notice</a>
+      </div>
+      <p>&copy; 2026 TigerTix. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ================= WATCH TRAILER MODAL ================= -->
+  <div class="bk-trailer-modal-overlay" id="bkTrailerModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="bkTrailerModalTitle">
+    <div class="bk-trailer-modal-dialog">
+      <div class="bk-trailer-screen">
+        <!-- Big Play Button Overlay -->
+        <button class="bk-trailer-play-circle" id="bkTrailerPlayBtn" type="button" aria-label="Play trailer">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+
+        <!-- Video Bottom Controls Strip -->
+        <div class="bk-trailer-bottom-bar">
+          <div class="bk-trailer-progress-wrap">
+            <div class="bk-trailer-progress-bar"></div>
+          </div>
+          <div class="bk-trailer-meta-row">
+            <span class="bk-trailer-title-txt" id="bkTrailerModalTitle">The Odyssey &bull; Official Trailer</span>
+            <span class="bk-trailer-time-txt" id="bkTrailerModalTime">01:20</span>
+          </div>
+          <div class="bk-trailer-actions">
+            <button class="bk-trailer-back-btn" id="bkTrailerCloseBtn" type="button">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="booking.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="sxGlow" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#4c1d95" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#2e1065" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#090314"/>
+    </radialGradient>
+    <linearGradient id="sxFlower" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#sxGlow)"/>
+
+  <!-- Left Wall Screen (Panoramic Projection) -->
+  <polygon points="40,80 280,130 280,360 40,410" fill="#a855f7" opacity="0.45"/>
+  <polygon points="50,95 270,140 270,350 50,395" fill="url(#sxFlower)" opacity="0.6"/>
+
+  <!-- Main Center Screen -->
+  <polygon points="280,130 650,130 650,360 280,360" fill="url(#sxFlower)" opacity="0.95"/>
+  
+  <!-- Radiating Mandala/Flower graphic on ScreenX center -->
+  <circle cx="465" cy="245" r="50" fill="#fbbf24" opacity="0.8"/>
+  <circle cx="465" cy="245" r="25" fill="#f43f5e"/>
+
+  <!-- Right Wall Screen (Panoramic Projection) -->
+  <polygon points="650,130 760,110 760,390 650,360" fill="#a855f7" opacity="0.45"/>
+  <polygon points="655,140 750,120 750,380 655,350" fill="url(#sxFlower)" opacity="0.6"/>
+
+  <!-- Center Aisle & Purple Velvet Seats -->
+  <g fill="#3b0764" stroke="#581c87" stroke-width="2">
+    <!-- Row 1 -->
+    <rect x="180" y="380" width="55" height="42" rx="8"/>
+    <rect x="245" y="380" width="55" height="42" rx="8"/>
+    <rect x="310" y="380" width="55" height="42" rx="8"/>
+    <rect x="420" y="380" width="55" height="42" rx="8"/>
+    <rect x="485" y="380" width="55" height="42" rx="8"/>
+    <rect x="550" y="380" width="55" height="42" rx="8"/>
+
+    <!-- Row 2 -->
+    <rect x="150" y="430" width="65" height="50" rx="10"/>
+    <rect x="225" y="430" width="65" height="50" rx="10"/>
+    <rect x="300" y="430" width="65" height="50" rx="10"/>
+    <rect x="420" y="430" width="65" height="50" rx="10"/>
+    <rect x="495" y="430" width="65" height="50" rx="10"/>
+    <rect x="570" y="430" width="65" height="50" rx="10"/>
+  </g>
+</svg>

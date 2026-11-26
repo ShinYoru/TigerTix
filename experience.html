@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience | TigerTix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="experience-page">
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <a href="index.html" class="brand" aria-label="TigerTix home">
+      <img src="images/logo.jpeg" alt="TigerTix logo" class="brand-logo">
+      <span class="brand-text">TIGER<span>TIX</span></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html">Movies</a>
+      <a href="cinema.html">Cinema</a>
+      <a href="experience.html" class="active">Experience</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Search Component -->
+      <div class="search-widget" id="searchWidget">
+        <div class="search-pill" id="searchPill">
+          <button class="search-btn" id="searchBtn" type="button" aria-label="Search movies" aria-expanded="false" title="Search movies">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          <input 
+            type="text" 
+            class="search-input" 
+            id="searchInput" 
+            placeholder="Search movies..." 
+            aria-label="Search movies"
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <button class="search-clear" id="searchClear" type="button" aria-label="Clear search" title="Clear">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Live Search Dropdown -->
+        <div class="search-dropdown" id="searchDropdown" role="listbox" aria-label="Search results" hidden>
+          <div class="search-dropdown-header">
+            <span class="search-dropdown-title">Movies</span>
+            <span class="search-count-badge" id="searchCountBadge">0 found</span>
+          </div>
+          <div class="search-results-list" id="searchResultsList"></div>
+        </div>
+      </div>
+
+      <a href="#" class="btn btn-outline btn-sm">Sign In</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= EXPERIENCE HERO ================= -->
+    <section class="exp-hero" aria-label="The TigerTix Experience">
+      <div class="exp-hero-container">
+        <span class="exp-hero-tag">THE TIGERTIX EXPERIENCE</span>
+        <h1 class="exp-hero-title">Choose how your experience</h1>
+        <p class="exp-hero-subtitle">
+          From a relaxed night out to a front-row spectacle, find the cinema experience that fits your movie and your mood.
+        </p>
+
+        <!-- Static Format Indicators (Matching Reference Pill Badges with Generous Spacing) -->
+        <div class="exp-pill-badges" aria-label="Available Experiences">
+          <span class="exp-pill-badge">Regular</span>
+          <span class="exp-pill-badge">IMAX</span>
+          <span class="exp-pill-badge">ScreenX</span>
+          <span class="exp-pill-badge">Director's Club</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXPERIENCE SHOWCASE LIST ================= -->
+    <section class="exp-showcase-section" aria-label="Cinema Formats Showcase">
+      <div class="exp-container">
+
+        <!-- 1. REGULAR (Image Left, Content Right) -->
+        <article class="exp-card exp-card--image-left" id="regular">
+          <div class="exp-card-media">
+            <div class="exp-card-img-wrap">
+              <!-- [IMAGE CONFIG: Replace with your actual regular cinema photo] -->
+              <img src="images/exp-regular.svg" alt="Regular cinema hall with comfortable cushioned seating and wide screen" class="exp-card-img">
+            </div>
+          </div>
+          <div class="exp-card-content">
+            <span class="exp-card-label exp-card-label--regular">REGULAR</span>
+            <h2 class="exp-card-title">The classic night out</h2>
+            <p class="exp-card-desc">
+              Everything you love about the movies: a big screen, great sound and comfortable seats, at the most accessible price, with the most showtimes to choose from.
+            </p>
+            <ul class="exp-feature-list">
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Crisp digital projection</span>
+              </li>
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Surround sound</span>
+              </li>
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Comfortable cushioned seats</span>
+              </li>
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>The widest choice of showtimes</span>
+              </li>
+            </ul>
+            <div class="exp-action-row">
+              <a href="cinema.html" class="exp-cta-btn">Find Regular Cinemas</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. IMAX (Content Left, Image Right) -->
+        <article class="exp-card exp-card--image-right" id="imax">
+          <div class="exp-card-content">
+            <span class="exp-card-label exp-card-label--imax">IMAX</span>
+            <h2 class="exp-card-title">Bigger. Sharper. Louder.</h2>
+            <p class="exp-card-desc">
+              A towering screen and powerful sound that put you inside the story. Made for blockbusters and big-scale spectacle you want to feel, not just watch.
+            </p>
+            <ul class="exp-feature-list">
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Giant screen for maximum scale</span>
+              </li>
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Enhanced picture clarity</span>
+              </li>
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Powerful, precisely tuned sound</span>
+              </li>
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Stadium-style seating with clear sightlines</span>
+              </li>
+            </ul>
+            <div class="exp-action-row">
+              <a href="cinema.html" class="exp-cta-btn">Find IMAX Cinemas</a>
+            </div>
+          </div>
+          <div class="exp-card-media">
+            <div class="exp-card-img-wrap">
+              <!-- [IMAGE CONFIG: Replace with your actual IMAX photo] -->
+              <img src="images/exp-imax.svg" alt="Massive curved IMAX screen with stadium seating" class="exp-card-img">
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. SCREENX (Image Left, Content Right) -->
+        <article class="exp-card exp-card--image-left" id="screenx">
+          <div class="exp-card-media">
+            <div class="exp-card-img-wrap">
+              <!-- [IMAGE CONFIG: Replace with your actual ScreenX photo] -->
+              <img src="images/exp-screenx.svg" alt="270-degree ScreenX panoramic theater walls" class="exp-card-img">
+            </div>
+          </div>
+          <div class="exp-card-content">
+            <span class="exp-card-label exp-card-label--screenx">SCREENX</span>
+            <h2 class="exp-card-title">Go Beyond the Screen</h2>
+            <p class="exp-card-desc">
+              The image stretches beyond the main screen onto the side walls for a panoramic view that surrounds you, so action scenes and concerts feel like you are standing in them.
+            </p>
+            <ul class="exp-feature-list">
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Panoramic view across the side walls</span>
+              </li>
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Surrounds you in the action</span>
+              </li>
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Specially formatted scenes</span>
+              </li>
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Best enjoyed from the center rows</span>
+              </li>
+            </ul>
+            <div class="exp-action-row">
+              <a href="cinema.html" class="exp-cta-btn">Find ScreenX Cinemas</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. DIRECTOR'S CLUB (Content Left, Image Right) -->
+        <article class="exp-card exp-card--image-right" id="directors-club">
+          <div class="exp-card-content">
+            <span class="exp-card-label exp-card-label--dc">DIRECTOR'S CLUB</span>
+            <h2 class="exp-card-title">First-class comfort</h2>
+            <p class="exp-card-desc">
+              Settle into a premium, more intimate auditorium with roomy recliners and added comfort. It is the relaxed, treat-yourself way to watch.
+            </p>
+            <ul class="exp-feature-list">
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Motorized recliner seats</span>
+              </li>
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Intimate, premium auditorium</span>
+              </li>
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Extra space and legroom</span>
+              </li>
+              <li>
+                <svg class="exp-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Upgraded comfort and service touches</span>
+              </li>
+            </ul>
+            <div class="exp-action-row">
+              <a href="cinema.html" class="exp-cta-btn">Find Director's Club Cinemas</a>
+            </div>
+          </div>
+          <div class="exp-card-media">
+            <div class="exp-card-img-wrap">
+              <!-- [IMAGE CONFIG: Replace with your actual Director's Club photo] -->
+              <img src="images/exp-directors-club.svg" alt="Intimate VIP cinema with leather motorized recliners and side tables" class="exp-card-img">
+            </div>
+          </div>
+        </article>
+
+        <!-- Bottom Ready to Book Banner -->
+        <div class="exp-bottom-banner">
+          <div class="exp-bottom-banner-text">
+            <h3>Ready to book?</h3>
+            <p>Browse cinema and filter by your favorite experience.</p>
+          </div>
+          <a href="cinema.html" class="exp-bottom-banner-btn">Browse Cinemas</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

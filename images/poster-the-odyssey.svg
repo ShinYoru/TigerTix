@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450" width="300" height="450">
+  <defs>
+    <linearGradient id="odyBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#051329"/>
+      <stop offset="35%" stop-color="#0a2342"/>
+      <stop offset="70%" stop-color="#061224"/>
+      <stop offset="100%" stop-color="#020813"/>
+    </linearGradient>
+    <linearGradient id="bronzeHelmet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d3748"/>
+      <stop offset="30%" stop-color="#4a5568"/>
+      <stop offset="70%" stop-color="#1a202c"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="goldSpine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4af37"/>
+      <stop offset="50%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <radialGradient id="helmetGlow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background with deep cinematic tone -->
+  <rect width="300" height="450" fill="url(#odyBg)"/>
+  <circle cx="150" cy="180" r="140" fill="url(#helmetGlow)"/>
+
+  <!-- Ancient Greek Corinthian Helmet with Spine Graphic -->
+  <g transform="translate(150, 175)">
+    <!-- Helmet Neck Guard & Base -->
+    <path d="M-60,75 C-65,10 -55,-60 0,-75 C55,-60 65,10 60,75 C45,65 25,60 0,60 C-25,60 -45,65 -60,75 Z" fill="url(#bronzeHelmet)" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    
+    <!-- Cheek guards and nasal bridge -->
+    <path d="M-45,30 L-25,-15 L-6,-15 L-6,45 L-25,40 Z" fill="#0f172a"/>
+    <path d="M45,30 L25,-15 L6,-15 L6,45 L25,40 Z" fill="#0f172a"/>
+    
+    <!-- Helmet Eye Slits -->
+    <path d="M-38,-5 Q-20,-12 -8,-5 Q-20,0 -38,-5 Z" fill="#020813"/>
+    <path d="M38,-5 Q20,-12 8,-5 Q20,0 38,-5 Z" fill="#020813"/>
+
+    <!-- Gold Segmented Spine / Vertebrae Crest (Signature visual from poster) -->
+    <g filter="url(#glow)">
+      <!-- Segment 1 (Top) -->
+      <path d="M-10,-85 Q0,-95 10,-85 L7,-75 Q0,-80 -7,-75 Z" fill="url(#goldSpine)"/>
+      <!-- Segment 2 -->
+      <path d="M-12,-72 Q0,-82 12,-72 L9,-62 Q0,-67 -9,-62 Z" fill="url(#goldSpine)"/>
+      <!-- Segment 3 -->
+      <path d="M-14,-59 Q0,-69 14,-59 L10,-49 Q0,-54 -10,-49 Z" fill="url(#goldSpine)"/>
+      <!-- Segment 4 -->
+      <path d="M-16,-46 Q0,-56 16,-46 L12,-36 Q0,-41 -12,-36 Z" fill="url(#goldSpine)"/>
+      <!-- Segment 5 -->
+      <path d="M-18,-33 Q0,-43 18,-33 L14,-23 Q0,-28 -14,-23 Z" fill="url(#goldSpine)"/>
+      <!-- Segment 6 -->
+      <path d="M-20,-20 Q0,-30 20,-20 L15,-10 Q0,-15 -15,-10 Z" fill="url(#goldSpine)"/>
+      <!-- Segment 7 -->
+      <path d="M-22,-7 Q0,-17 22,-7 L16,3 Q0,-2 -16,3 Z" fill="url(#goldSpine)"/>
+      <!-- Segment 8 -->
+      <path d="M-20,6 Q0,-4 20,6 L15,16 Q0,11 -15,16 Z" fill="url(#goldSpine)"/>
+      <!-- Segment 9 -->
+      <path d="M-18,19 Q0,9 18,19 L13,29 Q0,24 -13,29 Z" fill="url(#goldSpine)"/>
+      <!-- Segment 10 -->
+      <path d="M-15,32 Q0,22 15,32 L11,41 Q0,36 -11,41 Z" fill="url(#goldSpine)"/>
+      <!-- Segment 11 -->
+      <path d="M-12,44 Q0,35 12,44 L8,52 Q0,48 -8,52 Z" fill="url(#goldSpine)"/>
+    </g>
+
+    <!-- Subtle blue mist/ambient glow beneath helmet -->
+    <ellipse cx="0" cy="80" rx="70" ry="15" fill="#38bdf8" opacity="0.15" filter="url(#glow)"/>
+  </g>
+
+  <!-- Title & Typography Section -->
+  <g transform="translate(150, 310)" text-anchor="middle">
+    <!-- Main Title -->
+    <text x="0" y="0" font-family="'Times New Roman', 'Montserrat', serif" font-size="25" font-weight="700" fill="#ffffff" letter-spacing="5">THE ODYSSEY</text>
+    <line x1="-70" y1="12" x2="70" y2="12" stroke="#38bdf8" stroke-width="1" opacity="0.6"/>
+    <text x="0" y="27" font-family="'Montserrat', sans-serif" font-size="10" font-weight="700" fill="#38bdf8" letter-spacing="4">07 . 17 . 26</text>
+  </g>
+
+  <!-- Cast Names Header -->
+  <g transform="translate(150, 40)" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="6" font-weight="600" fill="#cbd5e1" letter-spacing="1.2">
+    <text x="0" y="0">TOM HOLLAND  •  ROBERT PATTINSON  •  MATT DAMON  •  ANNE HATHAWAY</text>
+  </g>
+
+  <!-- Director / Credits at Bottom -->
+  <g transform="translate(150, 395)" text-anchor="middle">
+    <text x="0" y="0" font-family="'Montserrat', sans-serif" font-size="6.5" font-weight="500" fill="#94a3b8" letter-spacing="1">EXPERIENCE IT IN IMAX &amp; SCREENX</text>
+    <text x="0" y="16" font-family="'Montserrat', sans-serif" font-size="5" font-weight="400" fill="#64748b" letter-spacing="0.5">DIRECTED BY CHRISTOPHER NOLAN</text>
+  </g>
+
+  <!-- PG Rating Emblem -->
+  <g transform="translate(252, 20)">
+    <rect width="28" height="18" rx="3" fill="#3b82f6"/>
+    <text x="14" y="13" font-family="'Montserrat', sans-serif" font-size="9" font-weight="800" fill="#ffffff" text-anchor="middle">PG</text>
+  </g>
+</svg>

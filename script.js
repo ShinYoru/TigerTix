@@ -488,7 +488,7 @@ document.addEventListener('DOMContentLoaded', function () {
       title: 'SM Mall of Asia',
       location: 'Entertainment Mall, SM Mall of Asia<br>Pasay City',
       desc: 'SM Mall of Asia Cinemas is home to one of the largest IMAX laser projection screens in Southeast Asia. Boasting cutting-edge stadium seating, crystal clear digital audio, and comfortable spacious lounges, it is the premier destination for massive Hollywood blockbusters.',
-      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/cinema-sm-moa.svg')",
+      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/moa-cinema.png')",
       pos: 'center 50%'
     },
 
@@ -506,7 +506,7 @@ document.addEventListener('DOMContentLoaded', function () {
       title: 'Newport Mall',
       location: '4th Level Newport Mall, Newport World Resorts<br>Newport Blvd, Pasay City',
       desc: 'Newport Mall Cinemas at Newport World Resorts offers an upscale entertainment experience with stadium-configured theaters, luxurious VIP Director’s Club recliners, and precision Dolby Atmos sound.',
-      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/cinema-newport.svg')",
+      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/newport-cinema.png')",
       pos: 'center 50%'
     },
 
@@ -515,7 +515,7 @@ document.addEventListener('DOMContentLoaded', function () {
       title: 'Uptown Mall',
       location: '3rd Floor, Uptown Mall<br>9th Ave, Taguig City',
       desc: 'Uptown Mall Cinemas at Bonifacio Global City delivers an ultra-luxurious movie entertainment destination. Boasting VIP Cinema lounges with motorized leather recliners, gourmet snack delivery directly to your seat, and Dolby Atmos audio systems for true acoustic perfection.',
-      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/uptown-cinema.jpg')",
+      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/uptown-cinema.png')",
       pos: 'center 50%'
     },
 
@@ -524,7 +524,7 @@ document.addEventListener('DOMContentLoaded', function () {
       title: 'SM City North Edsa',
       location: '4th Floor, The Block, SM City North Edsa<br>North Avenue, Quezon City',
       desc: 'SM City North EDSA Cinema is one of the busiest and most iconic cinema complexes in Metro Manila, offering IMAX with Laser, regular digital cinemas, and top-tier stadium seating.',
-      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/cinema-sm-north.svg')",
+      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/sm-north-cinema.png')",
       pos: 'center 50%'
     }
   };

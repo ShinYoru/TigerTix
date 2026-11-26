@@ -8,11 +8,14 @@
 }
 
 :root {
-  --bg: #000000;
-  --bg-section: #1c1c1c;
-  --bg-card: #2b2b2b;
+  --bg: #070709;
+  --bg-section: hsl(0, 0%, 0%);
+  --bg-card: #202026;
+  --bg-container: #1b1b22;
+  --bg-container-elevated: #22222a;
+  --border-container: rgba(255, 255, 255, 0.11);
   --text: #ffffff;
-  --text-muted: #cfcfcf;
+  --text-muted: #d4d4dc;
   --accent: #f2c935;
   --badge-bg: #3b5bdb;
   --radius: 22px;
@@ -1763,13 +1766,13 @@ img {
    EXPERIENCE PAGE STYLES & HCI MICRO-ANIMATIONS
    ========================================================================== */
 .experience-page {
-  background-color: #0b0b0d;
+  background-color: var(--bg);
 }
 
 /* Hero Section with Gold Radial Glow */
 .exp-hero {
   position: relative;
-  background: radial-gradient(85% 65% at 50% 0%, rgba(242, 201, 53, 0.16) 0%, rgba(20, 18, 12, 0.45) 55%, #0b0b0d 100%);
+  background: radial-gradient(85% 65% at 50% 0%, rgba(242, 201, 53, 0.16) 0%, rgba(20, 18, 12, 0.45) 55%, var(--bg) 100%);
   padding: 4.8rem 1.5rem 3.5rem;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -1846,7 +1849,7 @@ img {
 /* Showcase Section */
 .exp-showcase-section {
   padding: 4.5rem 1.5rem 6.5rem;
-  background: #0b0b0d;
+  background: var(--bg);
 }
 
 .exp-container {
@@ -2015,8 +2018,8 @@ img {
 
 /* Bottom "Ready to book?" Banner */
 .exp-bottom-banner {
-  background: #141417;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-container);
+  border: 1px solid var(--border-container);
   border-radius: 20px;
   padding: 2.2rem 2.8rem;
   display: flex;
@@ -2115,8 +2118,8 @@ img {
 
 /* Big Search Filter Card */
 .cinema-filter-card {
-  background: #141417;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-container);
+  border: 1px solid var(--border-container);
   border-radius: 18px;
   padding: 1.8rem 2rem;
   display: flex;
@@ -2130,7 +2133,7 @@ img {
   width: 100%;
   display: flex;
   align-items: center;
-  background: #0d0d0f;
+  background: #0f0f14;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 999px;
   padding: 0.35rem 1.25rem;
@@ -2266,8 +2269,8 @@ img {
 
 /* Individual Cinema Card */
 .cinema-card {
-  background: #141417;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-container);
+  border: 1px solid var(--border-container);
   border-radius: 16px;
   overflow: hidden;
   display: flex;
@@ -2406,9 +2409,9 @@ img {
 .cinema-empty-state {
   text-align: center;
   padding: 4rem 1.5rem;
-  background: #141417;
+  background: var(--bg-container);
   border-radius: 16px;
-  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border: 1px dashed var(--border-container);
   margin-top: 1rem;
 }
 

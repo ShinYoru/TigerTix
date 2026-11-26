@@ -112,7 +112,7 @@
     dayName: 'Sun',
     format: 'Regular',
     time: '12:10 PM',
-    seats: ['F10'],
+    seats: [],
     name: '',
     email: '',
     phone: '',
@@ -268,8 +268,7 @@
         var totalText = formatCurrency(state.seats.length * state.ticketPrice);
         txt = state.cinema + ' \u2022 ' + seatText + ' \u2022 ' + totalText;
       } else if (currentStep === 4) {
-        var seatCount = state.seats.length > 0 ? state.seats.length : 1;
-        var seatsStr = state.seats.length > 0 ? state.seats.join(', ') : 'F10';
+        var seatsStr = state.seats.length > 0 ? state.seats.join(', ') : 'None';
         txt = state.cinema + ' \u2022 ' + seatsStr + ' \u2022 ' + formatCurrency(calcTotal());
       }
       selLabel.textContent = txt;
@@ -675,8 +674,8 @@
     if (el('tsDateTime')) el('tsDateTime').textContent = dayName + ' ' + day + ' ' + month + ' \u2022 ' + time;
     if (el('tsFormat')) el('tsFormat').textContent = (state.format || 'Regular') + ' \u2022 2D';
 
-    var seatCount = state.seats.length > 0 ? state.seats.length : 1;
-    var seatsText = state.seats.length > 0 ? state.seats.slice().sort().join(', ') : 'F10';
+    var seatCount = state.seats.length;
+    var seatsText = state.seats.length > 0 ? state.seats.slice().sort().join(', ') : 'None selected';
     if (el('tsSeats')) el('tsSeats').textContent = seatsText;
     if (el('tsSeatCalc')) el('tsSeatCalc').textContent = seatCount + ' ticket' + (seatCount !== 1 ? 's' : '') + ' x ' + formatCurrency(state.ticketPrice);
 
@@ -692,7 +691,7 @@
   }
 
   function calcTotal() {
-    var seatCount = state.seats.length > 0 ? state.seats.length : 1;
+    var seatCount = state.seats.length;
     return seatCount * state.ticketPrice;
   }
 
@@ -744,7 +743,7 @@
     if (el('etDate'))       el('etDate').textContent       = dayName + ' ' + day + ' ' + month;
     if (el('etTime'))       el('etTime').textContent       = time;
 
-    var seatsText = state.seats.length > 0 ? state.seats.slice().sort().join(', ') : 'F10';
+    var seatsText = state.seats.length > 0 ? state.seats.slice().sort().join(', ') : '-';
     if (el('etSeats'))      el('etSeats').textContent      = seatsText;
 
     var formatText = (state.format || 'Regular') + ' \u2022 2D';

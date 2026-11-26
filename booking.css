@@ -8,6 +8,10 @@
   --bk-w: 980px;
   --bk-gutter: 2.2rem;
   --accent: #f2c935;
+  --bg-dark: #070709;
+  --bg-container: #1b1b22;
+  --bg-container-elevated: #22222a;
+  --border-container: rgba(255, 255, 255, 0.11);
 }
 
 /* =========================================================
@@ -165,8 +169,8 @@
   margin: 0 auto 2.8rem;
   width: fit-content;
   max-width: 100%;
-  background: #0d0d10;
-  border: 1.5px solid #202026;
+  background: var(--bg-container);
+  border: 1.5px solid var(--border-container);
   border-radius: 9999px;
   padding: 0.75rem 2.4rem;
   overflow-x: auto;
@@ -426,8 +430,8 @@
 }
 
 .bk-cinema-card-inner {
-  background: #141417;
-  border: 1.5px solid #232329;
+  background: var(--bg-container);
+  border: 1.5px solid var(--border-container);
   border-radius: 14px;
   padding: 1.25rem 1.35rem 1.15rem;
   transition: border-color 0.2s ease, background 0.2s ease;
@@ -444,7 +448,7 @@
 
 .bk-cinema-card.is-selected .bk-cinema-card-inner {
   border: 1.5px solid var(--accent);
-  background: #141417;
+  background: var(--bg-container);
   box-shadow: none;
 }
 
@@ -535,8 +539,8 @@
    STEP 2 — Date & Time (Redesigned matching reference)
    ========================================================= */
 .bk-dt-card-container {
-  background: #141417;
-  border: 1.5px solid #232329;
+  background: var(--bg-container);
+  border: 1.5px solid var(--border-container);
   border-radius: 20px;
   padding: 1.8rem 2rem 2rem;
   margin-top: 1.2rem;
@@ -796,8 +800,8 @@
    STEP 3 — Seat Map (Redesigned matching reference)
    ========================================================= */
 .bk-seat-card-container {
-  background: #141417;
-  border: 1.5px solid #232329;
+  background: var(--bg-container);
+  border: 1.5px solid var(--border-container);
   border-radius: 20px;
   padding: 2rem 2.2rem 2.2rem;
   margin-top: 1.2rem;
@@ -1050,8 +1054,8 @@
    STEP 4 — Booking Summary & Payment (Redesigned matching reference)
    ========================================================= */
 .bk-pay-card-container {
-  background: #141417;
-  border: 1.5px solid #232329;
+  background: var(--bg-container);
+  border: 1.5px solid var(--border-container);
   border-radius: 20px;
   padding: 2.2rem;
   margin-top: 1.2rem;

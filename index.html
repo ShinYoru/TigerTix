@@ -653,7 +653,8 @@
   <script src="script.js"></script>
 
   <!-- ===== AUTH MODAL ===== -->
-  <div class="auth-overlay" id="authOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="authDialogTitle">
+  <div class="auth-overlay" id="authOverlay" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="authDialogTitle">
     <div class="auth-card">
 
       <!-- Top bar -->
@@ -670,7 +671,7 @@
 
         <!-- Left promo panel -->
         <div class="auth-promo" aria-hidden="true">
-          <div class="auth-film-left"  id="authFilmLeft"></div>
+          <div class="auth-film-left" id="authFilmLeft"></div>
           <div class="auth-film-right" id="authFilmRight"></div>
 
           <p class="auth-promo-eyebrow">Welcome to TigerTix</p>
@@ -702,8 +703,10 @@
 
           <!-- Tab switcher -->
           <div class="auth-tabs" role="tablist">
-            <button class="auth-tab active" id="authTabSignup" type="button" role="tab" aria-selected="true"  aria-controls="authViewSignup">Sign Up</button>
-            <button class="auth-tab"        id="authTabLogin"  type="button" role="tab" aria-selected="false" aria-controls="authViewLogin">Log In</button>
+            <button class="auth-tab active" id="authTabSignup" type="button" role="tab" aria-selected="true"
+              aria-controls="authViewSignup">Sign Up</button>
+            <button class="auth-tab" id="authTabLogin" type="button" role="tab" aria-selected="false"
+              aria-controls="authViewLogin">Log In</button>
           </div>
 
           <!-- SIGN UP VIEW -->
@@ -713,47 +716,60 @@
 
               <div class="auth-field">
                 <label class="auth-label" for="authSignupName">Full name</label>
-                <input class="auth-input" type="text"     id="authSignupName"    placeholder="Enter your full name"     autocomplete="name"     required>
+                <input class="auth-input" type="text" id="authSignupName" placeholder="Enter your full name"
+                  autocomplete="name" required>
               </div>
 
               <div class="auth-field">
                 <label class="auth-label" for="authSignupEmail">Email Address</label>
-                <input class="auth-input" type="email"    id="authSignupEmail"   placeholder="Enter your email address"  autocomplete="email"    required>
+                <input class="auth-input" type="email" id="authSignupEmail" placeholder="Enter your email address"
+                  autocomplete="email" required>
               </div>
 
               <div class="auth-field">
                 <label class="auth-label" for="authSignupPwd">Password</label>
-                <input class="auth-input" type="password" id="authSignupPwd"     placeholder="At least 8 characters"     autocomplete="new-password" required>
+                <input class="auth-input" type="password" id="authSignupPwd" placeholder="At least 8 characters"
+                  autocomplete="new-password" required>
               </div>
 
               <div class="auth-pwd-rules">
                 <p class="auth-pwd-rules-title">Your password must include at least:</p>
                 <div class="auth-pwd-rule" id="authRuleLen">
-                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>
                   8 characters
                 </div>
                 <div class="auth-pwd-rule" id="authRuleUpper">
-                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>
                   1 uppercase letter (A–Z)
                 </div>
                 <div class="auth-pwd-rule" id="authRuleNum">
-                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>
                   1 number (0–9)
                 </div>
                 <div class="auth-pwd-rule" id="authRuleSpecial">
-                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>
                   1 special character (!@#$%^&amp;*)
                 </div>
               </div>
 
               <div class="auth-field">
                 <label class="auth-label" for="authSignupConfirm">Confirm password</label>
-                <input class="auth-input" type="password" id="authSignupConfirm" placeholder="Re-enter your password"   autocomplete="new-password" required>
+                <input class="auth-input" type="password" id="authSignupConfirm" placeholder="Re-enter your password"
+                  autocomplete="new-password" required>
               </div>
 
               <button class="auth-submit" type="submit">Sign Up</button>
 
-              <p class="auth-switch-prompt">Already have an account? <button type="button" id="authToLogin">Log In</button></p>
+              <p class="auth-switch-prompt">Already have an account? <button type="button" id="authToLogin">Log
+                  In</button></p>
             </form>
           </div>
 
@@ -764,12 +780,14 @@
 
               <div class="auth-field">
                 <label class="auth-label" for="authLoginEmail">Email Address</label>
-                <input class="auth-input" type="email"    id="authLoginEmail" placeholder="Enter your email address" autocomplete="email"            required>
+                <input class="auth-input" type="email" id="authLoginEmail" placeholder="Enter your email address"
+                  autocomplete="email" required>
               </div>
 
               <div class="auth-field">
                 <label class="auth-label" for="authLoginPwd">Password</label>
-                <input class="auth-input" type="password" id="authLoginPwd"   placeholder="Enter your password"      autocomplete="current-password" required>
+                <input class="auth-input" type="password" id="authLoginPwd" placeholder="Enter your password"
+                  autocomplete="current-password" required>
               </div>
 
               <div class="auth-options-row">
@@ -782,7 +800,8 @@
 
               <button class="auth-submit" type="submit">Log in</button>
 
-              <p class="auth-switch-prompt">New to TigerTix? <button type="button" id="authToSignup">Sign Up</button></p>
+              <p class="auth-switch-prompt">New to TigerTix? <button type="button" id="authToSignup">Sign Up</button>
+              </p>
             </form>
           </div>
 
@@ -791,7 +810,7 @@
     </div><!-- /.auth-card -->
   </div><!-- /.auth-overlay -->
 
-    <script src="auth-modal.js"></script>
+  <script src="auth-modal.js"></script>
 </body>
 
 </html>

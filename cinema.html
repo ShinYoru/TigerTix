@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="auth-modal.css">
 </head>
 <body>
 
@@ -485,5 +486,145 @@
   </footer>
 
   <script src="script.js"></script>
+  <!-- ===== AUTH MODAL ===== -->
+  <div class="auth-overlay" id="authOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="authDialogTitle">
+    <div class="auth-card">
+
+      <!-- Top bar -->
+      <header class="auth-topbar">
+        <a class="auth-topbar-brand" href="index.html" tabindex="-1">
+          <img src="images/logo.jpeg" alt="">
+          <span>TIGER<span class="tix">TIX</span></span>
+        </a>
+        <button class="auth-close-btn" id="authCloseBtn" type="button" aria-label="Close">Back to home</button>
+      </header>
+
+      <!-- Body -->
+      <div class="auth-body">
+
+        <!-- Left promo panel -->
+        <div class="auth-promo" aria-hidden="true">
+          <div class="auth-film-left"  id="authFilmLeft"></div>
+          <div class="auth-film-right" id="authFilmRight"></div>
+
+          <p class="auth-promo-eyebrow">Welcome to TigerTix</p>
+          <h2 class="auth-promo-title" id="authDialogTitle">Your seat is<br>waiting.</h2>
+          <p class="auth-promo-desc">Log in or sign up to reserve seats and get your e-ticket via email.</p>
+
+          <div class="auth-ticket">
+            <div class="auth-ticket-header">
+              <span class="auth-ticket-title">TIGERTIX PASS</span>
+              <span class="auth-ticket-admit">ADMIT ONE</span>
+            </div>
+            <div class="auth-ticket-row">
+              <span class="auth-ticket-label">Movie</span>
+              <div class="auth-ticket-bar w70"></div>
+            </div>
+            <div class="auth-ticket-row">
+              <span class="auth-ticket-label">Cinema</span>
+              <div class="auth-ticket-bar w55"></div>
+            </div>
+            <div class="auth-ticket-row">
+              <span class="auth-ticket-label">Seat</span>
+              <div class="auth-ticket-bar w35"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right form panel -->
+        <div class="auth-form-panel">
+
+          <!-- Tab switcher -->
+          <div class="auth-tabs" role="tablist">
+            <button class="auth-tab active" id="authTabSignup" type="button" role="tab" aria-selected="true"  aria-controls="authViewSignup">Sign Up</button>
+            <button class="auth-tab"        id="authTabLogin"  type="button" role="tab" aria-selected="false" aria-controls="authViewLogin">Log In</button>
+          </div>
+
+          <!-- SIGN UP VIEW -->
+          <div class="auth-view active" id="authViewSignup" role="tabpanel">
+            <h3 class="auth-view-title">Create your account</h3>
+            <form id="authFormSignup" novalidate>
+
+              <div class="auth-field">
+                <label class="auth-label" for="authSignupName">Full name</label>
+                <input class="auth-input" type="text"     id="authSignupName"    placeholder="Enter your full name"     autocomplete="name"     required>
+              </div>
+
+              <div class="auth-field">
+                <label class="auth-label" for="authSignupEmail">Email Address</label>
+                <input class="auth-input" type="email"    id="authSignupEmail"   placeholder="Enter your email address"  autocomplete="email"    required>
+              </div>
+
+              <div class="auth-field">
+                <label class="auth-label" for="authSignupPwd">Password</label>
+                <input class="auth-input" type="password" id="authSignupPwd"     placeholder="At least 8 characters"     autocomplete="new-password" required>
+              </div>
+
+              <div class="auth-pwd-rules">
+                <p class="auth-pwd-rules-title">Your password must include at least:</p>
+                <div class="auth-pwd-rule" id="authRuleLen">
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  8 characters
+                </div>
+                <div class="auth-pwd-rule" id="authRuleUpper">
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  1 uppercase letter (A–Z)
+                </div>
+                <div class="auth-pwd-rule" id="authRuleNum">
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  1 number (0–9)
+                </div>
+                <div class="auth-pwd-rule" id="authRuleSpecial">
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  1 special character (!@#$%^&amp;*)
+                </div>
+              </div>
+
+              <div class="auth-field">
+                <label class="auth-label" for="authSignupConfirm">Confirm password</label>
+                <input class="auth-input" type="password" id="authSignupConfirm" placeholder="Re-enter your password"   autocomplete="new-password" required>
+              </div>
+
+              <button class="auth-submit" type="submit">Sign Up</button>
+
+              <p class="auth-switch-prompt">Already have an account? <button type="button" id="authToLogin">Log In</button></p>
+            </form>
+          </div>
+
+          <!-- LOG IN VIEW -->
+          <div class="auth-view" id="authViewLogin" role="tabpanel">
+            <h3 class="auth-view-title">Welcome back</h3>
+            <form id="authFormLogin" novalidate>
+
+              <div class="auth-field">
+                <label class="auth-label" for="authLoginEmail">Email Address</label>
+                <input class="auth-input" type="email"    id="authLoginEmail" placeholder="Enter your email address" autocomplete="email"            required>
+              </div>
+
+              <div class="auth-field">
+                <label class="auth-label" for="authLoginPwd">Password</label>
+                <input class="auth-input" type="password" id="authLoginPwd"   placeholder="Enter your password"      autocomplete="current-password" required>
+              </div>
+
+              <div class="auth-options-row">
+                <label class="auth-remember">
+                  <input type="checkbox" id="authLoginRemember" checked>
+                  Remember me
+                </label>
+                <a href="#" class="auth-forgot" onclick="return false;">Forgot Password?</a>
+              </div>
+
+              <button class="auth-submit" type="submit">Log in</button>
+
+              <p class="auth-switch-prompt">New to TigerTix? <button type="button" id="authToSignup">Sign Up</button></p>
+            </form>
+          </div>
+
+        </div><!-- /.auth-form-panel -->
+      </div><!-- /.auth-body -->
+    </div><!-- /.auth-card -->
+  </div><!-- /.auth-overlay -->
+
+    <script src="auth-modal.js"></script>
 </body>
 </html>

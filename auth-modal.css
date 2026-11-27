@@ -466,3 +466,347 @@
     padding: 2rem 1.8rem;
   }
 }
+
+
+/* ==========================================================================
+   TIGERTIX NAVBAR — User profile pill + dropdown  (auth-state styles)
+   ========================================================================== */
+
+/* Profile pill wrapper — hidden until JS reveals it */
+.nav-user-area {
+  position: relative;
+  display: none; /* toggled by JS */
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Yellow avatar circle */
+.nav-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f2c935;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: box-shadow 0.2s ease;
+}
+
+.nav-user-area:hover .nav-avatar,
+.nav-user-area[aria-expanded="true"] .nav-avatar {
+  box-shadow: 0 0 0 3px rgba(242, 201, 53, 0.35);
+}
+
+.nav-avatar svg {
+  width: 18px;
+  height: 18px;
+  fill: #0a0a0d;
+}
+
+/* Greeting text */
+.nav-greeting {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* Chevron */
+.nav-chevron {
+  width: 14px;
+  height: 14px;
+  stroke: #a1a1aa;
+  transition: transform 0.25s ease, stroke 0.2s ease;
+  flex-shrink: 0;
+}
+
+.nav-user-area[aria-expanded="true"] .nav-chevron {
+  transform: rotate(180deg);
+  stroke: #f2c935;
+}
+
+/* ---- Dropdown panel ---- */
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 190px;
+  background: #111114;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75), 0 0 24px rgba(242, 201, 53, 0.06);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px) scale(0.97);
+  transition: opacity 0.22s ease, visibility 0.22s ease, transform 0.22s cubic-bezier(0.16,1,0.3,1);
+  z-index: 9000;
+}
+
+.nav-dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 0.72rem 1.2rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #d4d4d8;
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.nav-dropdown a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.nav-dropdown .nav-dropdown-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  margin: 0.3rem 0;
+}
+
+.nav-dropdown .nav-signout {
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.nav-dropdown .nav-signout:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+}
+
+/* ==========================================================================
+   ACCOUNT SETTINGS PAGE
+   ========================================================================== */
+
+.acct-page {
+  display: flex;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem 3rem;
+  align-items: flex-start;
+}
+
+/* ---- Sidebar ---- */
+.acct-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: #111114;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 1.8rem 1.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.acct-avatar-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f2c935;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.acct-avatar-wrap svg {
+  width: 42px;
+  height: 42px;
+  fill: #0a0a0d;
+}
+
+.acct-sidebar-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.acct-sidebar-email {
+  font-size: 0.75rem;
+  color: #71717a;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  word-break: break-all;
+}
+
+.acct-sidebar-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin-bottom: 0.8rem;
+}
+
+.acct-sidebar-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.acct-sidebar-nav a {
+  display: block;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: #d4d4d8;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.acct-sidebar-nav a:hover {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+}
+
+.acct-sidebar-nav a.is-active {
+  background: rgba(242,201,53,0.12);
+  color: #f2c935;
+}
+
+.acct-sidebar-nav .acct-logout {
+  color: #ef4444;
+  margin-top: 0.3rem;
+}
+
+.acct-sidebar-nav .acct-logout:hover {
+  background: rgba(239,68,68,0.1);
+  color: #f87171;
+}
+
+/* ---- Main content panel ---- */
+.acct-panel {
+  flex: 1;
+  background: #111114;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 2rem 2.2rem;
+}
+
+.acct-panel-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1.8rem;
+}
+
+.acct-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.acct-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #d4d4d8;
+}
+
+.acct-input {
+  width: 100%;
+  background: #18181d;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 999px;
+  padding: 0.72rem 1.3rem;
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.acct-input::placeholder { color: #52525b; }
+
+.acct-input:focus {
+  border-color: #f2c935;
+  box-shadow: 0 0 0 3px rgba(242,201,53,0.15);
+  background: #1e1e25;
+}
+
+.acct-panel-actions {
+  display: flex;
+  gap: 0.9rem;
+  margin-top: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.acct-btn-save {
+  background: #f2c935;
+  color: #0a0a0d;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 999px;
+  padding: 0.78rem 1.8rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 18px rgba(242,201,53,0.35);
+}
+
+.acct-btn-save:hover {
+  background: #ffd84d;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 22px rgba(242,201,53,0.45);
+}
+
+.acct-btn-cancel {
+  background: rgba(255,255,255,0.07);
+  color: #d4d4d8;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  padding: 0.78rem 1.8rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.acct-btn-cancel:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+/* Placeholder panels for Bookings & Change Password */
+.acct-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  color: #52525b;
+  font-size: 0.9rem;
+  text-align: center;
+  gap: 0.6rem;
+}
+
+.acct-placeholder svg {
+  width: 42px;
+  height: 42px;
+  stroke: #3f3f46;
+}
+
+/* Panel visibility */
+.acct-view { display: none; }
+.acct-view.is-active { display: block; }
+
+/* Responsive */
+@media (max-width: 680px) {
+  .acct-page { flex-direction: column; }
+  .acct-sidebar { width: 100%; }
+}

@@ -430,6 +430,8 @@
         var movie = window._bkMovie || {};
         if (state.format === "Director's Club") {
           state.ticketPrice = movie.priceDirectors || 600;
+        } else if (state.format === 'IMAX') {
+          state.ticketPrice = movie.priceIMAX || 500;
         } else if (state.format === 'ScreenX') {
           state.ticketPrice = movie.priceScreenX || 450;
         } else {

@@ -167,7 +167,7 @@
         <div class="bk-cinema-grid" id="cinemaGrid">
 
           <label class="bk-cinema-card is-selected" data-city="Makati" data-cinema="Glorietta 4"
-            data-addr="Ayala Center, Makati City" data-formats="Regular,Director's Club">
+            data-addr="Ayala Center, Makati City" data-formats="Regular">
             <input type="radio" name="cinema" value="Glorietta 4" checked>
             <div class="bk-cinema-card-inner">
               <div class="bk-cinema-top">
@@ -186,13 +186,12 @@
               </p>
               <div class="bk-cinema-formats">
                 <span class="bk-fmt-tag">Regular</span>
-                <span class="bk-fmt-tag">Director's Club</span>
               </div>
             </div>
           </label>
 
           <label class="bk-cinema-card" data-city="Pasay" data-cinema="SM Mall of Asia" data-addr="Pasay City"
-            data-formats="Regular,ScreenX">
+            data-formats="IMAX">
             <input type="radio" name="cinema" value="SM Mall of Asia">
             <div class="bk-cinema-card-inner">
               <div class="bk-cinema-top">
@@ -210,8 +209,7 @@
                 Pasay City
               </p>
               <div class="bk-cinema-formats">
-                <span class="bk-fmt-tag">Regular</span>
-                <span class="bk-fmt-tag">ScreenX</span>
+                <span class="bk-fmt-tag">IMAX</span>
               </div>
             </div>
           </label>
@@ -241,7 +239,7 @@
           </label>
 
           <label class="bk-cinema-card" data-city="Pasay" data-cinema="Newport Mall"
-            data-addr="Newport Blvd, Pasay City" data-formats="Regular,Director's Club">
+            data-addr="Newport Blvd, Pasay City" data-formats="Director's Club">
             <input type="radio" name="cinema" value="Newport Mall">
             <div class="bk-cinema-card-inner">
               <div class="bk-cinema-top">
@@ -259,14 +257,13 @@
                 Newport Blvd, Pasay City
               </p>
               <div class="bk-cinema-formats">
-                <span class="bk-fmt-tag">Regular</span>
                 <span class="bk-fmt-tag">Director's Club</span>
               </div>
             </div>
           </label>
 
           <label class="bk-cinema-card" data-city="Taguig" data-cinema="Uptown Mall" data-addr="9th Ave, Taguig City"
-            data-formats="Regular,ScreenX,Director's Club">
+            data-formats="ScreenX">
             <input type="radio" name="cinema" value="Uptown Mall">
             <div class="bk-cinema-card-inner">
               <div class="bk-cinema-top">
@@ -284,15 +281,13 @@
                 9th Ave, Taguig City
               </p>
               <div class="bk-cinema-formats">
-                <span class="bk-fmt-tag">Regular</span>
                 <span class="bk-fmt-tag">ScreenX</span>
-                <span class="bk-fmt-tag">Director's Club</span>
               </div>
             </div>
           </label>
 
           <label class="bk-cinema-card" data-city="Quezon" data-cinema="SM City North EDSA"
-            data-addr="North Avenue, Quezon City" data-formats="Regular,ScreenX">
+            data-addr="North Avenue, Quezon City" data-formats="IMAX">
             <input type="radio" name="cinema" value="SM City North EDSA">
             <div class="bk-cinema-card-inner">
               <div class="bk-cinema-top">
@@ -310,8 +305,7 @@
                 North Avenue, Quezon City
               </p>
               <div class="bk-cinema-formats">
-                <span class="bk-fmt-tag">Regular</span>
-                <span class="bk-fmt-tag">ScreenX</span>
+                <span class="bk-fmt-tag">IMAX</span>
               </div>
             </div>
           </label>
@@ -382,6 +376,10 @@
                 <span class="bk-dt-fmt-label">Regular</span>
                 <span class="bk-dt-fmt-count">4</span>
               </button>
+              <button type="button" class="bk-dt-fmt-btn" data-format="IMAX" role="tab" aria-selected="false">
+                <span class="bk-dt-fmt-label">IMAX</span>
+                <span class="bk-dt-fmt-count">2</span>
+              </button>
               <button type="button" class="bk-dt-fmt-btn" data-format="ScreenX" role="tab" aria-selected="false">
                 <span class="bk-dt-fmt-label">ScreenX</span>
                 <span class="bk-dt-fmt-count">4</span>
@@ -439,6 +437,32 @@
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                   5:30 PM
+                </button>
+              </div>
+            </div>
+
+            <!-- IMAX Category -->
+            <div class="bk-dt-showtime-group" data-group-format="IMAX" style="margin-top: 1.4rem;">
+              <div class="bk-dt-cat-header">
+                <span class="bk-dt-cat-name">IMAX</span>
+                <span class="bk-dt-cat-count">2 showtimes</span>
+              </div>
+              <div class="bk-dt-time-row">
+                <button type="button" class="bk-dt-time-btn" data-format="IMAX" data-time="1:45 PM">
+                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  1:45 PM
+                </button>
+                <button type="button" class="bk-dt-time-btn" data-format="IMAX" data-time="6:15 PM">
+                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  6:15 PM
                 </button>
               </div>
             </div>

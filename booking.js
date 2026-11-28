@@ -668,6 +668,7 @@
           btn.classList.add('is-active');
           state.format = btn.getAttribute('data-format') || 'Regular';
           state.time = btn.getAttribute('data-time') || btn.textContent.trim();
+          state.seats = [];
 
           var movie = window._bkMovie || {};
           if (state.format === "Director's Club") {
@@ -680,6 +681,7 @@
             state.ticketPrice = movie.priceRegular || 350;
           }
 
+          updateSeatSummary();
           updateBottomBar();
         });
       });
@@ -757,6 +759,7 @@
         btn.classList.add('is-active');
         state.format = btn.getAttribute('data-format') || 'Regular';
         state.time   = btn.getAttribute('data-time') || btn.textContent.trim();
+        state.seats  = [];
 
         // Set ticket price based on format
         var movie = window._bkMovie || {};
@@ -770,6 +773,7 @@
           state.ticketPrice = movie.priceRegular || 350;
         }
 
+        updateSeatSummary();
         updateBottomBar();
       });
     });

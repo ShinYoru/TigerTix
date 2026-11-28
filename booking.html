@@ -1244,27 +1244,19 @@
   <div class="bk-trailer-modal-overlay" id="bkTrailerModal" aria-hidden="true" role="dialog" aria-modal="true"
     aria-labelledby="bkTrailerModalTitle">
     <div class="bk-trailer-modal-dialog">
-      <div class="bk-trailer-screen">
-        <!-- Big Play Button Overlay -->
-        <button class="bk-trailer-play-circle" id="bkTrailerPlayBtn" type="button" aria-label="Play trailer">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M8 5v14l11-7z" />
-          </svg>
-        </button>
-
-        <!-- Video Bottom Controls Strip -->
-        <div class="bk-trailer-bottom-bar">
-          <div class="bk-trailer-progress-wrap">
-            <div class="bk-trailer-progress-bar"></div>
-          </div>
-          <div class="bk-trailer-meta-row">
-            <span class="bk-trailer-title-txt" id="bkTrailerModalTitle">The Odyssey &bull; Official Trailer</span>
-            <span class="bk-trailer-time-txt" id="bkTrailerModalTime">01:20</span>
-          </div>
-          <div class="bk-trailer-actions">
-            <button class="bk-trailer-back-btn" id="bkTrailerCloseBtn" type="button">Back</button>
-          </div>
-        </div>
+      <div class="bk-trailer-video-wrap">
+        <iframe
+          id="bkTrailerIframe"
+          src=""
+          title="Movie Official Trailer"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="bk-trailer-modal-footer">
+        <span class="bk-trailer-title-txt" id="bkTrailerModalTitle">Official Trailer</span>
+        <button class="bk-trailer-back-btn" id="bkTrailerCloseBtn" type="button">Back</button>
       </div>
     </div>
   </div>

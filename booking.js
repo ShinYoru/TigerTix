@@ -18,6 +18,7 @@
       cast: 'Cast: Joey Marquez, Pokwang, Zalijan Jaranilla, Meryl Soriano, Joem Bascon',
       poster: 'images/2-valid-ids.jpeg',
       themeBg: '#2a221b',
+      youtubeId: 'TbJXOHeBfWw',
       trailerTitle: '2 Valid IDs \u2022 Official Trailer',
       trailerDuration: '01:45',
       priceRegular: 350,
@@ -27,34 +28,37 @@
     'Wicked: For Good': {
       title: 'Wicked: For Good',
       badge: 'PG',
-      meta: 'Fantasy/Adventure • 2hr 18m • Releasing November 2026',
+      meta: 'Fantasy/Adventure \u2022 2hr 18m \u2022 Releasing November 2026',
       desc: 'Elphaba and Glinda navigate their complex friendship and the pressures of Oz as their destinies begin to diverge towards greatness and infamy.',
       cast: 'Cast: Cynthia Erivo, Ariana Grande, Jonathan Bailey, Ethan Slater, Jeff Goldblum',
       poster: 'images/wicked.jpeg',
       themeBg: '#132e18',
-      trailerTitle: 'Wicked: For Good • Official Trailer',
+      youtubeId: 'vt98AlBDI9Y',
+      trailerTitle: 'Wicked: For Good \u2022 Official Trailer',
       trailerDuration: '02:18'
     },
     'Moana': {
       title: 'Moana',
       badge: 'PG',
-      meta: 'Animation • 1hr 55m • Releasing December 2026',
+      meta: 'Animation \u2022 1hr 55m \u2022 Releasing December 2026',
       desc: 'An adventurous teenager sails out on a daring mission to save her people, fulfilling the ancient quest of her ancestors alongside the demigod Maui.',
       cast: "Cast: Auli'i Cravalho, Dwayne Johnson, Rachel House, Temuera Morrison",
       poster: 'images/moana.jpeg',
       themeBg: '#0e2b3d',
-      trailerTitle: 'Moana • Official Trailer',
+      youtubeId: 'n7f6hlKsxxo',
+      trailerTitle: 'Moana \u2022 Official Trailer',
       trailerDuration: '01:55'
     },
     'Spider-Man: Brand New Day': {
       title: 'Spider-Man: Brand New Day',
       badge: 'PG',
-      meta: 'Action/Adventure • 2hr 55m • Releasing December 2026',
+      meta: 'Action/Adventure \u2022 2hr 55m \u2022 Releasing December 2026',
       desc: 'Peter Parker begins a whole new chapter as Spider-Man facing uncharted threats across New York City with newly forged alliances.',
       cast: 'Cast: Tom Holland, Zendaya, Jacob Batalon',
       poster: 'images/spiderman.jpeg',
       themeBg: '#341417',
-      trailerTitle: 'Spider-Man: Brand New Day • Official Trailer',
+      youtubeId: '62bIsvRcPv0',
+      trailerTitle: 'Spider-Man: Brand New Day \u2022 Official Trailer',
       trailerDuration: '02:55'
     },
     'The Odyssey': {
@@ -65,6 +69,7 @@
       cast: 'Cast: Tom Holland, Robert Pattinson, Matt Damon, Anne Hathaway',
       poster: 'images/the-odyssey.jpg',
       themeBg: '#102538',
+      youtubeId: 'Mzw2ttJD2qQ',
       trailerTitle: 'The Odyssey \u2022 Official Trailer',
       trailerDuration: '01:20',
       priceRegular: 350,
@@ -79,6 +84,7 @@
       cast: 'Cast: Tom Hanks, Tim Allen, Joan Cusack',
       poster: 'images/toystory-5.jpg',
       themeBg: '#1c341e',
+      youtubeId: 'c51ND9Hdbw0',
       trailerTitle: 'Toy Story 5 \u2022 Official Trailer',
       trailerDuration: '01:30',
       priceRegular: 350,
@@ -87,7 +93,30 @@
     }
   };
 
+  var MOVIE_ALIASES = {
+    '2 valid ids': '2 Valid IDs',
+    'the wicked: for good': 'Wicked: For Good',
+    'spiderman: brand new day': 'Spider-Man: Brand New Day'
+  };
+
   var DEFAULT_MOVIE = '2 Valid IDs';
+
+  function getYouTubeEmbedUrl(videoId, autoplay) {
+    if (!videoId) return '';
+    return 'https://www.youtube.com/embed/' + encodeURIComponent(videoId) + '?rel=0' + (autoplay ? '&autoplay=1' : '');
+  }
+
+  function resolveMovieKey(rawKey) {
+    if (!rawKey) return DEFAULT_MOVIE;
+    if (MOVIES[rawKey]) return rawKey;
+    var normalized = rawKey.trim().toLowerCase();
+    if (MOVIE_ALIASES[normalized]) return MOVIE_ALIASES[normalized];
+    var keys = Object.keys(MOVIES);
+    for (var i = 0; i < keys.length; i++) {
+      if (keys[i].toLowerCase() === normalized) return keys[i];
+    }
+    return DEFAULT_MOVIE;
+  }
 
   /* ---- Read URL param ?movie=... ---- */
   function getUrlParam(key) {
@@ -133,7 +162,7 @@
   }
 
   function populateMovieHero() {
-    var key = getUrlParam('movie') || DEFAULT_MOVIE;
+    var key = resolveMovieKey(getUrlParam('movie'));
     var movie = MOVIES[key] || MOVIES[DEFAULT_MOVIE];
 
     var titleEl    = document.getElementById('bkMovieTitle');
@@ -155,21 +184,28 @@
       bgEl.style.backgroundColor = movie.themeBg;
     }
 
-    
-    // Check if coming-soon mode
-    var isComingSoon = getUrlParam('mode') === 'coming-soon' || (movie.meta && movie.meta.toLowerCase().indexOf('releasing') !== -1);
+    // Check if coming-soon / view-details mode
+    var modeParam = getUrlParam('mode');
+    var isComingSoon = modeParam === 'coming-soon' || modeParam === 'details' || (movie.meta && movie.meta.toLowerCase().indexOf('releasing') !== -1);
     var flowSection = document.getElementById('bkFlowSection');
+    var bottomBar = document.getElementById('bkBottomBar');
     var trailerBtn = document.getElementById('bkOpenTrailerBtn');
     var eyebrowEl = document.querySelector('.bk-eyebrow');
 
     if (isComingSoon) {
-      if (eyebrowEl) eyebrowEl.textContent = 'Coming Soon';
+      document.title = movie.title + ' | TigerTix';
+      if (eyebrowEl) {
+        eyebrowEl.textContent = (movie.meta && movie.meta.toLowerCase().indexOf('releasing') !== -1) ? 'Coming Soon' : 'Movie Details';
+      }
       if (flowSection) flowSection.style.display = 'none';
+      if (bottomBar) bottomBar.style.display = 'none';
       if (trailerBtn) trailerBtn.style.display = 'none';
 
-      // Insert embedded sample trailer player in place of the booking flow
+      // Insert embedded responsive YouTube trailer player below movie details
       var existingTrailerSection = document.getElementById('bkComingSoonTrailerSection');
       if (!existingTrailerSection) {
+        var trailerTitle = movie.trailerTitle || (movie.title + ' \u2022 Official Trailer');
+        var embedUrl = getYouTubeEmbedUrl(movie.youtubeId, false);
         var trailerSection = document.createElement('section');
         trailerSection.id = 'bkComingSoonTrailerSection';
         trailerSection.className = 'bk-coming-soon-trailer-section';
@@ -177,21 +213,12 @@
           '<div class="bk-cs-trailer-container">',
           '  <div class="bk-cs-header">',
           '    <div class="bk-cs-tag"><span class="bk-cs-dot"></span> OFFICIAL TRAILER</div>',
-          '    <h2 class="bk-cs-title">' + escapeHtml(movie.trailerTitle || (movie.title + ' • Official Trailer')) + '</h2>',
-          '    <p class="bk-cs-subtitle">Tickets will become available closer to the release date.</p>',
+          '    <h2 class="bk-cs-title">' + escapeHtml(trailerTitle) + '</h2>',
+          '    <p class="bk-cs-subtitle">' + ((movie.meta && movie.meta.toLowerCase().indexOf('releasing') !== -1) ? 'Tickets will become available closer to the release date.' : 'Watch the official trailer below.') + '</p>',
           '  </div>',
           '  <div class="bk-cs-player-card">',
-          '    <div class="bk-cs-player-screen">',
-          '      <button class="bk-trailer-play-circle" id="bkCsPlayBtn" type="button" aria-label="Play trailer">',
-          '        <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
-          '      </button>',
-          '      <div class="bk-trailer-bottom-bar">',
-          '        <div class="bk-trailer-progress-wrap"><div class="bk-trailer-progress-bar" id="bkCsProgressBar"></div></div>',
-          '        <div class="bk-trailer-meta-row">',
-          '          <span class="bk-trailer-title-txt">' + escapeHtml(movie.trailerTitle || (movie.title + ' • Official Trailer')) + '</span>',
-          '          <span class="bk-trailer-time-txt" id="bkCsTimeTxt">00:00 / ' + escapeHtml(movie.trailerDuration || '02:00') + '</span>',
-          '        </div>',
-          '      </div>',
+          '    <div class="bk-trailer-video-wrap">',
+          '      <iframe src="' + escapeHtml(embedUrl) + '" title="' + escapeHtml(movie.title + ' Official Trailer') + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
           '    </div>',
           '  </div>',
           '</div>'
@@ -200,40 +227,13 @@
         if (flowSection && flowSection.parentNode) {
           flowSection.parentNode.insertBefore(trailerSection, flowSection.nextSibling);
         }
-
-        // Add play animation
-        var playBtn = document.getElementById('bkCsPlayBtn');
-        var pBar = document.getElementById('bkCsProgressBar');
-        var pTime = document.getElementById('bkCsTimeTxt');
-        var isPlaying = false;
-        var playInterval = null;
-        var currentSec = 0;
-
-        if (playBtn) {
-          playBtn.addEventListener('click', function () {
-            isPlaying = !isPlaying;
-            if (isPlaying) {
-              playBtn.innerHTML = '<svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-              playInterval = setInterval(function () {
-                currentSec += 1;
-                var mins = String(Math.floor(currentSec / 60)).padStart(2, '0');
-                var secs = String(currentSec % 60).padStart(2, '0');
-                if (pTime) pTime.textContent = mins + ':' + secs + ' / ' + (movie.trailerDuration || '02:00');
-                if (pBar) pBar.style.width = Math.min(100, (currentSec / 120) * 100) + '%';
-              }, 1000);
-            } else {
-              playBtn.innerHTML = '<svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-              if (playInterval) clearInterval(playInterval);
-            }
-          });
-        }
       }
     }
 
-
-    // Store current movie globally for order summary
+    // Store current movie globally for order summary & modal trailer
     window._bkMovie = movie;
     window._bkMovieKey = key;
+    window._bkIsComingSoonMode = isComingSoon;
   }
 
   /* =========================================================
@@ -1340,15 +1340,14 @@
   }
 
   /* =========================================================
-     WATCH TRAILER MODAL
+     WATCH TRAILER MODAL (YouTube Iframe)
      ========================================================= */
   function initTrailerModal() {
-    var openBtn   = document.getElementById('bkOpenTrailerBtn');
-    var modal     = document.getElementById('bkTrailerModal');
-    var closeBtn  = document.getElementById('bkTrailerCloseBtn');
-    var titleEl   = document.getElementById('bkTrailerModalTitle');
-    var timeEl    = document.getElementById('bkTrailerModalTime');
-    var playBtn   = document.getElementById('bkTrailerPlayBtn');
+    var openBtn  = document.getElementById('bkOpenTrailerBtn');
+    var modal    = document.getElementById('bkTrailerModal');
+    var closeBtn = document.getElementById('bkTrailerCloseBtn');
+    var titleEl  = document.getElementById('bkTrailerModalTitle');
+    var iframe   = document.getElementById('bkTrailerIframe');
 
     if (!modal) return;
 
@@ -1357,8 +1356,9 @@
       if (titleEl) {
         titleEl.textContent = (movie.trailerTitle || (movie.title + ' \u2022 Official Trailer'));
       }
-      if (timeEl) {
-        timeEl.textContent = (movie.trailerDuration || '01:20');
+      if (iframe && movie.youtubeId) {
+        iframe.title = movie.title + ' Official Trailer';
+        iframe.src = getYouTubeEmbedUrl(movie.youtubeId, true);
       }
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
@@ -1366,9 +1366,11 @@
     }
 
     function closeModal() {
+      if (!modal.classList.contains('is-open')) return;
       modal.classList.remove('is-open');
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      if (iframe) iframe.src = '';
     }
 
     if (openBtn)  openBtn.addEventListener('click', openModal);
@@ -1385,16 +1387,6 @@
         closeModal();
       }
     });
-
-    if (playBtn) {
-      playBtn.addEventListener('click', function () {
-        // Subtle toggle animation feedback
-        playBtn.style.transform = 'translate(-50%, -50%) scale(0.92)';
-        setTimeout(function () {
-          playBtn.style.transform = '';
-        }, 180);
-      });
-    }
   }
 
   /* =========================================================
@@ -1702,10 +1694,12 @@
       if (el('eTicketRef') && refParam) el('eTicketRef').textContent = refParam;
       if (el('etTitle')) el('etTitle').textContent = key;
       goToStep(5);
-    } else if (stepParam && stepParam >= 1 && stepParam <= TOTAL_STEPS) {
-      goToStep(stepParam);
-    } else {
-      goToStep(1);
+    } else if (!window._bkIsComingSoonMode) {
+      if (stepParam && stepParam >= 1 && stepParam <= TOTAL_STEPS) {
+        goToStep(stepParam);
+      } else {
+        goToStep(1);
+      }
     }
   });
 

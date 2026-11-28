@@ -11,6 +11,7 @@ var TIGERTIX_DATA = {
       meta: 'Drama • 1hr 33m • Released October 14 2026',
       cast: 'Cast: Joey Marquez, Pokwang, Zaijan Jaranilla, Meryl Soriano, Joem Bascon',
       poster: 'images/2-valid-ids.jpeg',
+      youtubeId: 'TbJXOHeBfWw',
       reservedSeats: ['A3', 'A4', 'B5', 'B6', 'D1', 'D2', 'F4']
     },
     'The Odyssey': {
@@ -19,6 +20,7 @@ var TIGERTIX_DATA = {
       meta: 'Action • 2hrs 53m • Released July 15 2026',
       cast: 'Cast: Tom Holland, Robert Pattinson, Matt Damon, Anne Hathaway',
       poster: 'images/the-odyssey.jpg',
+      youtubeId: 'Mzw2ttJD2qQ',
       reservedSeats: ['C3', 'C4', 'C5', 'D5', 'D6', 'E7', 'E8', 'F9', 'F10']
     },
     'Toy Story 5': {
@@ -27,6 +29,7 @@ var TIGERTIX_DATA = {
       meta: 'Animation • 1hr 42m • Released June 17 2026',
       cast: 'Cast: Tom Hanks, Tim Allen, Joan Cusack',
       poster: 'images/toystory-5.jpg',
+      youtubeId: 'c51ND9Hdbw0',
       reservedSeats: ['A1', 'A2', 'B3', 'B4', 'C7', 'C8', 'D4', 'E2', 'E3', 'F5']
     },
     'Wicked: For Good': {
@@ -35,6 +38,7 @@ var TIGERTIX_DATA = {
       meta: 'Fantasy/Adventure • 2hr 18m • Releasing November 2026',
       cast: 'Cast: Cynthia Erivo, Ariana Grande, Jonathan Bailey, Ethan Slater, Jeff Goldblum',
       poster: 'images/wicked.jpeg',
+      youtubeId: 'vt98AlBDI9Y',
       reservedSeats: ['A5', 'A6', 'B1', 'B2', 'C9', 'C10', 'D7', 'D8']
     },
     'Moana': {
@@ -43,6 +47,7 @@ var TIGERTIX_DATA = {
       meta: 'Animation • 1hr 55m • Releasing December 2026',
       cast: "Cast: Auli'i Cravalho, Dwayne Johnson, Rachel House, Temuera Morrison",
       poster: 'images/moana.jpeg',
+      youtubeId: 'n7f6hlKsxxo',
       reservedSeats: ['B7', 'B8', 'C1', 'C2', 'D9', 'D10', 'E4', 'E5']
     },
     'Spider-Man: Brand New Day': {
@@ -51,6 +56,7 @@ var TIGERTIX_DATA = {
       meta: 'Action/Adventure • 2hr 55m • Releasing December 2026',
       cast: 'Cast: Tom Holland, Zendaya, Jacob Batalon',
       poster: 'images/spiderman.jpeg',
+      youtubeId: '62bIsvRcPv0',
       reservedSeats: ['A7', 'A8', 'B9', 'B10', 'C5', 'C6', 'D3', 'D4', 'F1', 'F2']
     }
   },

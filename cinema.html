@@ -451,6 +451,27 @@
     </div>
   </footer>
 
+  <!-- ================= WATCH TRAILER MODAL ================= -->
+  <div class="bk-trailer-modal-overlay" id="bkTrailerModal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="bkTrailerModalTitle">
+    <div class="bk-trailer-modal-dialog">
+      <div class="bk-trailer-video-wrap">
+        <iframe
+          id="bkTrailerIframe"
+          src=""
+          title="Movie Official Trailer"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="bk-trailer-modal-footer">
+        <span class="bk-trailer-title-txt" id="bkTrailerModalTitle">Official Trailer</span>
+        <button class="bk-trailer-back-btn" id="bkTrailerCloseBtn" type="button">Back</button>
+      </div>
+    </div>
+  </div>
+
   <script src="cinema-data.js"></script>
   <script src="script.js"></script>
   <!-- ===== AUTH MODAL ===== -->

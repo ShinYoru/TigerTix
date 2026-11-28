@@ -7,6 +7,52 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
+  // Wire dynamically rendered Cinema Showtimes "Watch Trailer" buttons to YouTube modal
+  (function initCinemaTrailerModal() {
+    var modal    = document.getElementById('bkTrailerModal');
+    var iframe   = document.getElementById('bkTrailerIframe');
+    var titleEl  = document.getElementById('bkTrailerModalTitle');
+    var closeBtn = document.getElementById('bkTrailerCloseBtn');
+
+    if (!modal || !iframe) return;
+
+    function openCinemaTrailer(videoId, title) {
+      if (!videoId) return;
+      if (titleEl) titleEl.textContent = title || 'Official Trailer';
+      iframe.title = title || 'Movie Official Trailer';
+      iframe.src = 'https://www.youtube.com/embed/' + encodeURIComponent(videoId) + '?autoplay=1&rel=0';
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCinemaTrailer() {
+      if (!modal.classList.contains('is-open')) return;
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      iframe.src = '';
+    }
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.cinema-watch-trailer-btn');
+      if (!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
+      openCinemaTrailer(btn.getAttribute('data-trailer-id'), btn.getAttribute('data-trailer-title'));
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeCinemaTrailer);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeCinemaTrailer();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeCinemaTrailer();
+      }
+    });
+  })();
+
   var searchWidget = document.getElementById('searchWidget');
   var searchPill = document.getElementById('searchPill');
   var searchBtn = document.getElementById('searchBtn');
@@ -686,6 +732,14 @@ document.addEventListener('DOMContentLoaded', function () {
       movieCardsHtml.push('    <p class="cinema-movie-meta">' + escapeHtml(movieMeta.meta) + '</p>');
       if (movieMeta.cast) {
         movieCardsHtml.push('    <p class="cinema-movie-cast">' + escapeHtml(movieMeta.cast) + '</p>');
+      }
+      if (movieMeta.youtubeId) {
+        movieCardsHtml.push('    <div class="cinema-movie-actions">');
+        movieCardsHtml.push('      <button type="button" class="btn btn-outline btn-xs cinema-watch-trailer-btn" data-trailer-id="' + escapeHtml(movieMeta.youtubeId) + '" data-trailer-title="' + escapeHtml(movieTitle + ' \u2022 Official Trailer') + '">');
+        movieCardsHtml.push('        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>');
+        movieCardsHtml.push('        Watch Trailer');
+        movieCardsHtml.push('      </button>');
+        movieCardsHtml.push('    </div>');
       }
       movieCardsHtml.push('    <div class="showtime-rows">');
 

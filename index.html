@@ -479,27 +479,19 @@
   <div class="bk-trailer-modal-overlay" id="bkTrailerModal" aria-hidden="true" role="dialog" aria-modal="true"
     aria-labelledby="bkTrailerModalTitle">
     <div class="bk-trailer-modal-dialog">
-      <div class="bk-trailer-screen">
-        <!-- Big Play Button Overlay -->
-        <button class="bk-trailer-play-circle" id="bkTrailerPlayBtn" type="button" aria-label="Play trailer">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M8 5v14l11-7z" />
-          </svg>
-        </button>
-
-        <!-- Video Bottom Controls Strip -->
-        <div class="bk-trailer-bottom-bar">
-          <div class="bk-trailer-progress-wrap">
-            <div class="bk-trailer-progress-bar"></div>
-          </div>
-          <div class="bk-trailer-meta-row">
-            <span class="bk-trailer-title-txt" id="bkTrailerModalTitle">Toy Story 5 &bull; Official Trailer</span>
-            <span class="bk-trailer-time-txt" id="bkTrailerModalTime">01:30</span>
-          </div>
-          <div class="bk-trailer-actions">
-            <button class="bk-trailer-back-btn" id="bkTrailerCloseBtn" type="button">Back</button>
-          </div>
-        </div>
+      <div class="bk-trailer-video-wrap">
+        <iframe
+          id="bkTrailerIframe"
+          src=""
+          title="Movie Official Trailer"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="bk-trailer-modal-footer">
+        <span class="bk-trailer-title-txt" id="bkTrailerModalTitle">Toy Story 5 &bull; Official Trailer</span>
+        <button class="bk-trailer-back-btn" id="bkTrailerCloseBtn" type="button">Back</button>
       </div>
     </div>
   </div>
@@ -521,6 +513,7 @@
       var DELAY = 5000;
       var current = 0;
       var timer = null;
+      var trailerModalOpen = false;
       var playing = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
       var isTransitioning = false;
       var TRANSITION_COOLDOWN = 1000; // 1-second interval to prevent spamming slides
@@ -549,7 +542,7 @@
 
       function start() {
         stop();
-        if (playing && n > 1 && !document.hidden) {
+        if (playing && n > 1 && !document.hidden && !trailerModalOpen) {
           timer = setInterval(function () {
             if (!isTransitioning) {
               go((current + 1) % n, true);
@@ -702,6 +695,14 @@
       });
 
       document.addEventListener('visibilitychange', start);
+      document.addEventListener('tigertix:trailer-open', function () {
+        trailerModalOpen = true;
+        stop();
+      });
+      document.addEventListener('tigertix:trailer-close', function () {
+        trailerModalOpen = false;
+        start();
+      });
 
       hero.classList.toggle('is-paused', !playing);
       pauseBtn.setAttribute('aria-label', playing ? 'Pause slideshow' : 'Play slideshow');
@@ -709,38 +710,51 @@
       start();
     })();
 
-    /* Trailer Modal for Landing Page Hero */
+    /* Trailer Modal for Landing Page Hero (YouTube Iframe) */
     (function () {
       var modal = document.getElementById('bkTrailerModal');
       var closeBtn = document.getElementById('bkTrailerCloseBtn');
       var titleEl = document.getElementById('bkTrailerModalTitle');
-      var timeEl = document.getElementById('bkTrailerModalTime');
-      var playBtn = document.getElementById('bkTrailerPlayBtn');
+      var iframe = document.getElementById('bkTrailerIframe');
       var trailerBtns = document.querySelectorAll('.hero-trailer-btn');
 
       var TRAILERS = {
-        'Toy Story 5': { title: 'Toy Story 5 \u2022 Official Trailer', duration: '01:30' },
-        '2 Valid IDs': { title: '2 Valid IDs \u2022 Official Trailer', duration: '01:45' },
-        'The Odyssey': { title: 'The Odyssey \u2022 Official Trailer', duration: '01:20' },
-        'Wicked: For Good': { title: 'Wicked: For Good \u2022 Official Trailer', duration: '02:18' },
-        'Spider-Man: Brand New Day': { title: 'Spider-Man: Brand New Day \u2022 Official Trailer', duration: '02:55' }
+        'Toy Story 5': { title: 'Toy Story 5 \u2022 Official Trailer', youtubeId: 'c51ND9Hdbw0' },
+        '2 Valid IDs': { title: '2 Valid IDs \u2022 Official Trailer', youtubeId: 'TbJXOHeBfWw' },
+        'The Odyssey': { title: 'The Odyssey \u2022 Official Trailer', youtubeId: 'Mzw2ttJD2qQ' },
+        'Wicked: For Good': { title: 'Wicked: For Good \u2022 Official Trailer', youtubeId: 'vt98AlBDI9Y' },
+        'Spider-Man: Brand New Day': { title: 'Spider-Man: Brand New Day \u2022 Official Trailer', youtubeId: '62bIsvRcPv0' },
+        'Moana': { title: 'Moana \u2022 Official Trailer', youtubeId: 'n7f6hlKsxxo' }
       };
 
       if (!modal) return;
 
       function openModal(movieName) {
-        var info = TRAILERS[movieName] || { title: (movieName || 'Movie') + ' \u2022 Official Trailer', duration: '01:30' };
+        var info = TRAILERS[movieName];
+        if (!info && movieName) {
+          var key = Object.keys(TRAILERS).find(function (k) { return k.toLowerCase() === movieName.trim().toLowerCase(); });
+          if (key) info = TRAILERS[key];
+        }
+        info = info || { title: (movieName || 'Movie') + ' \u2022 Official Trailer', youtubeId: '' };
+
         if (titleEl) titleEl.textContent = info.title;
-        if (timeEl) timeEl.textContent = info.duration;
+        if (iframe && info.youtubeId) {
+          iframe.title = info.title;
+          iframe.src = 'https://www.youtube.com/embed/' + encodeURIComponent(info.youtubeId) + '?autoplay=1&rel=0';
+        }
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        document.dispatchEvent(new CustomEvent('tigertix:trailer-open'));
       }
 
       function closeModal() {
+        if (!modal.classList.contains('is-open')) return;
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        if (iframe) iframe.src = '';
+        document.dispatchEvent(new CustomEvent('tigertix:trailer-close'));
       }
 
       trailerBtns.forEach(function (btn) {
@@ -763,15 +777,6 @@
           closeModal();
         }
       });
-
-      if (playBtn) {
-        playBtn.addEventListener('click', function () {
-          playBtn.style.transform = 'translate(-50%, -50%) scale(0.92)';
-          setTimeout(function () {
-            playBtn.style.transform = '';
-          }, 180);
-        });
-      }
     })();
   </script>
   <script src="script.js"></script>

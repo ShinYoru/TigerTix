@@ -217,6 +217,26 @@
   box-shadow: 0 0 0 3px rgba(242, 201, 53, 0.15);
 }
 
+.contact-input.is-invalid,
+.contact-textarea.is-invalid {
+  border-color: #ef4444 !important;
+  background: #181518 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
+.contact-field-error {
+  color: #ef4444;
+  font-size: 0.76rem;
+  font-weight: 500;
+  margin-top: 0.35rem;
+  padding-left: 0.2rem;
+  display: none;
+}
+
+.contact-field-error.is-visible {
+  display: block;
+}
+
 .contact-textarea {
   min-height: 120px;
   resize: vertical;

@@ -328,6 +328,7 @@
     }
 
     if (n === 3) {
+      buildSeatMap();
       var s3info = document.getElementById('bkStep3Info');
       if (s3info) {
         var dayPart = (state.dayName ? state.dayName + ' ' : '') + state.day + ' ' + (state.month || 'Nov');
@@ -745,18 +746,40 @@
      ========================================================= */
   var ROWS = ['A','B','C','D','E','F'];
   var COLS = 10;
-  // Pre-mark unavailable seats matching the reference design
-  var RESERVED = [
+  // Fallback reserved seats
+  var DEFAULT_RESERVED = [
     'A3',
     'B5', 'B6',
     'D1', 'D2',
     'F4'
   ];
 
+  function getReservedSeatsForMovie(movieTitle) {
+    var title = movieTitle || window._bkMovieKey || DEFAULT_MOVIE;
+    if (window.TIGERTIX_DATA && window.TIGERTIX_DATA.movies && window.TIGERTIX_DATA.movies[title] && window.TIGERTIX_DATA.movies[title].reservedSeats) {
+      return window.TIGERTIX_DATA.movies[title].reservedSeats;
+    }
+    // Per-movie distinct fallback maps if not in TIGERTIX_DATA
+    if (title === 'The Odyssey') {
+      return ['C3', 'C4', 'C5', 'D5', 'D6', 'E7', 'E8', 'F9', 'F10'];
+    } else if (title === 'Toy Story 5') {
+      return ['A1', 'A2', 'B3', 'B4', 'C7', 'C8', 'D4', 'E2', 'E3', 'F5'];
+    } else if (title === 'Wicked: For Good') {
+      return ['A5', 'A6', 'B1', 'B2', 'C9', 'C10', 'D7', 'D8'];
+    } else if (title === 'Moana') {
+      return ['B7', 'B8', 'C1', 'C2', 'D9', 'D10', 'E4', 'E5'];
+    } else if (title === 'Spider-Man: Brand New Day') {
+      return ['A7', 'A8', 'B9', 'B10', 'C5', 'C6', 'D3', 'D4', 'F1', 'F2'];
+    }
+    return DEFAULT_RESERVED;
+  }
+
   function buildSeatMap() {
     var map = document.getElementById('bkSeatMap');
     if (!map) return;
     map.innerHTML = '';
+
+    var reservedList = getReservedSeatsForMovie(window._bkMovieKey || DEFAULT_MOVIE);
 
     ROWS.forEach(function (row) {
       var rowEl = document.createElement('div');
@@ -772,7 +795,7 @@
       var leftGroup = document.createElement('div');
       leftGroup.className = 'bk-seats-group';
       for (var c = 1; c <= 5; c++) {
-        leftGroup.appendChild(makeSeatBtn(row, c));
+        leftGroup.appendChild(makeSeatBtn(row, c, reservedList));
       }
       rowEl.appendChild(leftGroup);
 
@@ -785,7 +808,7 @@
       var rightGroup = document.createElement('div');
       rightGroup.className = 'bk-seats-group';
       for (var c = 6; c <= 10; c++) {
-        rightGroup.appendChild(makeSeatBtn(row, c));
+        rightGroup.appendChild(makeSeatBtn(row, c, reservedList));
       }
       rowEl.appendChild(rightGroup);
 
@@ -793,7 +816,7 @@
     });
   }
 
-  function makeSeatBtn(row, col) {
+  function makeSeatBtn(row, col, reservedList) {
     var seatId = row + col;
     var btn = document.createElement('button');
     btn.className = 'bk-seat';
@@ -802,10 +825,13 @@
     btn.setAttribute('aria-label', 'Seat ' + seatId);
     btn.textContent = col;
 
-    if (RESERVED.indexOf(seatId) > -1) {
+    var list = reservedList || DEFAULT_RESERVED;
+    if (list.indexOf(seatId) > -1) {
       btn.classList.add('reserved');
       btn.setAttribute('aria-disabled', 'true');
-      btn.disabled = true;
+      btn.addEventListener('click', function () {
+        showSeatAlertModal(seatId);
+      });
     } else {
       if (state.seats.indexOf(seatId) > -1) {
         btn.classList.add('selected');
@@ -1201,12 +1227,17 @@
       if (stored) {
         existing = JSON.parse(stored);
       }
+      var monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var now = new Date();
+      var purchaseDateStr = monthNames[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
+
       var newBooking = {
         id: ref.replace(/\s+/g, ''),
         movie: key,
         cinema: state.cinema || 'Glorietta 4',
         format: (state.format || 'Regular') + ' 2D',
         showtime: month + ' ' + day + ', 2026 \u2022 ' + time,
+        purchaseDate: purchaseDateStr,
         seats: seatsText,
         total: formatCurrency(total),
         reference: ref,
@@ -1424,6 +1455,66 @@
         }
       });
     }
+
+    // Seat Alert Modal Wireup
+    var seatAlertModal = document.getElementById('bkSeatAlertModal');
+    var seatAlertChooseBtn = document.getElementById('bkSeatAlertChooseBtn');
+    var seatAlertChangeTimeBtn = document.getElementById('bkSeatAlertChangeTimeBtn');
+
+    if (seatAlertChooseBtn) {
+      seatAlertChooseBtn.addEventListener('click', function () {
+        hideSeatAlertModal();
+        var mapCard = document.querySelector('.bk-seats-card') || document.getElementById('bkSeatMap');
+        if (mapCard) {
+          mapCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    }
+
+    if (seatAlertChangeTimeBtn) {
+      seatAlertChangeTimeBtn.addEventListener('click', function () {
+        hideSeatAlertModal();
+        goToStep(2);
+      });
+    }
+
+    if (seatAlertModal) {
+      seatAlertModal.addEventListener('click', function (e) {
+        if (e.target === seatAlertModal) {
+          hideSeatAlertModal();
+        }
+      });
+    }
+  }
+
+  function showSeatAlertModal(seatName) {
+    var modal = document.getElementById('bkSeatAlertModal');
+    var titleEl = document.getElementById('bkSeatAlertTitle');
+    var descEl = document.getElementById('bkSeatAlertDesc');
+    var chooseBtn = document.getElementById('bkSeatAlertChooseBtn');
+
+    if (seatName) {
+      if (titleEl) titleEl.textContent = 'Seat ' + seatName + ' was just taken';
+      if (descEl) descEl.textContent = 'Another customer booked it a moment ago. Your showtime is unchanged — choose different seats to continue.';
+      if (chooseBtn) chooseBtn.textContent = 'Choose new seats';
+    } else {
+      if (titleEl) titleEl.textContent = 'No seats selected';
+      if (descEl) descEl.textContent = 'Another customer booked it a moment ago. Your showtime is unchanged — choose different seats to continue.';
+      if (chooseBtn) chooseBtn.textContent = 'Choose new seats';
+    }
+
+    if (modal) {
+      modal.classList.add('is-active');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+  }
+
+  function hideSeatAlertModal() {
+    var modal = document.getElementById('bkSeatAlertModal');
+    if (modal) {
+      modal.classList.remove('is-active');
+      modal.setAttribute('aria-hidden', 'true');
+    }
   }
 
   function canProceed() {
@@ -1439,7 +1530,7 @@
     }
     if (currentStep === 3) {
       if (state.seats.length === 0) {
-        alert('Please select at least one seat to continue.');
+        showSeatAlertModal();
         return false;
       }
       return true;

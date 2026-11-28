@@ -10,21 +10,48 @@ var TIGERTIX_DATA = {
       badge: 'PG',
       meta: 'Drama • 1hr 33m • Released October 14 2026',
       cast: 'Cast: Joey Marquez, Pokwang, Zaijan Jaranilla, Meryl Soriano, Joem Bascon',
-      poster: 'images/2-valid-ids.jpeg'
+      poster: 'images/2-valid-ids.jpeg',
+      reservedSeats: ['A3', 'A4', 'B5', 'B6', 'D1', 'D2', 'F4']
     },
     'The Odyssey': {
       title: 'The Odyssey',
       badge: 'PG',
       meta: 'Action • 2hrs 53m • Released July 15 2026',
       cast: 'Cast: Tom Holland, Robert Pattinson, Matt Damon, Anne Hathaway',
-      poster: 'images/the-odyssey.jpg'
+      poster: 'images/the-odyssey.jpg',
+      reservedSeats: ['C3', 'C4', 'C5', 'D5', 'D6', 'E7', 'E8', 'F9', 'F10']
     },
     'Toy Story 5': {
       title: 'Toy Story 5',
       badge: 'PG',
       meta: 'Animation • 1hr 42m • Released June 17 2026',
       cast: 'Cast: Tom Hanks, Tim Allen, Joan Cusack',
-      poster: 'images/toystory-5.jpg'
+      poster: 'images/toystory-5.jpg',
+      reservedSeats: ['A1', 'A2', 'B3', 'B4', 'C7', 'C8', 'D4', 'E2', 'E3', 'F5']
+    },
+    'Wicked: For Good': {
+      title: 'Wicked: For Good',
+      badge: 'PG',
+      meta: 'Fantasy/Adventure • 2hr 18m • Releasing November 2026',
+      cast: 'Cast: Cynthia Erivo, Ariana Grande, Jonathan Bailey, Ethan Slater, Jeff Goldblum',
+      poster: 'images/wicked.jpeg',
+      reservedSeats: ['A5', 'A6', 'B1', 'B2', 'C9', 'C10', 'D7', 'D8']
+    },
+    'Moana': {
+      title: 'Moana',
+      badge: 'PG',
+      meta: 'Animation • 1hr 55m • Releasing December 2026',
+      cast: "Cast: Auli'i Cravalho, Dwayne Johnson, Rachel House, Temuera Morrison",
+      poster: 'images/moana.jpeg',
+      reservedSeats: ['B7', 'B8', 'C1', 'C2', 'D9', 'D10', 'E4', 'E5']
+    },
+    'Spider-Man: Brand New Day': {
+      title: 'Spider-Man: Brand New Day',
+      badge: 'PG',
+      meta: 'Action/Adventure • 2hr 55m • Releasing December 2026',
+      cast: 'Cast: Tom Holland, Zendaya, Jacob Batalon',
+      poster: 'images/spiderman.jpeg',
+      reservedSeats: ['A7', 'A8', 'B9', 'B10', 'C5', 'C6', 'D3', 'D4', 'F1', 'F2']
     }
   },
 

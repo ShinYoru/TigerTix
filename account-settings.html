@@ -11,6 +11,13 @@
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="auth-modal.css">
+  <style>
+    /* Remove redundant user profile and greeting from top-right header on Account Details page */
+    .site-header #navUserArea,
+    .site-header #navSignInBtn {
+      display: none !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -636,6 +643,7 @@
           cinema: 'Glorietta 4',
           format: 'Regular 2D',
           showtime: 'Nov 20, 2026 \u2022 11:30 AM',
+          purchaseDate: 'Nov 18, 2026',
           seats: 'F10',
           total: '\u20b1350.00',
           reference: 'TIX - 001',
@@ -650,6 +658,7 @@
           cinema: 'SM Mall of Asia',
           format: 'Regular 2D',
           showtime: 'Nov 6, 2026 \u2022 12:30 PM',
+          purchaseDate: 'Nov 5, 2026',
           seats: 'B4, B5',
           total: '\u20b1700.00',
           reference: 'TIX - 002',
@@ -664,6 +673,7 @@
           cinema: 'Robinsons Galleria',
           format: 'Regular 2D',
           showtime: 'Nov 11, 2026 \u2022 1:30 PM',
+          purchaseDate: 'Nov 10, 2026',
           seats: 'A6, A7',
           total: '\u20b1700.00',
           reference: 'TIX - 003',
@@ -726,6 +736,10 @@
           html += '      <a ' + actionAttr + ' class="' + btnClass + '">' + btnLabel + '</a>';
           html += '    </div>';
           html += '    <div class="acct-booking-meta-grid">';
+          html += '      <div class="acct-meta-col">';
+          html += '        <span class="acct-meta-label">Purchase Date</span>';
+          html += '        <span class="acct-meta-val">' + (b.purchaseDate || 'Nov 29, 2026') + '</span>';
+          html += '      </div>';
           html += '      <div class="acct-meta-col">';
           html += '        <span class="acct-meta-label">Showtime</span>';
           html += '        <span class="acct-meta-val">' + b.showtime + '</span>';

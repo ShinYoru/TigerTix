@@ -197,11 +197,13 @@
           <div class="contact-field">
             <label class="contact-label" for="contactName">Full Name</label>
             <input type="text" id="contactName" class="contact-input" placeholder="Your full name" required>
+            <span class="contact-field-error" id="contactNameError">Please enter your full name</span>
           </div>
 
           <div class="contact-field">
             <label class="contact-label" for="contactEmail">Email Address</label>
             <input type="email" id="contactEmail" class="contact-input" placeholder="Enter your email address" required>
+            <span class="contact-field-error" id="contactEmailError">Please enter a valid email address</span>
           </div>
 
           <div class="contact-field">
@@ -237,6 +239,7 @@
           <div class="contact-field">
             <label class="contact-label" for="contactMessage">Message</label>
             <textarea id="contactMessage" class="contact-textarea" placeholder="How can we help? Include your booking reference if you have one." required></textarea>
+            <span class="contact-field-error" id="contactMessageError">Please enter your message</span>
           </div>
 
           <div class="contact-form-actions">
@@ -525,16 +528,94 @@
 
       var form = document.getElementById('contactForm');
       var alertBox = document.getElementById('contactSuccessAlert');
+      var nameInput = document.getElementById('contactName');
+      var emailInput = document.getElementById('contactEmail');
+      var msgInput = document.getElementById('contactMessage');
+      var nameError = document.getElementById('contactNameError');
+      var emailError = document.getElementById('contactEmailError');
+      var msgError = document.getElementById('contactMessageError');
+
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      function clearError(input, errorEl) {
+        if (input) input.classList.remove('is-invalid');
+        if (errorEl) {
+          errorEl.classList.remove('is-visible');
+          errorEl.textContent = '';
+        }
+      }
+
+      function setError(input, errorEl, msg) {
+        if (input) input.classList.add('is-invalid');
+        if (errorEl) {
+          errorEl.textContent = msg;
+          errorEl.classList.add('is-visible');
+        }
+      }
+
+      if (nameInput) {
+        nameInput.addEventListener('input', function () {
+          if (nameInput.value.trim()) clearError(nameInput, nameError);
+        });
+      }
+
+      if (emailInput) {
+        emailInput.addEventListener('input', function () {
+          var val = emailInput.value.trim();
+          if (!val) {
+            clearError(emailInput, emailError);
+          } else if (emailRegex.test(val)) {
+            clearError(emailInput, emailError);
+          } else {
+            setError(emailInput, emailError, 'Please enter a valid email address');
+          }
+        });
+      }
+
+      if (msgInput) {
+        msgInput.addEventListener('input', function () {
+          if (msgInput.value.trim()) clearError(msgInput, msgError);
+        });
+      }
+
       if (form) {
         form.addEventListener('submit', function (e) {
           e.preventDefault();
-          var name = (document.getElementById('contactName').value || '').trim();
-          var email = (document.getElementById('contactEmail').value || '').trim();
-          var msg = (document.getElementById('contactMessage').value || '').trim();
-          if (!name || !email || !msg) {
-            alert('Please fill out all required fields.');
+          var name = (nameInput ? nameInput.value : '').trim();
+          var email = (emailInput ? emailInput.value : '').trim();
+          var msg = (msgInput ? msgInput.value : '').trim();
+          var hasError = false;
+
+          if (!name) {
+            setError(nameInput, nameError, 'Please enter your full name');
+            hasError = true;
+          } else {
+            clearError(nameInput, nameError);
+          }
+
+          if (!email) {
+            setError(emailInput, emailError, 'Please enter your email address');
+            hasError = true;
+          } else if (!emailRegex.test(email)) {
+            setError(emailInput, emailError, 'Please enter a valid email address');
+            hasError = true;
+          } else {
+            clearError(emailInput, emailError);
+          }
+
+          if (!msg) {
+            setError(msgInput, msgError, 'Please enter your message');
+            hasError = true;
+          } else {
+            clearError(msgInput, msgError);
+          }
+
+          if (hasError) {
+            var firstInvalid = form.querySelector('.is-invalid');
+            if (firstInvalid) firstInvalid.focus();
             return;
           }
+
           if (alertBox) {
             alertBox.classList.add('is-visible');
             alertBox.style.display = 'block';

@@ -2460,3 +2460,134 @@
   color: #ffd84d;
   border-color: #ffd84d;
 }
+
+/* =========================================================
+   SEAT ALERT MODAL (Matches uploaded design)
+   ========================================================= */
+.bk-seat-alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bk-seat-alert-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.bk-seat-alert-card {
+  background: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  width: 100%;
+  max-width: 440px;
+  padding: 2.2rem 2.2rem 2.4rem;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 1px rgba(255, 255, 255, 0.15);
+  transform: scale(0.92) translateY(12px);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.bk-seat-alert-overlay.is-active .bk-seat-alert-card {
+  transform: scale(1) translateY(0);
+}
+
+.bk-seat-alert-icon-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #331417;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.bk-seat-alert-exclamation {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ef4444;
+  line-height: 1;
+  font-family: inherit;
+}
+
+.bk-seat-alert-title {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.85rem 0;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.bk-seat-alert-desc {
+  font-size: 0.98rem;
+  color: #9ca3af;
+  line-height: 1.55;
+  margin: 0 0 2rem 0;
+  font-weight: 400;
+}
+
+.bk-seat-alert-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.bk-seat-alert-btn-primary {
+  width: 100%;
+  background: #f5c518;
+  color: #0d0d11;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.92rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  display: block;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(245, 197, 24, 0.3);
+}
+
+.bk-seat-alert-btn-primary:hover {
+  background: #ffd84d;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(245, 197, 24, 0.45);
+}
+
+.bk-seat-alert-btn-outline {
+  width: 100%;
+  background: transparent;
+  color: #f5c518;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 800;
+  border: 1.5px solid #f5c518;
+  border-radius: 9999px;
+  padding: 0.92rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: block;
+  text-align: center;
+}
+
+.bk-seat-alert-btn-outline:hover {
+  background: rgba(245, 197, 24, 0.1);
+  color: #ffd84d;
+  border-color: #ffd84d;
+}

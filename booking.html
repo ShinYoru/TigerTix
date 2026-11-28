@@ -1494,6 +1494,23 @@
     </div>
   </div>
 
+  <!-- ================= SEAT ALERT MODAL ================= -->
+  <div class="bk-seat-alert-overlay" id="bkSeatAlertModal" role="dialog" aria-modal="true" aria-labelledby="bkSeatAlertTitle" aria-hidden="true">
+    <div class="bk-seat-alert-card">
+      <div class="bk-seat-alert-icon-wrap" aria-hidden="true">
+        <span class="bk-seat-alert-exclamation">!</span>
+      </div>
+      <h3 class="bk-seat-alert-title" id="bkSeatAlertTitle">No seats selected</h3>
+      <p class="bk-seat-alert-desc" id="bkSeatAlertDesc">
+        Please select at least one seat from the seat map to proceed to payment.
+      </p>
+      <div class="bk-seat-alert-actions">
+        <button type="button" class="bk-seat-alert-btn-primary" id="bkSeatAlertChooseBtn">Choose new seats</button>
+        <button type="button" class="bk-seat-alert-btn-outline" id="bkSeatAlertChangeTimeBtn">Change showtime</button>
+      </div>
+    </div>
+  </div>
+
   <script src="auth-modal.js"></script>
 </body>
 

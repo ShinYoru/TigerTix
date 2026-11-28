@@ -204,17 +204,22 @@
   }
 
   /* Live password validation */
-  function validatePwd(val) {
-    var rules = {
+  function getPwdRuleStatus(val) {
+    return {
       authRuleLen:     val.length >= 8,
       authRuleUpper:   /[A-Z]/.test(val),
       authRuleNum:     /[0-9]/.test(val),
       authRuleSpecial: /[!@#$%^&*()\-_=+\[\]{};:'",.<>?/\\|`~]/.test(val)
     };
+  }
+
+  function validatePwd(val) {
+    var rules = getPwdRuleStatus(val);
     Object.keys(rules).forEach(function (id) {
       var el = document.getElementById(id);
       if (el) el.classList.toggle('met', rules[id]);
     });
+    return rules.authRuleLen && rules.authRuleUpper && rules.authRuleNum && rules.authRuleSpecial;
   }
 
   /* =====================================================================
@@ -306,12 +311,42 @@
     if (toSignup)  toSignup.addEventListener('click',  function () { switchTab('signup'); });
 
     /* Live password rules */
-    if (pwdInput) pwdInput.addEventListener('input', function () { validatePwd(pwdInput.value); });
+    var confirmPwdInput = document.getElementById('authSignupConfirm');
+    if (pwdInput) {
+      pwdInput.addEventListener('input', function () {
+        validatePwd(pwdInput.value);
+        clearInputError(pwdInput);
+        if (confirmPwdInput && confirmPwdInput.value) {
+          if (pwdInput.value !== confirmPwdInput.value) {
+            showInputError(confirmPwdInput, 'Passwords do not match.');
+          } else {
+            clearInputError(confirmPwdInput);
+          }
+        }
+      });
+    }
+
+    if (confirmPwdInput) {
+      confirmPwdInput.addEventListener('input', function () {
+        if (!confirmPwdInput.value) {
+          clearInputError(confirmPwdInput);
+        } else if (pwdInput && pwdInput.value !== confirmPwdInput.value) {
+          showInputError(confirmPwdInput, 'Passwords do not match.');
+        } else {
+          clearInputError(confirmPwdInput);
+        }
+      });
+    }
 
     var signupNameEl = document.getElementById('authSignupName');
     var signupEmailEl = document.getElementById('authSignupEmail');
     var loginEmailEl = document.getElementById('authLoginEmail');
 
+    if (signupNameEl) {
+      signupNameEl.addEventListener('input', function () {
+        clearInputError(signupNameEl);
+      });
+    }
     if (signupEmailEl) {
       signupEmailEl.addEventListener('input', function () {
         clearInputError(signupEmailEl);
@@ -330,10 +365,12 @@
         var nameInput = document.getElementById('authSignupName');
         var emailInput = document.getElementById('authSignupEmail');
         var pwdInput = document.getElementById('authSignupPwd');
+        var confirmInput = document.getElementById('authSignupConfirm');
 
         var name = (nameInput ? nameInput.value : '').trim();
         var email = (emailInput ? emailInput.value : '').trim();
-        var pwd = (pwdInput ? pwdInput.value : '').trim();
+        var pwd = pwdInput ? pwdInput.value : '';
+        var confirmPwd = confirmInput ? confirmInput.value : '';
 
         var hasError = false;
 
@@ -347,6 +384,27 @@
           hasError = true;
         } else if (!isValidEmail(email)) {
           showInputError(emailInput, 'Please enter a valid email address (e.g., user@example.com).');
+          hasError = true;
+        }
+
+        // Validate password presence and conditions
+        if (!pwd) {
+          showInputError(pwdInput, 'Password is required.');
+          hasError = true;
+        } else {
+          var allMet = validatePwd(pwd);
+          if (!allMet) {
+            showInputError(pwdInput, 'Password must meet all requirement conditions.');
+            hasError = true;
+          }
+        }
+
+        // Validate confirm password presence and match
+        if (!confirmPwd) {
+          showInputError(confirmInput, 'Please confirm your password.');
+          hasError = true;
+        } else if (pwd !== confirmPwd) {
+          showInputError(confirmInput, 'Passwords do not match.');
           hasError = true;
         }
 

@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Glorietta 4 Cinema | TigerTix</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="auth-modal.css">
 </head>
+
 <body>
 
   <!-- ================= HEADER ================= -->
@@ -29,23 +32,19 @@
       <!-- Search Component -->
       <div class="search-widget" id="searchWidget">
         <div class="search-pill" id="searchPill">
-          <button class="search-btn" id="searchBtn" type="button" aria-label="Search movies" aria-expanded="false" title="Search movies">
-            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <button class="search-btn" id="searchBtn" type="button" aria-label="Search movies" aria-expanded="false"
+            title="Search movies">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="7"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
           </button>
-          <input 
-            type="text" 
-            class="search-input" 
-            id="searchInput" 
-            placeholder="Search movies..." 
-            aria-label="Search movies"
-            autocomplete="off"
-            spellcheck="false"
-          >
+          <input type="text" class="search-input" id="searchInput" placeholder="Search movies..."
+            aria-label="Search movies" autocomplete="off" spellcheck="false">
           <button class="search-clear" id="searchClear" type="button" aria-label="Clear search" title="Clear">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
@@ -66,16 +65,17 @@
       <a href="#" class="btn btn-outline btn-sm" id="navSignInBtn">Sign In</a>
 
       <!-- SIGNED-IN STATE (hidden by default; JS reveals it) -->
-      <div class="nav-user-area" id="navUserArea" role="button" tabindex="0"
-           aria-haspopup="true" aria-expanded="false" aria-label="User menu">
+      <div class="nav-user-area" id="navUserArea" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false"
+        aria-label="User menu">
         <div class="nav-avatar" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            <path
+              d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
           </svg>
         </div>
         <span class="nav-greeting" id="navGreeting">Hi, User!</span>
-        <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5"
-             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
         <div class="nav-dropdown" id="navDropdown" role="menu">
@@ -102,12 +102,16 @@
           <div class="cinema-filter-card">
             <!-- Search Input -->
             <div class="cinema-search-bar">
-              <svg class="cinema-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="cinema-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
                 <circle cx="11" cy="11" r="7"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-              <input type="text" id="cinemaLocationSearch" placeholder="Search city, area or location" autocomplete="off" spellcheck="false">
-              <button type="button" id="cinemaSearchClear" class="cinema-clear-btn" aria-label="Clear search" hidden>&times;</button>
+              <input type="text" id="cinemaLocationSearch" placeholder="Search city, area or location"
+                autocomplete="off" spellcheck="false">
+              <button type="button" id="cinemaSearchClear" class="cinema-clear-btn" aria-label="Clear search"
+                hidden>&times;</button>
             </div>
 
             <!-- City Filter Pills -->
@@ -148,14 +152,18 @@
           <div class="cinema-card-grid" id="cinemaCardGrid">
 
             <!-- 1. Glorietta 4 -->
-            <article class="cinema-card" data-id="glorietta" data-city="Makati" data-formats="regular screenx directors-club">
+            <article class="cinema-card" data-id="glorietta" data-city="Makati"
+              data-formats="regular screenx directors-club">
               <div class="cinema-card-media">
                 <img src="images/glorietta-4-cinema.avif" alt="Glorietta 4 Cinema Hall" class="cinema-card-img">
               </div>
               <div class="cinema-card-body">
                 <h3 class="cinema-card-name">Glorietta 4</h3>
                 <p class="cinema-card-address">
-                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  </svg>
                   <span>Ayala Center, Makati City</span>
                 </p>
                 <div class="cinema-card-tags">
@@ -175,7 +183,10 @@
               <div class="cinema-card-body">
                 <h3 class="cinema-card-name">SM Mall of Asia</h3>
                 <p class="cinema-card-address">
-                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  </svg>
                   <span>Pasay City</span>
                 </p>
                 <div class="cinema-card-tags">
@@ -194,7 +205,10 @@
               <div class="cinema-card-body">
                 <h3 class="cinema-card-name">Robinsons Galleria</h3>
                 <p class="cinema-card-address">
-                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  </svg>
                   <span>Ortigas Avenue, Quezon City</span>
                 </p>
                 <div class="cinema-card-tags">
@@ -212,7 +226,10 @@
               <div class="cinema-card-body">
                 <h3 class="cinema-card-name">Newport Mall</h3>
                 <p class="cinema-card-address">
-                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  </svg>
                   <span>Newport Blvd, Pasay City</span>
                 </p>
                 <div class="cinema-card-tags">
@@ -231,7 +248,10 @@
               <div class="cinema-card-body">
                 <h3 class="cinema-card-name">Uptown Mall</h3>
                 <p class="cinema-card-address">
-                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  </svg>
                   <span>9th Ave, Taguig City</span>
                 </p>
                 <div class="cinema-card-tags">
@@ -250,7 +270,10 @@
               <div class="cinema-card-body">
                 <h3 class="cinema-card-name">SM City North Edsa</h3>
                 <p class="cinema-card-address">
-                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <svg class="cinema-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  </svg>
                   <span>North Avenue, Quezon City</span>
                 </p>
                 <div class="cinema-card-tags">
@@ -278,7 +301,8 @@
       <div class="cinema-back-bar">
         <div class="cinema-back-container">
           <button type="button" class="cinema-back-btn" id="cinemaBackBtn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
@@ -296,149 +320,165 @@
             Ayala Center, Makati City
           </p>
           <p class="cinema-desc" id="cinemaDesc">
-            Glorietta Cinemas in Makati offers a modern moviegoing experience with stylish interiors and advanced technology. Its spacious lobby features one of the largest immersive LED screens in the country, creating an exciting atmosphere as soon as you enter. Inside the theaters, Dolby Atmos sound and laser projection provide stunning visuals and clear audio, while the A-Luxe cinemas feature comfortable motorized recliners for a more luxurious viewing experience.
+            Glorietta Cinemas in Makati offers a modern moviegoing experience with stylish interiors and advanced
+            technology. Its spacious lobby features one of the largest immersive LED screens in the country, creating an
+            exciting atmosphere as soon as you enter. Inside the theaters, Dolby Atmos sound and laser projection
+            provide stunning visuals and clear audio, while the A-Luxe cinemas feature comfortable motorized recliners
+            for a more luxurious viewing experience.
           </p>
         </div>
       </section>
 
-    <!-- ================= SHOWTIMES SECTION ================= -->
-    <section class="cinema-showtimes" aria-label="Cinema Showtimes">
-      <h2 class="showtimes-heading">Showtimes</h2>
+      <!-- ================= SHOWTIMES SECTION ================= -->
+      <section class="cinema-showtimes" aria-label="Cinema Showtimes">
+        <h2 class="showtimes-heading">Showtimes</h2>
 
-      <!-- Date Selector (Expanded evenly across grid matching reference) -->
-      <div class="date-picker date-picker--expanded" role="tablist" aria-label="Select Date">
-        <button type="button" class="date-card is-active" data-date="Today 29" role="tab" aria-selected="true">
-          <span class="date-label">Today</span>
-          <span class="date-day">29</span>
-        </button>
-        <button type="button" class="date-card" data-date="Tomorrow 30" role="tab" aria-selected="false">
-          <span class="date-label">Tomorrow</span>
-          <span class="date-day">30</span>
-        </button>
-        <button type="button" class="date-card" data-date="Dec 1" role="tab" aria-selected="false">
-          <span class="date-label">Dec</span>
-          <span class="date-day">1</span>
-        </button>
-        <button type="button" class="date-card" data-date="Dec 2" role="tab" aria-selected="false">
-          <span class="date-label">Dec</span>
-          <span class="date-day">2</span>
-        </button>
-        <button type="button" class="date-card" data-date="Dec 3" role="tab" aria-selected="false">
-          <span class="date-label">Dec</span>
-          <span class="date-day">3</span>
-        </button>
-        <button type="button" class="date-card" data-date="Dec 4" role="tab" aria-selected="false">
-          <span class="date-label">Dec</span>
-          <span class="date-day">4</span>
-        </button>
-        <button type="button" class="date-card" data-date="Dec 5" role="tab" aria-selected="false">
-          <span class="date-label">Dec</span>
-          <span class="date-day">5</span>
-        </button>
-      </div>
+        <!-- Date Selector (Expanded evenly across grid matching reference) -->
+        <div class="date-picker date-picker--expanded" role="tablist" aria-label="Select Date">
+          <button type="button" class="date-card is-active" data-date="Today 29" role="tab" aria-selected="true">
+            <span class="date-label">Today</span>
+            <span class="date-day">29</span>
+          </button>
+          <button type="button" class="date-card" data-date="Tomorrow 30" role="tab" aria-selected="false">
+            <span class="date-label">Tomorrow</span>
+            <span class="date-day">30</span>
+          </button>
+          <button type="button" class="date-card" data-date="Dec 1" role="tab" aria-selected="false">
+            <span class="date-label">Dec</span>
+            <span class="date-day">1</span>
+          </button>
+          <button type="button" class="date-card" data-date="Dec 2" role="tab" aria-selected="false">
+            <span class="date-label">Dec</span>
+            <span class="date-day">2</span>
+          </button>
+          <button type="button" class="date-card" data-date="Dec 3" role="tab" aria-selected="false">
+            <span class="date-label">Dec</span>
+            <span class="date-day">3</span>
+          </button>
+          <button type="button" class="date-card" data-date="Dec 4" role="tab" aria-selected="false">
+            <span class="date-label">Dec</span>
+            <span class="date-day">4</span>
+          </button>
+          <button type="button" class="date-card" data-date="Dec 5" role="tab" aria-selected="false">
+            <span class="date-label">Dec</span>
+            <span class="date-day">5</span>
+          </button>
+        </div>
 
-      <!-- Format Filter Capsule Track (Matching Date & Time Experience bar) -->
-      <div class="cinema-format-track" role="tablist" aria-label="Filter formats">
-        <button type="button" class="cinema-fmt-btn is-active" data-format="all" role="tab" aria-selected="true">
-          <span class="cinema-fmt-txt">Experience</span>
-          <span class="cinema-fmt-count">4</span>
-        </button>
-        <button type="button" class="cinema-fmt-btn" data-format="regular" role="tab" aria-selected="false">
-          <span class="cinema-fmt-txt">Regular</span>
-          <span class="cinema-fmt-count">4</span>
-        </button>
-        <button type="button" class="cinema-fmt-btn" data-format="screenx" role="tab" aria-selected="false">
-          <span class="cinema-fmt-txt">ScreenX</span>
-          <span class="cinema-fmt-count">4</span>
-        </button>
-        <button type="button" class="cinema-fmt-btn" data-format="directors-club" role="tab" aria-selected="false">
-          <span class="cinema-fmt-txt">Director's Club</span>
-          <span class="cinema-fmt-count">4</span>
-        </button>
-      </div>
+        <!-- Format Filter Capsule Track (Matching Date & Time Experience bar) -->
+        <div class="cinema-format-track" role="tablist" aria-label="Filter formats">
+          <button type="button" class="cinema-fmt-btn is-active" data-format="all" role="tab" aria-selected="true">
+            <span class="cinema-fmt-txt">Experience</span>
+            <span class="cinema-fmt-count">4</span>
+          </button>
+          <button type="button" class="cinema-fmt-btn" data-format="regular" role="tab" aria-selected="false">
+            <span class="cinema-fmt-txt">Regular</span>
+            <span class="cinema-fmt-count">4</span>
+          </button>
+          <button type="button" class="cinema-fmt-btn" data-format="screenx" role="tab" aria-selected="false">
+            <span class="cinema-fmt-txt">ScreenX</span>
+            <span class="cinema-fmt-count">4</span>
+          </button>
+          <button type="button" class="cinema-fmt-btn" data-format="directors-club" role="tab" aria-selected="false">
+            <span class="cinema-fmt-txt">Director's Club</span>
+            <span class="cinema-fmt-count">4</span>
+          </button>
+        </div>
 
-      <!-- Cinema Movies List -->
-      <div class="cinema-movies-list">
+        <!-- Cinema Movies List -->
+        <div class="cinema-movies-list">
 
-        <!-- Movie 1: 2 Valid IDs -->
-        <article class="cinema-movie-item" data-movie="2 Valid IDs">
-          <div class="cinema-movie-poster">
-            <img src="images/2-valid-ids.jpeg" alt="">
-          </div>
+          <!-- Movie 1: 2 Valid IDs -->
+          <article class="cinema-movie-item" data-movie="2 Valid IDs">
+            <div class="cinema-movie-poster">
+              <img src="images/2-valid-ids.jpeg" alt="">
+            </div>
 
-          <div class="cinema-movie-info">
-            <h3 class="cinema-movie-title">
-              2 Valid IDs
-              <span class="badge badge-pg">PG</span>
-            </h3>
-            <p class="cinema-movie-meta">Drama &bull; 1hr 33m &bull; Released October 14 2026</p>
-            <p class="cinema-movie-cast">Cast: Joey Marquez, Pokwang, Zaijan Jaranilla, Meryl Soriano, Joem Bascon</p>
+            <div class="cinema-movie-info">
+              <h3 class="cinema-movie-title">
+                2 Valid IDs
+                <span class="badge badge-pg">PG</span>
+              </h3>
+              <p class="cinema-movie-meta">Drama &bull; 1hr 33m &bull; Released October 14 2026</p>
+              <p class="cinema-movie-cast">Cast: Joey Marquez, Pokwang, Zaijan Jaranilla, Meryl Soriano, Joem Bascon</p>
 
-            <div class="showtime-rows">
-              <!-- Regular Format Row -->
-              <div class="showtime-row" data-format="regular">
-                <span class="format-label format-label--regular">REGULAR</span>
-                <div class="time-slots">
-                  <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Regular" data-time="11:30 PM">11:30 PM</button>
-                  <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Regular" data-time="12:10 PM">12:10 PM</button>
-                  <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Regular" data-time="2:35 PM">2:35 PM</button>
-                  <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Regular" data-time="5:00 PM">5:00 PM</button>
+              <div class="showtime-rows">
+                <!-- Regular Format Row -->
+                <div class="showtime-row" data-format="regular">
+                  <span class="format-label format-label--regular">REGULAR</span>
+                  <div class="time-slots">
+                    <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Regular"
+                      data-time="11:30 PM">11:30 PM</button>
+                    <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Regular"
+                      data-time="12:10 PM">12:10 PM</button>
+                    <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Regular"
+                      data-time="2:35 PM">2:35 PM</button>
+                    <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Regular"
+                      data-time="5:00 PM">5:00 PM</button>
+                  </div>
                 </div>
-              </div>
 
-              <!-- Director's Club Format Row -->
-              <div class="showtime-row" data-format="directors-club">
-                <span class="format-label format-label--directors-club">DIRECTOR'S CLUB</span>
-                <div class="time-slots">
-                  <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Director's Club" data-time="7:30 PM">7:30 PM</button>
-                  <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Director's Club" data-time="9:45 PM">9:45 PM</button>
+                <!-- Director's Club Format Row -->
+                <div class="showtime-row" data-format="directors-club">
+                  <span class="format-label format-label--directors-club">DIRECTOR'S CLUB</span>
+                  <div class="time-slots">
+                    <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Director's Club"
+                      data-time="7:30 PM">7:30 PM</button>
+                    <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Director's Club"
+                      data-time="9:45 PM">9:45 PM</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </article>
+          </article>
 
-        <!-- Movie 2: The Odyssey -->
-        <article class="cinema-movie-item" data-movie="The Odyssey">
-          <div class="cinema-movie-poster">
-            <img src="images/the-odyssey.jpg" alt="">
-          </div>
+          <!-- Movie 2: The Odyssey -->
+          <article class="cinema-movie-item" data-movie="The Odyssey">
+            <div class="cinema-movie-poster">
+              <img src="images/the-odyssey.jpg" alt="">
+            </div>
 
-          <div class="cinema-movie-info">
-            <h3 class="cinema-movie-title">
-              The Odyssey
-              <span class="badge badge-pg">PG</span>
-            </h3>
-            <p class="cinema-movie-meta">Action &bull; 2hrs 53m &bull; Released July 15 2026</p>
-            <p class="cinema-movie-cast">Cast: Tom Holland, Robert Pattinson, Matt Damon, Anne Hathaway</p>
+            <div class="cinema-movie-info">
+              <h3 class="cinema-movie-title">
+                The Odyssey
+                <span class="badge badge-pg">PG</span>
+              </h3>
+              <p class="cinema-movie-meta">Action &bull; 2hrs 53m &bull; Released July 15 2026</p>
+              <p class="cinema-movie-cast">Cast: Tom Holland, Robert Pattinson, Matt Damon, Anne Hathaway</p>
 
-            <div class="showtime-rows">
-              <!-- Regular Format Row -->
-              <div class="showtime-row" data-format="regular">
-                <span class="format-label format-label--regular">REGULAR</span>
-                <div class="time-slots">
-                  <button type="button" class="time-btn" data-movie="The Odyssey" data-format="Regular" data-time="11:30 PM">11:30 PM</button>
-                  <button type="button" class="time-btn" data-movie="The Odyssey" data-format="Regular" data-time="12:10 PM">12:10 PM</button>
-                  <button type="button" class="time-btn" data-movie="The Odyssey" data-format="Regular" data-time="2:35 PM">2:35 PM</button>
-                  <button type="button" class="time-btn" data-movie="The Odyssey" data-format="Regular" data-time="5:00 PM">5:00 PM</button>
+              <div class="showtime-rows">
+                <!-- Regular Format Row -->
+                <div class="showtime-row" data-format="regular">
+                  <span class="format-label format-label--regular">REGULAR</span>
+                  <div class="time-slots">
+                    <button type="button" class="time-btn" data-movie="The Odyssey" data-format="Regular"
+                      data-time="11:30 PM">11:30 PM</button>
+                    <button type="button" class="time-btn" data-movie="The Odyssey" data-format="Regular"
+                      data-time="12:10 PM">12:10 PM</button>
+                    <button type="button" class="time-btn" data-movie="The Odyssey" data-format="Regular"
+                      data-time="2:35 PM">2:35 PM</button>
+                    <button type="button" class="time-btn" data-movie="The Odyssey" data-format="Regular"
+                      data-time="5:00 PM">5:00 PM</button>
+                  </div>
                 </div>
-              </div>
 
-              <!-- ScreenX Format Row -->
-              <div class="showtime-row" data-format="screenx">
-                <span class="format-label format-label--screenx">SCREENX</span>
-                <div class="time-slots">
-                  <button type="button" class="time-btn" data-movie="The Odyssey" data-format="ScreenX" data-time="7:30 PM">7:30 PM</button>
-                  <button type="button" class="time-btn" data-movie="The Odyssey" data-format="ScreenX" data-time="9:45 PM">9:45 PM</button>
+                <!-- ScreenX Format Row -->
+                <div class="showtime-row" data-format="screenx">
+                  <span class="format-label format-label--screenx">SCREENX</span>
+                  <div class="time-slots">
+                    <button type="button" class="time-btn" data-movie="The Odyssey" data-format="ScreenX"
+                      data-time="7:30 PM">7:30 PM</button>
+                    <button type="button" class="time-btn" data-movie="The Odyssey" data-format="ScreenX"
+                      data-time="9:45 PM">9:45 PM</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </article>
+          </article>
 
-      </div>
-    </section>
-  </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <!-- ================= FOOTER ================= -->
@@ -455,11 +495,13 @@
         <div class="socials">
           <a href="#" aria-label="Facebook">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/>
+              <path
+                d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z" />
             </svg>
           </a>
           <a href="#" aria-label="Instagram">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="5"></rect>
               <circle cx="12" cy="12" r="4"></circle>
               <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
@@ -467,7 +509,8 @@
           </a>
           <a href="#" aria-label="X (Twitter)">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
           </a>
         </div>
@@ -499,7 +542,8 @@
 
   <script src="script.js"></script>
   <!-- ===== AUTH MODAL ===== -->
-  <div class="auth-overlay" id="authOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="authDialogTitle">
+  <div class="auth-overlay" id="authOverlay" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="authDialogTitle">
     <div class="auth-card">
 
       <!-- Top bar -->
@@ -516,7 +560,7 @@
 
         <!-- Left promo panel -->
         <div class="auth-promo" aria-hidden="true">
-          <div class="auth-film-left"  id="authFilmLeft"></div>
+          <div class="auth-film-left" id="authFilmLeft"></div>
           <div class="auth-film-right" id="authFilmRight"></div>
 
           <p class="auth-promo-eyebrow">Welcome to TigerTix</p>
@@ -548,8 +592,10 @@
 
           <!-- Tab switcher -->
           <div class="auth-tabs" role="tablist">
-            <button class="auth-tab active" id="authTabSignup" type="button" role="tab" aria-selected="true"  aria-controls="authViewSignup">Sign Up</button>
-            <button class="auth-tab"        id="authTabLogin"  type="button" role="tab" aria-selected="false" aria-controls="authViewLogin">Log In</button>
+            <button class="auth-tab active" id="authTabSignup" type="button" role="tab" aria-selected="true"
+              aria-controls="authViewSignup">Sign Up</button>
+            <button class="auth-tab" id="authTabLogin" type="button" role="tab" aria-selected="false"
+              aria-controls="authViewLogin">Log In</button>
           </div>
 
           <!-- SIGN UP VIEW -->
@@ -559,21 +605,34 @@
 
               <div class="auth-field">
                 <label class="auth-label" for="authSignupName">Full name</label>
-                <input class="auth-input" type="text"     id="authSignupName"    placeholder="Enter your full name"     autocomplete="name"     required>
+                <input class="auth-input" type="text" id="authSignupName" placeholder="Enter your full name"
+                  autocomplete="name" required>
               </div>
 
               <div class="auth-field">
                 <label class="auth-label" for="authSignupEmail">Email Address</label>
-                <input class="auth-input" type="email"    id="authSignupEmail"   placeholder="Enter your email address"  autocomplete="email"    required>
+                <input class="auth-input" type="email" id="authSignupEmail" placeholder="Enter your email address"
+                  autocomplete="email" required>
               </div>
 
               <div class="auth-field">
                 <label class="auth-label" for="authSignupPwd">Password</label>
                 <div class="pw-field-wrap">
-                  <input class="auth-input" type="password" id="authSignupPwd" placeholder="At least 8 characters" autocomplete="new-password" required>
+                  <input class="auth-input" type="password" id="authSignupPwd" placeholder="At least 8 characters"
+                    autocomplete="new-password" required>
                   <button type="button" class="pw-toggle-btn" aria-label="Show/hide password">
-                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" style="display:none">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -581,31 +640,53 @@
               <div class="auth-pwd-rules">
                 <p class="auth-pwd-rules-title">Your password must include at least:</p>
                 <div class="auth-pwd-rule" id="authRuleLen">
-                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>
                   8 characters
                 </div>
                 <div class="auth-pwd-rule" id="authRuleUpper">
-                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>
                   1 uppercase letter (A–Z)
                 </div>
                 <div class="auth-pwd-rule" id="authRuleNum">
-                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>
                   1 number (0–9)
                 </div>
                 <div class="auth-pwd-rule" id="authRuleSpecial">
-                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>
                   1 special character (!@#$%^&amp;*)
                 </div>
               </div>
 
               <div class="auth-field">
                 <label class="auth-label" for="authSignupConfirm">Confirm password</label>
-                <div class="pw-field-wrap"><input class="auth-input" type="password" id="authSignupConfirm" placeholder="Re-enter your password"   autocomplete="new-password" required><button type="button" class="pw-toggle-btn" aria-label="Show/hide password"><svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></button></div>
+                <div class="pw-field-wrap"><input class="auth-input" type="password" id="authSignupConfirm"
+                    placeholder="Re-enter your password" autocomplete="new-password" required><button type="button"
+                    class="pw-toggle-btn" aria-label="Show/hide password"><svg class="eye-icon"
+                      xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg><svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" style="display:none">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg></button></div>
               </div>
 
               <button class="auth-submit" type="submit">Sign Up</button>
 
-              <p class="auth-switch-prompt">Already have an account? <button type="button" id="authToLogin">Log In</button></p>
+              <p class="auth-switch-prompt">Already have an account? <button type="button" id="authToLogin">Log
+                  In</button></p>
             </form>
           </div>
 
@@ -616,12 +697,26 @@
 
               <div class="auth-field">
                 <label class="auth-label" for="authLoginEmail">Email Address</label>
-                <input class="auth-input" type="email"    id="authLoginEmail" placeholder="Enter your email address" autocomplete="email"            required>
+                <input class="auth-input" type="email" id="authLoginEmail" placeholder="Enter your email address"
+                  autocomplete="email" required>
               </div>
 
               <div class="auth-field">
                 <label class="auth-label" for="authLoginPwd">Password</label>
-                <div class="pw-field-wrap"><input class="auth-input" type="password" id="authLoginPwd"   placeholder="Enter your password"      autocomplete="current-password" required><button type="button" class="pw-toggle-btn" aria-label="Show/hide password"><svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></button></div>
+                <div class="pw-field-wrap"><input class="auth-input" type="password" id="authLoginPwd"
+                    placeholder="Enter your password" autocomplete="current-password" required><button type="button"
+                    class="pw-toggle-btn" aria-label="Show/hide password"><svg class="eye-icon"
+                      xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg><svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" style="display:none">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg></button></div>
               </div>
 
               <div class="auth-options-row">
@@ -634,7 +729,8 @@
 
               <button class="auth-submit" type="submit">Log in</button>
 
-              <p class="auth-switch-prompt">New to TigerTix? <button type="button" id="authToSignup">Sign Up</button></p>
+              <p class="auth-switch-prompt">New to TigerTix? <button type="button" id="authToSignup">Sign Up</button>
+              </p>
             </form>
           </div>
 
@@ -643,6 +739,7 @@
     </div><!-- /.auth-card -->
   </div><!-- /.auth-overlay -->
 
-    <script src="auth-modal.js"></script>
+  <script src="auth-modal.js"></script>
 </body>
+
 </html>

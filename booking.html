@@ -34,16 +34,17 @@
       <a href="#" class="btn btn-outline btn-sm" id="navSignInBtn">Sign In</a>
 
       <!-- SIGNED-IN STATE (hidden by default; JS reveals it) -->
-      <div class="nav-user-area" id="navUserArea" role="button" tabindex="0"
-        aria-haspopup="true" aria-expanded="false" aria-label="User menu">
+      <div class="nav-user-area" id="navUserArea" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false"
+        aria-label="User menu">
         <div class="nav-avatar" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            <path
+              d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
           </svg>
         </div>
         <span class="nav-greeting" id="navGreeting">Hi, User!</span>
-        <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5"
-        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
         <div class="nav-dropdown" id="navDropdown" role="menu">
@@ -714,16 +715,28 @@
                 <div class="bk-pay-row-2">
                   <div class="bk-pay-field">
                     <label class="bk-field-label" for="cardExp">Expiration Date</label>
-                    <input type="text" class="bk-form-input" id="cardExp" placeholder="MM/YY"
-                      maxlength="5" autocomplete="cc-exp" inputmode="numeric">
+                    <input type="text" class="bk-form-input" id="cardExp" placeholder="MM/YY" maxlength="5"
+                      autocomplete="cc-exp" inputmode="numeric">
                   </div>
                   <div class="bk-pay-field">
                     <label class="bk-field-label" for="cardCvc">CVV / CVC</label>
                     <div class="pw-field-wrap">
-                      <input class="bk-form-input" type="password" id="cardCvc" placeholder="123" maxlength="3" autocomplete="cc-csc" inputmode="numeric">
+                      <input class="bk-form-input" type="password" id="cardCvc" placeholder="123" maxlength="3"
+                        autocomplete="cc-csc" inputmode="numeric">
                       <button type="button" class="pw-toggle-btn" aria-label="Show/hide CVC">
-                        <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                        <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                        <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z" />
+                          <circle cx="12" cy="12" r="3" />
+                        </svg>
+                        <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round" style="display:none">
+                          <path
+                            d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                          <line x1="1" y1="1" x2="23" y2="23" />
+                        </svg>
                       </button>
                     </div>
                   </div>
@@ -868,7 +881,8 @@
                   </div>
                   <div class="bk-wallet-step">
                     <span class="bk-wallet-step-num">2</span>
-                    <span class="bk-wallet-step-txt">Authorize the <span id="grabpayStepAmt">&#8369;350.00</span> payment
+                    <span class="bk-wallet-step-txt">Authorize the <span id="grabpayStepAmt">&#8369;350.00</span>
+                      payment
                       via GrabPay</span>
                   </div>
                   <div class="bk-wallet-step">
@@ -883,7 +897,8 @@
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                   </svg>
-                  <span>You will sign in through GrabPay's official website, where your credentials will remain secure and
+                  <span>You will sign in through GrabPay's official website, where your credentials will remain secure
+                    and
                     confidential.</span>
                 </div>
               </div>
@@ -917,7 +932,8 @@
               <div class="bk-pass-top-row">
                 <div class="bk-pass-brand">
                   <img src="images/logo.png" alt="TigerTix" class="bk-pass-logo-img">
-                  <span class="bk-pass-brand-text"><span class="brand-t-white">TIGER</span><span class="brand-t-gold">TIX</span></span>
+                  <span class="bk-pass-brand-text"><span class="brand-t-white">TIGER</span><span
+                      class="brand-t-gold">TIX</span></span>
                 </div>
                 <div class="bk-pass-paid-badge">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
@@ -1244,7 +1260,8 @@
   <script src="booking.js"></script>
 
   <!-- ===== AUTH MODAL ===== -->
-  <div class="auth-overlay" id="authOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="authDialogTitle">
+  <div class="auth-overlay" id="authOverlay" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="authDialogTitle">
     <div class="auth-card">
 
       <!-- Top bar -->
@@ -1261,7 +1278,7 @@
 
         <!-- Left promo panel -->
         <div class="auth-promo" aria-hidden="true">
-          <div class="auth-film-left"  id="authFilmLeft"></div>
+          <div class="auth-film-left" id="authFilmLeft"></div>
           <div class="auth-film-right" id="authFilmRight"></div>
 
           <p class="auth-promo-eyebrow">Welcome to TigerTix</p>
@@ -1293,8 +1310,10 @@
 
           <!-- Tab switcher -->
           <div class="auth-tabs" role="tablist">
-            <button class="auth-tab active" id="authTabSignup" type="button" role="tab" aria-selected="true"  aria-controls="authViewSignup">Sign Up</button>
-            <button class="auth-tab"        id="authTabLogin"  type="button" role="tab" aria-selected="false" aria-controls="authViewLogin">Log In</button>
+            <button class="auth-tab active" id="authTabSignup" type="button" role="tab" aria-selected="true"
+              aria-controls="authViewSignup">Sign Up</button>
+            <button class="auth-tab" id="authTabLogin" type="button" role="tab" aria-selected="false"
+              aria-controls="authViewLogin">Log In</button>
           </div>
 
           <!-- SIGN UP VIEW -->
@@ -1304,21 +1323,34 @@
 
               <div class="auth-field">
                 <label class="auth-label" for="authSignupName">Full name</label>
-                <input class="auth-input" type="text"     id="authSignupName"    placeholder="Enter your full name"     autocomplete="name"     required>
+                <input class="auth-input" type="text" id="authSignupName" placeholder="Enter your full name"
+                  autocomplete="name" required>
               </div>
 
               <div class="auth-field">
                 <label class="auth-label" for="authSignupEmail">Email Address</label>
-                <input class="auth-input" type="email"    id="authSignupEmail"   placeholder="Enter your email address"  autocomplete="email"    required>
+                <input class="auth-input" type="email" id="authSignupEmail" placeholder="Enter your email address"
+                  autocomplete="email" required>
               </div>
 
               <div class="auth-field">
                 <label class="auth-label" for="authSignupPwd">Password</label>
                 <div class="pw-field-wrap">
-                  <input class="auth-input" type="password" id="authSignupPwd" placeholder="At least 8 characters" autocomplete="new-password" required>
+                  <input class="auth-input" type="password" id="authSignupPwd" placeholder="At least 8 characters"
+                    autocomplete="new-password" required>
                   <button type="button" class="pw-toggle-btn" aria-label="Show/hide password">
-                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" style="display:none">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -1326,19 +1358,27 @@
               <div class="auth-pwd-rules">
                 <p class="auth-pwd-rules-title">Your password must include at least:</p>
                 <div class="auth-pwd-rule" id="authRuleLen">
-                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>
                   8 characters
                 </div>
                 <div class="auth-pwd-rule" id="authRuleUpper">
-                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>
                   1 uppercase letter (A–Z)
                 </div>
                 <div class="auth-pwd-rule" id="authRuleNum">
-                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>
                   1 number (0–9)
                 </div>
                 <div class="auth-pwd-rule" id="authRuleSpecial">
-                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  <span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>
                   1 special character (!@#$%^&amp;*)
                 </div>
               </div>
@@ -1346,17 +1386,29 @@
               <div class="auth-field">
                 <label class="auth-label" for="authSignupConfirm">Confirm password</label>
                 <div class="pw-field-wrap">
-                  <input class="auth-input" type="password" id="authSignupConfirm" placeholder="Re-enter your password" autocomplete="new-password" required>
+                  <input class="auth-input" type="password" id="authSignupConfirm" placeholder="Re-enter your password"
+                    autocomplete="new-password" required>
                   <button type="button" class="pw-toggle-btn" aria-label="Show/hide password">
-                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" style="display:none">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg>
                   </button>
                 </div>
               </div>
 
               <button class="auth-submit" type="submit">Sign Up</button>
 
-              <p class="auth-switch-prompt">Already have an account? <button type="button" id="authToLogin">Log In</button></p>
+              <p class="auth-switch-prompt">Already have an account? <button type="button" id="authToLogin">Log
+                  In</button></p>
             </form>
           </div>
 
@@ -1367,16 +1419,28 @@
 
               <div class="auth-field">
                 <label class="auth-label" for="authLoginEmail">Email Address</label>
-                <input class="auth-input" type="email"    id="authLoginEmail" placeholder="Enter your email address" autocomplete="email"            required>
+                <input class="auth-input" type="email" id="authLoginEmail" placeholder="Enter your email address"
+                  autocomplete="email" required>
               </div>
 
               <div class="auth-field">
                 <label class="auth-label" for="authLoginPwd">Password</label>
                 <div class="pw-field-wrap">
-                  <input class="auth-input" type="password" id="authLoginPwd" placeholder="Enter your password" autocomplete="current-password" required>
+                  <input class="auth-input" type="password" id="authLoginPwd" placeholder="Enter your password"
+                    autocomplete="current-password" required>
                   <button type="button" class="pw-toggle-btn" aria-label="Show/hide password">
-                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" style="display:none">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -1391,7 +1455,8 @@
 
               <button class="auth-submit" type="submit">Log in</button>
 
-              <p class="auth-switch-prompt">New to TigerTix? <button type="button" id="authToSignup">Sign Up</button></p>
+              <p class="auth-switch-prompt">New to TigerTix? <button type="button" id="authToSignup">Sign Up</button>
+              </p>
             </form>
           </div>
 
@@ -1400,7 +1465,7 @@
     </div><!-- /.auth-card -->
   </div><!-- /.auth-overlay -->
 
-    <script src="auth-modal.js"></script>
+  <script src="auth-modal.js"></script>
 </body>
 
 </html>

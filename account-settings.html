@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Account Settings | TigerTix</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="auth-modal.css">
 </head>
+
 <body>
 
   <!-- ================= HEADER ================= -->
@@ -30,19 +33,20 @@
       <a href="#" class="btn btn-outline btn-sm" id="navSignInBtn">Sign In</a>
 
       <!-- SIGNED-IN STATE (hidden by default; JS reveals it) -->
-      <div class="nav-user-area" id="navUserArea" role="button" tabindex="0"
-           aria-haspopup="true" aria-expanded="false" aria-label="User menu">
+      <div class="nav-user-area" id="navUserArea" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false"
+        aria-label="User menu">
         <!-- Yellow profile icon -->
         <div class="nav-avatar" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            <path
+              d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
           </svg>
         </div>
         <!-- Personalized greeting -->
         <span class="nav-greeting" id="navGreeting">Hi, User!</span>
         <!-- Chevron -->
-        <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5"
-             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
 
@@ -66,7 +70,8 @@
       <aside class="acct-sidebar">
         <div class="acct-avatar-wrap" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            <path
+              d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
           </svg>
         </div>
         <p class="acct-sidebar-name" id="sidebarName">User</p>
@@ -94,7 +99,8 @@
             </div>
             <div class="acct-field">
               <label class="acct-label" for="acctEmail">Email Address</label>
-              <input class="acct-input" type="email" id="acctEmail" placeholder="Your email address" autocomplete="email">
+              <input class="acct-input" type="email" id="acctEmail" placeholder="Your email address"
+                autocomplete="email">
             </div>
             <div class="acct-field">
               <label class="acct-label" for="acctPhone">Contact Number</label>
@@ -131,30 +137,63 @@
             <div class="acct-field">
               <label class="acct-label" for="acctCurrentPwd">Current Password</label>
               <div class="pw-field-wrap">
-                <input class="acct-input" type="password" id="acctCurrentPwd" placeholder="Enter current password" autocomplete="current-password">
+                <input class="acct-input" type="password" id="acctCurrentPwd" placeholder="Enter current password"
+                  autocomplete="current-password">
                 <button type="button" class="pw-toggle-btn" aria-label="Show/hide password">
-                  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                  <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" style="display:none">
+                    <path
+                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                  </svg>
                 </button>
               </div>
             </div>
             <div class="acct-field">
               <label class="acct-label" for="acctNewPwd">New Password</label>
               <div class="pw-field-wrap">
-                <input class="acct-input" type="password" id="acctNewPwd" placeholder="Enter your password" autocomplete="new-password">
+                <input class="acct-input" type="password" id="acctNewPwd" placeholder="Enter your password"
+                  autocomplete="new-password">
                 <button type="button" class="pw-toggle-btn" aria-label="Show/hide password">
-                  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                  <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" style="display:none">
+                    <path
+                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                  </svg>
                 </button>
               </div>
             </div>
             <div class="acct-field">
               <label class="acct-label" for="acctConfirmPwd">Confirm New Password</label>
               <div class="pw-field-wrap">
-                <input class="acct-input" type="password" id="acctConfirmPwd" placeholder="Re-enter new password" autocomplete="new-password">
+                <input class="acct-input" type="password" id="acctConfirmPwd" placeholder="Re-enter new password"
+                  autocomplete="new-password">
                 <button type="button" class="pw-toggle-btn" aria-label="Show/hide password">
-                  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                  <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" style="display:none">
+                    <path
+                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                  </svg>
                 </button>
               </div>
             </div>
@@ -181,11 +220,13 @@
         <div class="socials">
           <a href="#" aria-label="Facebook">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/>
+              <path
+                d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z" />
             </svg>
           </a>
           <a href="#" aria-label="Instagram">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="5"></rect>
               <circle cx="12" cy="12" r="4"></circle>
               <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
@@ -193,7 +234,8 @@
           </a>
           <a href="#" aria-label="X (Twitter)">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
           </a>
         </div>
@@ -220,7 +262,8 @@
   </footer>
 
   <!-- AUTH MODAL (needed so auth-modal.js can wire logout) -->
-  <div class="auth-overlay" id="authOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="authDialogTitle">
+  <div class="auth-overlay" id="authOverlay" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="authDialogTitle">
     <div class="auth-card">
       <header class="auth-topbar">
         <a class="auth-topbar-brand" href="index.html" tabindex="-1">
@@ -231,7 +274,7 @@
       </header>
       <div class="auth-body">
         <div class="auth-promo" aria-hidden="true">
-          <div class="auth-film-left"  id="authFilmLeft"></div>
+          <div class="auth-film-left" id="authFilmLeft"></div>
           <div class="auth-film-right" id="authFilmRight"></div>
           <p class="auth-promo-eyebrow">Welcome to TigerTix</p>
           <h2 class="auth-promo-title" id="authDialogTitle">Your seat is<br>waiting.</h2>
@@ -241,45 +284,75 @@
               <span class="auth-ticket-title">TIGERTIX PASS</span>
               <span class="auth-ticket-admit">ADMIT ONE</span>
             </div>
-            <div class="auth-ticket-row"><span class="auth-ticket-label">Movie</span><div class="auth-ticket-bar w70"></div></div>
-            <div class="auth-ticket-row"><span class="auth-ticket-label">Cinema</span><div class="auth-ticket-bar w55"></div></div>
-            <div class="auth-ticket-row"><span class="auth-ticket-label">Seat</span><div class="auth-ticket-bar w35"></div></div>
+            <div class="auth-ticket-row"><span class="auth-ticket-label">Movie</span>
+              <div class="auth-ticket-bar w70"></div>
+            </div>
+            <div class="auth-ticket-row"><span class="auth-ticket-label">Cinema</span>
+              <div class="auth-ticket-bar w55"></div>
+            </div>
+            <div class="auth-ticket-row"><span class="auth-ticket-label">Seat</span>
+              <div class="auth-ticket-bar w35"></div>
+            </div>
           </div>
         </div>
         <div class="auth-form-panel">
           <div class="auth-tabs" role="tablist">
-            <button class="auth-tab active" id="authTabSignup" type="button" role="tab" aria-selected="true"  aria-controls="authViewSignup">Sign Up</button>
-            <button class="auth-tab"        id="authTabLogin"  type="button" role="tab" aria-selected="false" aria-controls="authViewLogin">Log In</button>
+            <button class="auth-tab active" id="authTabSignup" type="button" role="tab" aria-selected="true"
+              aria-controls="authViewSignup">Sign Up</button>
+            <button class="auth-tab" id="authTabLogin" type="button" role="tab" aria-selected="false"
+              aria-controls="authViewLogin">Log In</button>
           </div>
           <div class="auth-view active" id="authViewSignup" role="tabpanel">
             <h3 class="auth-view-title">Create your account</h3>
             <form id="authFormSignup" novalidate>
-              <div class="auth-field"><label class="auth-label" for="authSignupName">Full name</label><input class="auth-input" type="text" id="authSignupName" placeholder="Enter your full name" autocomplete="name" required></div>
-              <div class="auth-field"><label class="auth-label" for="authSignupEmail">Email Address</label><input class="auth-input" type="email" id="authSignupEmail" placeholder="Enter your email address" autocomplete="email" required></div>
-              <div class="auth-field"><label class="auth-label" for="authSignupPwd">Password</label><input class="auth-input" type="password" id="authSignupPwd" placeholder="At least 8 characters" autocomplete="new-password" required></div>
+              <div class="auth-field"><label class="auth-label" for="authSignupName">Full name</label><input
+                  class="auth-input" type="text" id="authSignupName" placeholder="Enter your full name"
+                  autocomplete="name" required></div>
+              <div class="auth-field"><label class="auth-label" for="authSignupEmail">Email Address</label><input
+                  class="auth-input" type="email" id="authSignupEmail" placeholder="Enter your email address"
+                  autocomplete="email" required></div>
+              <div class="auth-field"><label class="auth-label" for="authSignupPwd">Password</label><input
+                  class="auth-input" type="password" id="authSignupPwd" placeholder="At least 8 characters"
+                  autocomplete="new-password" required></div>
               <div class="auth-pwd-rules">
                 <p class="auth-pwd-rules-title">Your password must include at least:</p>
-                <div class="auth-pwd-rule" id="authRuleLen"><span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>8 characters</div>
-                <div class="auth-pwd-rule" id="authRuleUpper"><span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>1 uppercase letter (A–Z)</div>
-                <div class="auth-pwd-rule" id="authRuleNum"><span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>1 number (0–9)</div>
-                <div class="auth-pwd-rule" id="authRuleSpecial"><span class="auth-rule-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>1 special character (!@#$%^&amp;*)</div>
+                <div class="auth-pwd-rule" id="authRuleLen"><span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>8 characters</div>
+                <div class="auth-pwd-rule" id="authRuleUpper"><span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>1 uppercase letter (A–Z)</div>
+                <div class="auth-pwd-rule" id="authRuleNum"><span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>1 number (0–9)</div>
+                <div class="auth-pwd-rule" id="authRuleSpecial"><span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>1 special character (!@#$%^&amp;*)</div>
               </div>
-              <div class="auth-field"><label class="auth-label" for="authSignupConfirm">Confirm password</label><input class="auth-input" type="password" id="authSignupConfirm" placeholder="Re-enter your password" autocomplete="new-password" required></div>
+              <div class="auth-field"><label class="auth-label" for="authSignupConfirm">Confirm password</label><input
+                  class="auth-input" type="password" id="authSignupConfirm" placeholder="Re-enter your password"
+                  autocomplete="new-password" required></div>
               <button class="auth-submit" type="submit">Sign Up</button>
-              <p class="auth-switch-prompt">Already have an account? <button type="button" id="authToLogin">Log In</button></p>
+              <p class="auth-switch-prompt">Already have an account? <button type="button" id="authToLogin">Log
+                  In</button></p>
             </form>
           </div>
           <div class="auth-view" id="authViewLogin" role="tabpanel">
             <h3 class="auth-view-title">Welcome back</h3>
             <form id="authFormLogin" novalidate>
-              <div class="auth-field"><label class="auth-label" for="authLoginEmail">Email Address</label><input class="auth-input" type="email" id="authLoginEmail" placeholder="Enter your email address" autocomplete="email" required></div>
-              <div class="auth-field"><label class="auth-label" for="authLoginPwd">Password</label><input class="auth-input" type="password" id="authLoginPwd" placeholder="Enter your password" autocomplete="current-password" required></div>
+              <div class="auth-field"><label class="auth-label" for="authLoginEmail">Email Address</label><input
+                  class="auth-input" type="email" id="authLoginEmail" placeholder="Enter your email address"
+                  autocomplete="email" required></div>
+              <div class="auth-field"><label class="auth-label" for="authLoginPwd">Password</label><input
+                  class="auth-input" type="password" id="authLoginPwd" placeholder="Enter your password"
+                  autocomplete="current-password" required></div>
               <div class="auth-options-row">
                 <label class="auth-remember"><input type="checkbox" id="authLoginRemember" checked>Remember me</label>
                 <a href="#" class="auth-forgot" onclick="return false;">Forgot Password?</a>
               </div>
               <button class="auth-submit" type="submit">Log in</button>
-              <p class="auth-switch-prompt">New to TigerTix? <button type="button" id="authToSignup">Sign Up</button></p>
+              <p class="auth-switch-prompt">New to TigerTix? <button type="button" id="authToSignup">Sign Up</button>
+              </p>
             </form>
           </div>
         </div>
@@ -290,254 +363,255 @@
   <script src="auth-modal.js"></script>
 
   <script>
-  /* Account Settings page — panel switching + pre-fill from localStorage */
-  (function () {
-    'use strict';
+    /* Account Settings page — panel switching + pre-fill from localStorage */
+    (function () {
+      'use strict';
 
-    /* ---- Pre-fill sidebar & form with stored user ---- */
-    function fillUserData() {
-      var user = window.TigerAuth && window.TigerAuth.getUser();
-      if (!user) {
-        /* Not signed in — redirect to home */
-        window.location.href = 'index.html';
-        return;
-      }
-      var sidebarName  = document.getElementById('sidebarName');
-      var sidebarEmail = document.getElementById('sidebarEmail');
-      var acctName     = document.getElementById('acctName');
-      var acctEmail    = document.getElementById('acctEmail');
-
-      if (sidebarName)  sidebarName.textContent  = user.name  || 'User';
-      if (sidebarEmail) sidebarEmail.textContent  = user.email || '';
-      if (acctName)     acctName.value            = user.name  || '';
-      if (acctEmail)    acctEmail.value            = user.email || '';
-    }
-
-    /* ---- Panel switching ---- */
-    var panelMap = {
-      details:  document.getElementById('panelDetails'),
-      bookings: document.getElementById('panelBookings'),
-      password: document.getElementById('panelPassword')
-    };
-
-    function showPanel(key) {
-      Object.keys(panelMap).forEach(function (k) {
-        if (!panelMap[k]) return;
-        panelMap[k].classList.toggle('is-active', k === key);
-      });
-      /* Update sidebar active link */
-      document.querySelectorAll('.acct-sidebar-nav a[data-panel]').forEach(function (a) {
-        a.classList.toggle('is-active', a.dataset.panel === key);
-      });
-    }
-
-    document.querySelectorAll('.acct-sidebar-nav a[data-panel]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        e.preventDefault();
-        showPanel(a.dataset.panel);
-      });
-    });
-
-    /* Handle hash on load (#bookings, #password) */
-    var hash = window.location.hash.replace('#', '');
-    if (panelMap[hash]) showPanel(hash);
-
-    /* ---- Log Out button in sidebar ---- */
-    var logoutBtn = document.getElementById('acctLogout');
-    if (logoutBtn) {
-      logoutBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        if (window.TigerAuth) window.TigerAuth.logout();
-        window.location.href = 'index.html';
-      });
-    }
-
-    /* ---- Save Details form ---- */
-    var detailsForm = document.getElementById('acctDetailsForm');
-    if (detailsForm) {
-      detailsForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var name  = (document.getElementById('acctName').value  || '').trim();
-        var email = (document.getElementById('acctEmail').value || '').trim();
-        if (window.TigerAuth && name) {
-          /* ↑ Replace with real API call. On success → TigerAuth.login(name, email) */
-          window.TigerAuth.login(name, email);
-        }
-        fillUserData();
-        alert('Changes saved!');
-      });
-    }
-
-    /* ---- Cancel buttons ---- */
-    var cancelDetails = document.getElementById('acctCancelDetails');
-    if (cancelDetails) cancelDetails.addEventListener('click', fillUserData);
-
-    var cancelPwd = document.getElementById('acctCancelPwd');
-    if (cancelPwd) {
-      cancelPwd.addEventListener('click', function () {
-        document.getElementById('acctPasswordForm').reset();
-      });
-    }
-
-    /* ---- Change Password form ---- */
-    var pwdForm = document.getElementById('acctPasswordForm');
-    if (pwdForm) {
-      pwdForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var newPwd     = document.getElementById('acctNewPwd').value;
-        var confirmPwd = document.getElementById('acctConfirmPwd').value;
-        if (newPwd !== confirmPwd) {
-          alert('Passwords do not match.');
+      /* ---- Pre-fill sidebar & form with stored user ---- */
+      function fillUserData() {
+        var user = window.TigerAuth && window.TigerAuth.getUser();
+        if (!user) {
+          /* Not signed in — redirect to home */
+          window.location.href = 'index.html';
           return;
         }
-        /* ↑ Replace with real API call */
-        alert('Password updated successfully!');
-        pwdForm.reset();
-      });
-    }
+        var sidebarName = document.getElementById('sidebarName');
+        var sidebarEmail = document.getElementById('sidebarEmail');
+        var acctName = document.getElementById('acctName');
+        var acctEmail = document.getElementById('acctEmail');
 
-    /* ---- Bookings & Transactions history ---- */
-    var sampleBookings = [
-      {
-        id: 'TIX-001',
-        movie: 'Toy Story 5',
-        cinema: 'Glorietta 4',
-        format: 'Regular 2D',
-        showtime: 'Nov 20, 2026 \u2022 11:30 AM',
-        seats: 'F10',
-        total: '\u20b1350.00',
-        reference: 'TIX - 001',
-        poster: 'images/toystory-5.jpg',
-        status: 'upcoming',
-        btnText: 'View e-ticket',
-        btnAction: 'ticket'
-      },
-      {
-        id: 'TIX-002',
-        movie: '2 Valid IDs',
-        cinema: 'SM Mall of Asia',
-        format: 'Regular 2D',
-        showtime: 'Nov 6, 2026 \u2022 12:30 PM',
-        seats: 'B4, B5',
-        total: '\u20b1700.00',
-        reference: 'TIX - 002',
-        poster: 'images/2-valid-ids.jpeg',
-        status: 'history',
-        btnText: 'Book again',
-        btnAction: 'book'
-      },
-      {
-        id: 'TIX-003',
-        movie: 'The Odyssey',
-        cinema: 'Robinsons Galleria',
-        format: 'Regular 2D',
-        showtime: 'Nov 11, 2026 \u2022 1:30 PM',
-        seats: 'A6, A7',
-        total: '\u20b1700.00',
-        reference: 'TIX - 003',
-        poster: 'images/the-odyssey.jpg',
-        status: 'history',
-        btnText: 'Book again',
-        btnAction: 'book'
+        if (sidebarName) sidebarName.textContent = user.name || 'User';
+        if (sidebarEmail) sidebarEmail.textContent = user.email || '';
+        if (acctName) acctName.value = user.name || '';
+        if (acctEmail) acctEmail.value = user.email || '';
       }
-    ];
 
-    function getBookings() {
-      try {
-        var stored = localStorage.getItem('tigertix_user_bookings');
-        if (stored) {
-          var parsed = JSON.parse(stored);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            return parsed;
+      /* ---- Panel switching ---- */
+      var panelMap = {
+        details: document.getElementById('panelDetails'),
+        bookings: document.getElementById('panelBookings'),
+        password: document.getElementById('panelPassword')
+      };
+
+      function showPanel(key) {
+        Object.keys(panelMap).forEach(function (k) {
+          if (!panelMap[k]) return;
+          panelMap[k].classList.toggle('is-active', k === key);
+        });
+        /* Update sidebar active link */
+        document.querySelectorAll('.acct-sidebar-nav a[data-panel]').forEach(function (a) {
+          a.classList.toggle('is-active', a.dataset.panel === key);
+        });
+      }
+
+      document.querySelectorAll('.acct-sidebar-nav a[data-panel]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          showPanel(a.dataset.panel);
+        });
+      });
+
+      /* Handle hash on load (#bookings, #password) */
+      var hash = window.location.hash.replace('#', '');
+      if (panelMap[hash]) showPanel(hash);
+
+      /* ---- Log Out button in sidebar ---- */
+      var logoutBtn = document.getElementById('acctLogout');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (window.TigerAuth) window.TigerAuth.logout();
+          window.location.href = 'index.html';
+        });
+      }
+
+      /* ---- Save Details form ---- */
+      var detailsForm = document.getElementById('acctDetailsForm');
+      if (detailsForm) {
+        detailsForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var name = (document.getElementById('acctName').value || '').trim();
+          var email = (document.getElementById('acctEmail').value || '').trim();
+          if (window.TigerAuth && name) {
+            /* ↑ Replace with real API call. On success → TigerAuth.login(name, email) */
+            window.TigerAuth.login(name, email);
           }
-        }
-      } catch (e) {}
-      return sampleBookings;
-    }
-
-    var currentFilter = 'all';
-
-    function renderBookings() {
-      var listEl = document.getElementById('acctBookingsList');
-      if (!listEl) return;
-
-      var all = getBookings();
-      var filtered = all.filter(function (b) {
-        if (currentFilter === 'all') return true;
-        return b.status === currentFilter;
-      });
-
-      if (filtered.length === 0) {
-        listEl.innerHTML = '<div class="acct-empty-bookings"><p>No ' + currentFilter + ' reservations found.</p></div>';
-        return;
+          fillUserData();
+          alert('Changes saved!');
+        });
       }
 
-      var html = '';
-      filtered.forEach(function (b) {
-        var isTicket = b.btnAction === 'ticket' || b.status === 'upcoming';
-        var actionAttr = isTicket
-          ? 'href="booking.html?movie=' + encodeURIComponent(b.movie) + '&view=ticket&ref=' + encodeURIComponent(b.reference) + '"'
-          : 'href="booking.html?movie=' + encodeURIComponent(b.movie) + '"';
-        var btnClass = isTicket ? 'acct-booking-btn acct-booking-btn-ticket' : 'acct-booking-btn acct-booking-btn-book';
-        var btnLabel = isTicket ? 'View e-ticket' : 'Book again';
+      /* ---- Cancel buttons ---- */
+      var cancelDetails = document.getElementById('acctCancelDetails');
+      if (cancelDetails) cancelDetails.addEventListener('click', fillUserData);
 
-        html += '<div class="acct-booking-card" data-status="' + b.status + '">';
-        html += '  <div class="acct-booking-poster-wrap">';
-        html += '    <img src="' + (b.poster || 'images/logo.png') + '" alt="' + b.movie + '" class="acct-booking-poster" onerror="this.src=\'images/logo.png\'">';
-        html += '  </div>';
-        html += '  <div class="acct-booking-details">';
-        html += '    <div class="acct-booking-main-row">';
-        html += '      <div class="acct-booking-title-group">';
-        html += '        <h3 class="acct-booking-title">' + b.movie + '</h3>';
-        html += '        <p class="acct-booking-subtitle">' + b.cinema + ' \u2022 ' + b.format + '</p>';
-        html += '      </div>';
-        html += '      <a ' + actionAttr + ' class="' + btnClass + '">' + btnLabel + '</a>';
-        html += '    </div>';
-        html += '    <div class="acct-booking-meta-grid">';
-        html += '      <div class="acct-meta-col">';
-        html += '        <span class="acct-meta-label">Showtime</span>';
-        html += '        <span class="acct-meta-val">' + b.showtime + '</span>';
-        html += '      </div>';
-        html += '      <div class="acct-meta-col">';
-        html += '        <span class="acct-meta-label">Seats</span>';
-        html += '        <span class="acct-meta-val">' + b.seats + '</span>';
-        html += '      </div>';
-        html += '      <div class="acct-meta-col">';
-        html += '        <span class="acct-meta-label">Total</span>';
-        html += '        <span class="acct-meta-val">' + b.total + '</span>';
-        html += '      </div>';
-        html += '      <div class="acct-meta-col">';
-        html += '        <span class="acct-meta-label">Reference</span>';
-        html += '        <span class="acct-meta-val">' + b.reference + '</span>';
-        html += '      </div>';
-        html += '    </div>';
-        html += '  </div>';
-        html += '</div>';
+      var cancelPwd = document.getElementById('acctCancelPwd');
+      if (cancelPwd) {
+        cancelPwd.addEventListener('click', function () {
+          document.getElementById('acctPasswordForm').reset();
+        });
+      }
+
+      /* ---- Change Password form ---- */
+      var pwdForm = document.getElementById('acctPasswordForm');
+      if (pwdForm) {
+        pwdForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var newPwd = document.getElementById('acctNewPwd').value;
+          var confirmPwd = document.getElementById('acctConfirmPwd').value;
+          if (newPwd !== confirmPwd) {
+            alert('Passwords do not match.');
+            return;
+          }
+          /* ↑ Replace with real API call */
+          alert('Password updated successfully!');
+          pwdForm.reset();
+        });
+      }
+
+      /* ---- Bookings & Transactions history ---- */
+      var sampleBookings = [
+        {
+          id: 'TIX-001',
+          movie: 'Toy Story 5',
+          cinema: 'Glorietta 4',
+          format: 'Regular 2D',
+          showtime: 'Nov 20, 2026 \u2022 11:30 AM',
+          seats: 'F10',
+          total: '\u20b1350.00',
+          reference: 'TIX - 001',
+          poster: 'images/toystory-5.jpg',
+          status: 'upcoming',
+          btnText: 'View e-ticket',
+          btnAction: 'ticket'
+        },
+        {
+          id: 'TIX-002',
+          movie: '2 Valid IDs',
+          cinema: 'SM Mall of Asia',
+          format: 'Regular 2D',
+          showtime: 'Nov 6, 2026 \u2022 12:30 PM',
+          seats: 'B4, B5',
+          total: '\u20b1700.00',
+          reference: 'TIX - 002',
+          poster: 'images/2-valid-ids.jpeg',
+          status: 'history',
+          btnText: 'Book again',
+          btnAction: 'book'
+        },
+        {
+          id: 'TIX-003',
+          movie: 'The Odyssey',
+          cinema: 'Robinsons Galleria',
+          format: 'Regular 2D',
+          showtime: 'Nov 11, 2026 \u2022 1:30 PM',
+          seats: 'A6, A7',
+          total: '\u20b1700.00',
+          reference: 'TIX - 003',
+          poster: 'images/the-odyssey.jpg',
+          status: 'history',
+          btnText: 'Book again',
+          btnAction: 'book'
+        }
+      ];
+
+      function getBookings() {
+        try {
+          var stored = localStorage.getItem('tigertix_user_bookings');
+          if (stored) {
+            var parsed = JSON.parse(stored);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              return parsed;
+            }
+          }
+        } catch (e) { }
+        return sampleBookings;
+      }
+
+      var currentFilter = 'all';
+
+      function renderBookings() {
+        var listEl = document.getElementById('acctBookingsList');
+        if (!listEl) return;
+
+        var all = getBookings();
+        var filtered = all.filter(function (b) {
+          if (currentFilter === 'all') return true;
+          return b.status === currentFilter;
+        });
+
+        if (filtered.length === 0) {
+          listEl.innerHTML = '<div class="acct-empty-bookings"><p>No ' + currentFilter + ' reservations found.</p></div>';
+          return;
+        }
+
+        var html = '';
+        filtered.forEach(function (b) {
+          var isTicket = b.btnAction === 'ticket' || b.status === 'upcoming';
+          var actionAttr = isTicket
+            ? 'href="booking.html?movie=' + encodeURIComponent(b.movie) + '&view=ticket&ref=' + encodeURIComponent(b.reference) + '"'
+            : 'href="booking.html?movie=' + encodeURIComponent(b.movie) + '"';
+          var btnClass = isTicket ? 'acct-booking-btn acct-booking-btn-ticket' : 'acct-booking-btn acct-booking-btn-book';
+          var btnLabel = isTicket ? 'View e-ticket' : 'Book again';
+
+          html += '<div class="acct-booking-card" data-status="' + b.status + '">';
+          html += '  <div class="acct-booking-poster-wrap">';
+          html += '    <img src="' + (b.poster || 'images/logo.png') + '" alt="' + b.movie + '" class="acct-booking-poster" onerror="this.src=\'images/logo.png\'">';
+          html += '  </div>';
+          html += '  <div class="acct-booking-details">';
+          html += '    <div class="acct-booking-main-row">';
+          html += '      <div class="acct-booking-title-group">';
+          html += '        <h3 class="acct-booking-title">' + b.movie + '</h3>';
+          html += '        <p class="acct-booking-subtitle">' + b.cinema + ' \u2022 ' + b.format + '</p>';
+          html += '      </div>';
+          html += '      <a ' + actionAttr + ' class="' + btnClass + '">' + btnLabel + '</a>';
+          html += '    </div>';
+          html += '    <div class="acct-booking-meta-grid">';
+          html += '      <div class="acct-meta-col">';
+          html += '        <span class="acct-meta-label">Showtime</span>';
+          html += '        <span class="acct-meta-val">' + b.showtime + '</span>';
+          html += '      </div>';
+          html += '      <div class="acct-meta-col">';
+          html += '        <span class="acct-meta-label">Seats</span>';
+          html += '        <span class="acct-meta-val">' + b.seats + '</span>';
+          html += '      </div>';
+          html += '      <div class="acct-meta-col">';
+          html += '        <span class="acct-meta-label">Total</span>';
+          html += '        <span class="acct-meta-val">' + b.total + '</span>';
+          html += '      </div>';
+          html += '      <div class="acct-meta-col">';
+          html += '        <span class="acct-meta-label">Reference</span>';
+          html += '        <span class="acct-meta-val">' + b.reference + '</span>';
+          html += '      </div>';
+          html += '    </div>';
+          html += '  </div>';
+          html += '</div>';
+        });
+
+        listEl.innerHTML = html;
+      }
+
+      // Filter tabs click handling
+      document.querySelectorAll('.acct-filter-tab').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          document.querySelectorAll('.acct-filter-tab').forEach(function (t) { t.classList.remove('is-active'); });
+          tab.classList.add('is-active');
+          currentFilter = tab.dataset.filter || 'all';
+          renderBookings();
+        });
       });
 
-      listEl.innerHTML = html;
-    }
+      renderBookings();
 
-    // Filter tabs click handling
-    document.querySelectorAll('.acct-filter-tab').forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        document.querySelectorAll('.acct-filter-tab').forEach(function (t) { t.classList.remove('is-active'); });
-        tab.classList.add('is-active');
-        currentFilter = tab.dataset.filter || 'all';
-        renderBookings();
-      });
-    });
-
-    renderBookings();
-
-    /* Run after auth-modal.js has fired */
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', fillUserData);
-    } else {
-      fillUserData();
-    }
-  })();
+      /* Run after auth-modal.js has fired */
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fillUserData);
+      } else {
+        fillUserData();
+      }
+    })();
   </script>
 
 </body>
+
 </html>

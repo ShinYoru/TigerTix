@@ -479,7 +479,7 @@ document.addEventListener('DOMContentLoaded', function () {
       title: 'Glorietta 4',
       location: '5th Level Glorietta 4<br>Ayala Center, Makati City',
       desc: 'Glorietta Cinemas in Makati offers a modern moviegoing experience with stylish interiors and advanced technology. Its spacious lobby features one of the largest immersive LED screens in the country, creating an exciting atmosphere as soon as you enter. Inside the theaters, Dolby Atmos sound and laser projection provide stunning visuals and clear audio, while the A-Luxe cinemas feature comfortable motorized recliners for a more luxurious viewing experience.',
-      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/glorietta-4-cinema.avif')",
+      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.65) 45%, rgba(0, 0, 0, 0.25) 100%), linear-gradient(to top, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0.55) 40%, transparent 80%), url('images/glorietta-4-cinema.avif')",
       pos: 'center 55%'
     },
 
@@ -488,7 +488,7 @@ document.addEventListener('DOMContentLoaded', function () {
       title: 'SM Mall of Asia',
       location: 'Entertainment Mall, SM Mall of Asia<br>Pasay City',
       desc: 'SM Mall of Asia Cinemas is home to one of the largest IMAX laser projection screens in Southeast Asia. Boasting cutting-edge stadium seating, crystal clear digital audio, and comfortable spacious lounges, it is the premier destination for massive Hollywood blockbusters.',
-      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/moa-cinema.png')",
+      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.65) 45%, rgba(0, 0, 0, 0.25) 100%), linear-gradient(to top, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0.55) 40%, transparent 80%), url('images/moa-cinema.png')",
       pos: 'center 50%'
     },
 
@@ -497,7 +497,7 @@ document.addEventListener('DOMContentLoaded', function () {
       title: 'Robinsons Galleria',
       location: "Level 3, Robinsons Galleria<br>Ortigas Avenue, Quezon City",
       desc: "Robinsons Galleria Cinemas in Ortigas provides a premium cinematic haven in the heart of Quezon City. Featuring plush comfortable seating, state-of-the-art Christie Laser Projection, and multi-channel surround sound, moviegoers can experience Hollywood blockbusters and local favorites in maximum fidelity and comfort.",
-      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/robinsons-cinema.jpeg')",
+      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.65) 45%, rgba(0, 0, 0, 0.25) 100%), linear-gradient(to top, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0.55) 40%, transparent 80%), url('images/robinsons-cinema.jpeg')",
       pos: 'center 50%'
     },
 
@@ -506,7 +506,7 @@ document.addEventListener('DOMContentLoaded', function () {
       title: 'Newport Mall',
       location: '4th Level Newport Mall, Newport World Resorts<br>Newport Blvd, Pasay City',
       desc: 'Newport Mall Cinemas at Newport World Resorts offers an upscale entertainment experience with stadium-configured theaters, luxurious VIP Director’s Club recliners, and precision Dolby Atmos sound.',
-      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/newport-cinema.png')",
+      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.65) 45%, rgba(0, 0, 0, 0.25) 100%), linear-gradient(to top, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0.55) 40%, transparent 80%), url('images/newport-cinema.png')",
       pos: 'center 50%'
     },
 
@@ -515,7 +515,7 @@ document.addEventListener('DOMContentLoaded', function () {
       title: 'Uptown Mall',
       location: '3rd Floor, Uptown Mall<br>9th Ave, Taguig City',
       desc: 'Uptown Mall Cinemas at Bonifacio Global City delivers an ultra-luxurious movie entertainment destination. Boasting VIP Cinema lounges with motorized leather recliners, gourmet snack delivery directly to your seat, and Dolby Atmos audio systems for true acoustic perfection.',
-      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/uptown-cinema.png')",
+      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.65) 45%, rgba(0, 0, 0, 0.25) 100%), linear-gradient(to top, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0.55) 40%, transparent 80%), url('images/uptown-cinema.png')",
       pos: 'center 50%'
     },
 
@@ -524,7 +524,7 @@ document.addEventListener('DOMContentLoaded', function () {
       title: 'SM City North Edsa',
       location: '4th Floor, The Block, SM City North Edsa<br>North Avenue, Quezon City',
       desc: 'SM City North EDSA Cinema is one of the busiest and most iconic cinema complexes in Metro Manila, offering IMAX with Laser, regular digital cinemas, and top-tier stadium seating.',
-      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 100%), linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 80%), url('images/sm-north-cinema.png')",
+      bg: "linear-gradient(to right, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.65) 45%, rgba(0, 0, 0, 0.25) 100%), linear-gradient(to top, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0.55) 40%, transparent 80%), url('images/sm-north-cinema.png')",
       pos: 'center 50%'
     }
   };

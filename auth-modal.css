@@ -244,32 +244,39 @@
 
 /* Tab switcher pill */
 .auth-tabs {
-  display: inline-flex;
+  display: flex;
   background: #141418;
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 999px;
-  padding: 0.3rem;
-  width: fit-content;
-  margin-bottom: 2rem;
+  padding: 0.35rem;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 2.2rem auto;
+  box-sizing: border-box;
 }
 
 .auth-tab {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: inherit;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: #71717a;
   background: transparent;
   border: none;
   border-radius: 999px;
-  padding: 0.55rem 1.6rem;
+  padding: 0.72rem 1.4rem;
   cursor: pointer;
+  text-align: center;
   transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
 }
 
 .auth-tab.active {
   background: #f2c935;
   color: #0a0a0d;
-  box-shadow: 0 2px 12px rgba(242,201,53,0.4);
+  box-shadow: 0 2px 14px rgba(242,201,53,0.4);
 }
 
 /* Form view switching (smooth fade+slide) */

@@ -159,7 +159,7 @@
       var el = document.getElementById(id);
       if (!el) return;
       clearInputError(el);
-      if (el.type === 'checkbox') { el.checked = true; }
+      if (el.type === 'checkbox') { el.checked = false; }
       else { el.value = ''; }
     });
     ['authRuleLen', 'authRuleUpper', 'authRuleNum', 'authRuleSpecial'].forEach(function (id) {

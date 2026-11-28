@@ -1189,9 +1189,9 @@
     var key = window._bkMovieKey || DEFAULT_MOVIE;
     var movieObj = MOVIES[key] || MOVIES[DEFAULT_MOVIE] || {};
 
-    // Generate booking reference like TIX - 0001
-    var refNum = Math.floor(1000 + Math.random() * 9000);
-    var ref = 'TIX - ' + refNum;
+    // Generate booking reference in 5 digits format like TIX-00000
+    var refNum = Math.floor(10000 + Math.random() * 90000);
+    var ref = 'TIX-' + refNum;
     state.refCode = ref;
 
     var el = function (id) { return document.getElementById(id); };
@@ -1272,7 +1272,7 @@
 
     if (copyBtn) {
       copyBtn.addEventListener('click', function () {
-        var ref = state.refCode || 'TIX - 0001';
+        var ref = state.refCode || 'TIX-00001';
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(ref).then(function () {
             if (copyTxt) copyTxt.textContent = 'Copied!';

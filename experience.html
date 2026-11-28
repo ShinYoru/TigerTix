@@ -101,10 +101,10 @@
 
         <!-- Static Format Indicators (Matching Reference Pill Badges with Generous Spacing) -->
         <div class="exp-pill-badges" aria-label="Available Experiences">
-          <span class="exp-pill-badge">Regular</span>
-          <span class="exp-pill-badge">IMAX</span>
-          <span class="exp-pill-badge">ScreenX</span>
-          <span class="exp-pill-badge">Director's Club</span>
+          <a href="cinema.html?exp=regular" class="exp-pill-badge" style="text-decoration:none;">Regular</a>
+          <a href="cinema.html?exp=imax" class="exp-pill-badge" style="text-decoration:none;">IMAX</a>
+          <a href="cinema.html?exp=screenx" class="exp-pill-badge" style="text-decoration:none;">ScreenX</a>
+          <a href="cinema.html?exp=directors-club" class="exp-pill-badge" style="text-decoration:none;">Director's Club</a>
         </div>
       </div>
     </section>
@@ -114,7 +114,7 @@
       <div class="exp-container">
 
         <!-- 1. REGULAR (Image Left, Content Right) -->
-        <article class="exp-card exp-card--image-left" id="regular">
+        <article class="exp-card exp-card--image-left" id="regular" data-exp-type="regular">
           <div class="exp-card-media">
             <div class="exp-card-img-wrap">
               <!-- =========================================================================
@@ -148,13 +148,13 @@
               </li>
             </ul>
             <div class="exp-action-row">
-              <a href="cinema.html" class="exp-cta-btn">Find Regular Cinemas</a>
+              <a href="cinema.html?exp=regular" class="exp-cta-btn">Find Regular Cinemas</a>
             </div>
           </div>
         </article>
 
         <!-- 2. IMAX (Content Left, Image Right) -->
-        <article class="exp-card exp-card--image-right" id="imax">
+        <article class="exp-card exp-card--image-right" id="imax" data-exp-type="imax">
           <div class="exp-card-content">
             <span class="exp-card-label exp-card-label--imax">IMAX</span>
             <h2 class="exp-card-title">Bigger. Sharper. Louder.</h2>
@@ -180,7 +180,7 @@
               </li>
             </ul>
             <div class="exp-action-row">
-              <a href="cinema.html" class="exp-cta-btn">Find IMAX Cinemas</a>
+              <a href="cinema.html?exp=imax" class="exp-cta-btn">Find IMAX Cinemas</a>
             </div>
           </div>
           <div class="exp-card-media">
@@ -194,7 +194,7 @@
         </article>
 
         <!-- 3. SCREENX (Image Left, Content Right) -->
-        <article class="exp-card exp-card--image-left" id="screenx">
+        <article class="exp-card exp-card--image-left" id="screenx" data-exp-type="screenx">
           <div class="exp-card-media">
             <div class="exp-card-img-wrap">
               <!-- =========================================================================
@@ -228,13 +228,13 @@
               </li>
             </ul>
             <div class="exp-action-row">
-              <a href="cinema.html" class="exp-cta-btn">Find ScreenX Cinemas</a>
+              <a href="cinema.html?exp=screenx" class="exp-cta-btn">Find ScreenX Cinemas</a>
             </div>
           </div>
         </article>
 
         <!-- 4. DIRECTOR'S CLUB (Content Left, Image Right) -->
-        <article class="exp-card exp-card--image-right" id="directors-club">
+        <article class="exp-card exp-card--image-right" id="directors-club" data-exp-type="directors-club">
           <div class="exp-card-content">
             <span class="exp-card-label exp-card-label--dc">DIRECTOR'S CLUB</span>
             <h2 class="exp-card-title">First-class comfort</h2>
@@ -260,7 +260,7 @@
               </li>
             </ul>
             <div class="exp-action-row">
-              <a href="cinema.html" class="exp-cta-btn">Find Director's Club Cinemas</a>
+              <a href="cinema.html?exp=directors-club" class="exp-cta-btn">Find Director's Club Cinemas</a>
             </div>
           </div>
           <div class="exp-card-media">
@@ -487,5 +487,18 @@
   </footer>
 
     <script src="auth-modal.js"></script>
+    <script>
+      // Make whole experience cards clickable to bring user to the filtered cinema page
+      document.querySelectorAll('.exp-card').forEach(function (card) {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function (e) {
+          if (e.target.closest('a') || e.target.closest('button')) return;
+          var exp = card.getAttribute('data-exp-type') || card.id;
+          if (exp) {
+            window.location.href = 'cinema.html?exp=' + encodeURIComponent(exp);
+          }
+        });
+      });
+    </script>
 </body>
 </html>

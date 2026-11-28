@@ -851,6 +851,43 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Check URL params for experience filter (e.g. cinema.html?exp=imax)
+  (function initUrlExpFilter() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var expParam = params.get('exp');
+      if (expParam) {
+        expParam = expParam.toLowerCase().trim();
+        if (expParam === "director's club" || expParam === "directors club" || expParam === "director-s-club") {
+          expParam = "directors-club";
+        }
+
+        var matchedPill = null;
+        expPills.forEach(function (p) {
+          var pillExp = (p.getAttribute('data-exp') || '').toLowerCase();
+          if (pillExp === expParam) {
+            matchedPill = p;
+          }
+        });
+
+        if (matchedPill) {
+          expPills.forEach(function (p) { p.classList.remove('is-active'); });
+          matchedPill.classList.add('is-active');
+          activeExpFilter = matchedPill.getAttribute('data-exp');
+          filterCinemas();
+
+          // Smooth scroll to the cinema cards grid
+          var gridSec = document.querySelector('.cinema-grid-section');
+          if (gridSec) {
+            setTimeout(function () {
+              gridSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+          }
+        }
+      }
+    } catch (e) {}
+  })();
+
   // 1. Date selection
   if (dateCards.length > 0) {
     dateCards.forEach(function (card) {

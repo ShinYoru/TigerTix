@@ -762,6 +762,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var mallTitle = CINEMA_DATA[currentSelectedCinema] ? CINEMA_DATA[currentSelectedCinema].title : 'Glorietta 4';
 
+    // Get currently selected date from the date selector
+    var activeDateCard = document.querySelector('.date-card.is-active');
+    var selectedDateText = activeDateCard ? (activeDateCard.getAttribute('data-date') || '') : 'Today 29';
+
     var toast = document.createElement('div');
     toast.className = 'booking-toast';
     toast.setAttribute('role', 'alert');
@@ -786,12 +790,21 @@ document.addEventListener('DOMContentLoaded', function () {
       selectSeatsBtn.textContent = 'Redirecting...';
       selectSeatsBtn.style.opacity = '0.8';
       setTimeout(function () {
-        // Navigate to booking.html with movie pre-selected
+        // Navigate directly to booking.html with step=3 (Select Seats) and pre-filled cinema, date, format, and time
         var movieEncoded = encodeURIComponent(movieTitle);
         var cinemaEncoded = encodeURIComponent(mallTitle);
-        window.location.href = 'booking.html?movie=' + movieEncoded + '&format=' + encodeURIComponent(formatName) + '&time=' + encodeURIComponent(showTime) + '&cinema=' + cinemaEncoded;
+        var formatEncoded = encodeURIComponent(formatName);
+        var timeEncoded = encodeURIComponent(showTime);
+        var dateEncoded = encodeURIComponent(selectedDateText);
+
+        window.location.href = 'booking.html?movie=' + movieEncoded + 
+          '&cinema=' + cinemaEncoded + 
+          '&format=' + formatEncoded + 
+          '&time=' + timeEncoded + 
+          '&date=' + dateEncoded + 
+          '&step=3';
         toast.remove();
-      }, 400);
+      }, 300);
     });
 
     activeToastTimer = setTimeout(function () {

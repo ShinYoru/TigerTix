@@ -846,6 +846,102 @@
   text-align: right;
 }
 
+/* Custom Success Alert Modal (matching reference picture) */
+.acct-alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  padding: 1.2rem;
+}
+
+.acct-alert-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.acct-alert-card {
+  background: #1c1c1e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  width: 100%;
+  max-width: 440px;
+  padding: 2.2rem 2.2rem 2rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+  transform: scale(0.92);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+}
+
+.acct-alert-overlay.is-active .acct-alert-card {
+  transform: scale(1);
+}
+
+.acct-alert-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #2a2517;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.acct-alert-icon-wrap svg {
+  color: #eab308;
+  width: 26px;
+  height: 26px;
+}
+
+.acct-alert-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.acct-alert-desc {
+  font-size: 0.98rem;
+  color: #a1a1aa;
+  line-height: 1.55;
+  margin-bottom: 2rem;
+}
+
+.acct-alert-btn {
+  width: 100%;
+  background: #f2c935;
+  color: #0d0d11;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: 2px solid #3b82f6; /* Blue outline ring like photo */
+  border-radius: 9999px;
+  padding: 0.9rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  display: block;
+  text-align: center;
+  outline: none;
+}
+
+.acct-alert-btn:hover {
+  background: #ffd84d;
+  box-shadow: 0 4px 20px rgba(242, 201, 53, 0.4);
+}
+
+.acct-alert-btn:active {
+  transform: scale(0.98);
+}
+
 /* Bookings & Transactions history styling */
 .acct-bookings-header {
   margin-bottom: 1.6rem;

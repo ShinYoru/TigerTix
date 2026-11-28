@@ -1085,15 +1085,30 @@
           }
 
           if (!user) {
-            alert('Please log in first to complete your reservation and view your e-ticket.');
-            if (window.TigerAuth && typeof window.TigerAuth.open === 'function') {
-              window.TigerAuth.open('login');
+            // Show custom "Log in to continue" modal matching reference photo
+            var movieKey = window._bkMovieKey || DEFAULT_MOVIE;
+            var cinemaName = state.cinema || 'Cinema';
+            var experienceName = state.format || 'Regular';
+            var dayName = state.dayName || 'Sun';
+            var day = state.day || '29';
+            var month = state.month || 'Nov';
+            var time = state.time || '7:30 PM';
+            var seatsText = state.seats && state.seats.length > 0 ? state.seats.slice().sort().join(', ') : 'Seats';
+
+            var detailsSummary = movieKey + ' \u2022 ' + cinemaName + ' \u2022 ' + experienceName + ' \u2022 ' + dayName + ', ' + month + ' ' + day + ' \u2022 ' + time + ' \u2022 ' + seatsText;
+
+            var loginModal = document.getElementById('bkLoginModal');
+            var loginDesc = document.getElementById('bkLoginModalDesc');
+            if (loginDesc) {
+              loginDesc.textContent = 'Your selection is saved: ' + detailsSummary + '. Log in or create an account to pay and receive your e-ticket.';
+            }
+
+            if (loginModal) {
+              loginModal.classList.add('is-active');
+              loginModal.setAttribute('aria-hidden', 'false');
             } else {
-              var authOverlay = document.getElementById('authOverlay');
-              if (authOverlay) {
-                authOverlay.classList.add('is-open');
-                authOverlay.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
+              if (window.TigerAuth && typeof window.TigerAuth.open === 'function') {
+                window.TigerAuth.open('login');
               }
             }
             return;
@@ -1111,6 +1126,44 @@
       scrollBtn.addEventListener('click', function () {
         var flowSection = document.getElementById('bkFlowSection');
         if (flowSection) flowSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    // Login modal button actions
+    var loginModal = document.getElementById('bkLoginModal');
+    var modalLoginBtn = document.getElementById('bkLoginModalLoginBtn');
+    var modalSignupBtn = document.getElementById('bkLoginModalSignupBtn');
+
+    function hideLoginModal() {
+      if (loginModal) {
+        loginModal.classList.remove('is-active');
+        loginModal.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    if (modalLoginBtn) {
+      modalLoginBtn.addEventListener('click', function () {
+        hideLoginModal();
+        if (window.TigerAuth && typeof window.TigerAuth.open === 'function') {
+          window.TigerAuth.open('login');
+        }
+      });
+    }
+
+    if (modalSignupBtn) {
+      modalSignupBtn.addEventListener('click', function () {
+        hideLoginModal();
+        if (window.TigerAuth && typeof window.TigerAuth.open === 'function') {
+          window.TigerAuth.open('signup');
+        }
+      });
+    }
+
+    if (loginModal) {
+      loginModal.addEventListener('click', function (e) {
+        if (e.target === loginModal) {
+          hideLoginModal();
+        }
       });
     }
   }
@@ -1168,15 +1221,83 @@
     initTicketCopyAndPrint();
     initNavigation();
 
-    // Check if directly viewing an existing ticket from account bookings
+    // Check if directly viewing an existing ticket from account bookings or jumping from cinema showtimes
     var viewParam = getUrlParam('view');
     var refParam = getUrlParam('ref');
+    var stepParam = parseInt(getUrlParam('step'), 10);
+    var cinemaParam = getUrlParam('cinema');
+    var formatParam = getUrlParam('format');
+    var timeParam = getUrlParam('time');
+    var dateParam = getUrlParam('date');
+
+    if (cinemaParam) {
+      // Find matching cinema card in Step 1
+      var cinemaCards = document.querySelectorAll('.bk-cinema-card');
+      cinemaCards.forEach(function (card) {
+        var cardCinema = card.getAttribute('data-cinema') || '';
+        if (cardCinema.toLowerCase() === cinemaParam.toLowerCase() || 
+            cardCinema.toLowerCase().indexOf(cinemaParam.toLowerCase()) !== -1 ||
+            cinemaParam.toLowerCase().indexOf(cardCinema.toLowerCase()) !== -1) {
+          cinemaCards.forEach(function (c) { c.classList.remove('is-selected'); });
+          card.classList.add('is-selected');
+          var radio = card.querySelector('input[type="radio"]');
+          if (radio) radio.checked = true;
+          state.cinema = card.getAttribute('data-cinema') || cinemaParam;
+          state.cinemaAddr = card.getAttribute('data-addr') || '';
+        }
+      });
+      if (!state.cinema) {
+        state.cinema = cinemaParam;
+      }
+      var s2info = document.getElementById('bkStep2Cinema');
+      if (s2info) s2info.textContent = 'Cinema: ' + state.cinema;
+    }
+
+    if (formatParam) {
+      state.format = formatParam;
+    }
+
+    if (timeParam) {
+      state.time = timeParam;
+      // Pre-select matching time button in Step 2
+      var tBtns = document.querySelectorAll('.bk-dt-time-btn');
+      tBtns.forEach(function (tb) {
+        if (tb.getAttribute('data-time') === timeParam) {
+          tBtns.forEach(function (b) { b.classList.remove('is-active'); });
+          tb.classList.add('is-active');
+        }
+      });
+    }
+
+    if (dateParam) {
+      // e.g. "Today 29", "Dec 1", "Tomorrow 30"
+      var dtCards = document.querySelectorAll('.bk-dt-date-card');
+      var matchedDate = false;
+      dtCards.forEach(function (dc) {
+        var dcDay = dc.getAttribute('data-day') || '';
+        var dcDate = dc.getAttribute('data-date') || '';
+        if (dateParam.indexOf(dcDay) !== -1 || dateParam.toLowerCase().indexOf(dcDate.toLowerCase()) !== -1) {
+          dtCards.forEach(function (c) { c.classList.remove('is-active'); });
+          dc.classList.add('is-active');
+          state.date = dc.getAttribute('data-date') || '';
+          state.day = dc.getAttribute('data-day') || '';
+          state.month = dc.getAttribute('data-month') || 'Nov';
+          state.dayName = dc.getAttribute('data-day-name') || '';
+          matchedDate = true;
+        }
+      });
+    }
+
+    updateBottomBar();
+
     if (viewParam === 'ticket') {
       var key = window._bkMovieKey || DEFAULT_MOVIE;
       var el = function (id) { return document.getElementById(id); };
       if (el('eTicketRef') && refParam) el('eTicketRef').textContent = refParam;
       if (el('etTitle')) el('etTitle').textContent = key;
       goToStep(5);
+    } else if (stepParam && stepParam >= 1 && stepParam <= TOTAL_STEPS) {
+      goToStep(stepParam);
     } else {
       goToStep(1);
     }

@@ -385,6 +385,21 @@
     </div>
   </div>
 
+  <!-- ================= CUSTOM SUCCESS ALERT MODAL ================= -->
+  <div class="acct-alert-overlay" id="acctSuccessModal" role="dialog" aria-modal="true" aria-labelledby="acctAlertTitle" aria-hidden="true">
+    <div class="acct-alert-card">
+      <div class="acct-alert-icon-wrap" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="m9 12 2 2 4-4"></path>
+        </svg>
+      </div>
+      <h3 class="acct-alert-title" id="acctAlertTitle">Changes saved</h3>
+      <p class="acct-alert-desc">Your account details have been updated. You'll see your new info on your profile and in your future bookings.</p>
+      <button type="button" class="acct-alert-btn" id="acctAlertDoneBtn">Done</button>
+    </div>
+  </div>
+
   <script src="auth-modal.js"></script>
 
   <script>
@@ -481,6 +496,35 @@
 
       /* ---- Save Details form ---- */
       var detailsForm = document.getElementById('acctDetailsForm');
+      var successModal = document.getElementById('acctSuccessModal');
+      var alertDoneBtn = document.getElementById('acctAlertDoneBtn');
+
+      function showSuccessModal() {
+        if (successModal) {
+          successModal.classList.add('is-active');
+          successModal.setAttribute('aria-hidden', 'false');
+        }
+      }
+
+      function hideSuccessModal() {
+        if (successModal) {
+          successModal.classList.remove('is-active');
+          successModal.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      if (alertDoneBtn) {
+        alertDoneBtn.addEventListener('click', hideSuccessModal);
+      }
+
+      if (successModal) {
+        successModal.addEventListener('click', function (e) {
+          if (e.target === successModal) {
+            hideSuccessModal();
+          }
+        });
+      }
+
       if (detailsForm) {
         detailsForm.addEventListener('submit', function (e) {
           e.preventDefault();
@@ -496,7 +540,7 @@
           }
           fillUserData();
           setEditMode(false);
-          alert('Changes saved!');
+          showSuccessModal();
         });
       }
 

@@ -2319,3 +2319,126 @@
   padding: 1.8rem;
   box-sizing: border-box;
 }
+
+/* =========================================================
+   LOGIN REQUIRED MODAL (matches reference photo)
+   ========================================================= */
+.bk-login-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  padding: 1.2rem;
+}
+
+.bk-login-modal-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bk-login-modal-card {
+  background: #1c1c1e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  width: 100%;
+  max-width: 440px;
+  padding: 2.2rem 2.2rem 2rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  transform: scale(0.92);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+}
+
+.bk-login-modal-overlay.is-active .bk-login-modal-card {
+  transform: scale(1);
+}
+
+.bk-login-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #2a2517;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.bk-login-icon-letter {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #eab308;
+}
+
+.bk-login-modal-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.01em;
+}
+
+.bk-login-modal-desc {
+  font-size: 0.96rem;
+  color: #a1a1aa;
+  line-height: 1.55;
+  margin-bottom: 2rem;
+}
+
+.bk-login-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.bk-login-btn-primary {
+  width: 100%;
+  background: #f2c935;
+  color: #0d0d11;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.92rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  display: block;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(242, 201, 53, 0.35);
+}
+
+.bk-login-btn-primary:hover {
+  background: #ffd84d;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(242, 201, 53, 0.45);
+}
+
+.bk-login-btn-outline {
+  width: 100%;
+  background: transparent;
+  color: #f2c935;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 800;
+  border: 1.5px solid #f2c935;
+  border-radius: 9999px;
+  padding: 0.92rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: block;
+  text-align: center;
+}
+
+.bk-login-btn-outline:hover {
+  background: rgba(242, 201, 53, 0.1);
+  color: #ffd84d;
+  border-color: #ffd84d;
+}

@@ -192,7 +192,7 @@
         <div class="bk-cinema-grid" id="cinemaGrid">
 
           <label class="bk-cinema-card is-selected" data-city="Makati" data-cinema="Glorietta 4"
-            data-addr="Ayala Center, Makati City" data-formats="Regular">
+            data-addr="Ayala Center, Makati City" data-formats="Regular ScreenX Director's Club">
             <input type="radio" name="cinema" value="Glorietta 4" checked>
             <div class="bk-cinema-card-inner">
               <div class="bk-cinema-top">
@@ -211,12 +211,14 @@
               </p>
               <div class="bk-cinema-formats">
                 <span class="bk-fmt-tag">Regular</span>
+                <span class="bk-fmt-tag">ScreenX</span>
+                <span class="bk-fmt-tag">Director's Club</span>
               </div>
             </div>
           </label>
 
           <label class="bk-cinema-card" data-city="Pasay" data-cinema="SM Mall of Asia" data-addr="Pasay City"
-            data-formats="IMAX">
+            data-formats="Regular IMAX">
             <input type="radio" name="cinema" value="SM Mall of Asia">
             <div class="bk-cinema-card-inner">
               <div class="bk-cinema-top">
@@ -234,18 +236,19 @@
                 Pasay City
               </p>
               <div class="bk-cinema-formats">
+                <span class="bk-fmt-tag">Regular</span>
                 <span class="bk-fmt-tag">IMAX</span>
               </div>
             </div>
           </label>
 
-          <label class="bk-cinema-card" data-city="Quezon" data-cinema="Robinson's Galleria"
+          <label class="bk-cinema-card" data-city="Quezon" data-cinema="Robinsons Galleria"
             data-addr="Ortigas Avenue, Quezon City" data-formats="Regular">
-            <input type="radio" name="cinema" value="Robinson's Galleria">
+            <input type="radio" name="cinema" value="Robinsons Galleria">
             <div class="bk-cinema-card-inner">
               <div class="bk-cinema-top">
                 <div class="bk-cinema-name-wrap">
-                  <span class="bk-cinema-name">Robinson's Galleria</span>
+                  <span class="bk-cinema-name">Robinsons Galleria</span>
                 </div>
                 <div class="bk-cinema-radio-dot"></div>
               </div>
@@ -264,7 +267,7 @@
           </label>
 
           <label class="bk-cinema-card" data-city="Pasay" data-cinema="Newport Mall"
-            data-addr="Newport Blvd, Pasay City" data-formats="Director's Club">
+            data-addr="Newport Blvd, Pasay City" data-formats="Regular Director's Club">
             <input type="radio" name="cinema" value="Newport Mall">
             <div class="bk-cinema-card-inner">
               <div class="bk-cinema-top">
@@ -282,13 +285,14 @@
                 Newport Blvd, Pasay City
               </p>
               <div class="bk-cinema-formats">
+                <span class="bk-fmt-tag">Regular</span>
                 <span class="bk-fmt-tag">Director's Club</span>
               </div>
             </div>
           </label>
 
           <label class="bk-cinema-card" data-city="Taguig" data-cinema="Uptown Mall" data-addr="9th Ave, Taguig City"
-            data-formats="ScreenX">
+            data-formats="Regular ScreenX">
             <input type="radio" name="cinema" value="Uptown Mall">
             <div class="bk-cinema-card-inner">
               <div class="bk-cinema-top">
@@ -306,13 +310,14 @@
                 9th Ave, Taguig City
               </p>
               <div class="bk-cinema-formats">
+                <span class="bk-fmt-tag">Regular</span>
                 <span class="bk-fmt-tag">ScreenX</span>
               </div>
             </div>
           </label>
 
           <label class="bk-cinema-card" data-city="Quezon" data-cinema="SM City North EDSA"
-            data-addr="North Avenue, Quezon City" data-formats="IMAX">
+            data-addr="North Avenue, Quezon City" data-formats="Regular IMAX">
             <input type="radio" name="cinema" value="SM City North EDSA">
             <div class="bk-cinema-card-inner">
               <div class="bk-cinema-top">
@@ -330,6 +335,7 @@
                 North Avenue, Quezon City
               </p>
               <div class="bk-cinema-formats">
+                <span class="bk-fmt-tag">Regular</span>
                 <span class="bk-fmt-tag">IMAX</span>
               </div>
             </div>
@@ -421,9 +427,9 @@
           <div class="bk-dt-divider" aria-hidden="true"></div>
 
           <!-- Section 3: Showtime -->
-          <div class="bk-dt-section">
+          <div class="bk-dt-section" id="bkTimeSlotsSection">
             <h4 class="bk-dt-section-title" style="margin-bottom: 0.95rem;">Showtime</h4>
-
+            <div id="bkTimeSlotsContainer">
             <!-- Regular Category -->
             <div class="bk-dt-showtime-group" data-group-format="Regular">
               <div class="bk-dt-cat-header">
@@ -435,116 +441,117 @@
                   <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
                     aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  11:30 AM
-                </button>
-                <button type="button" class="bk-dt-time-btn is-active" data-format="Regular" data-time="12:10 PM">
-                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  12:10 PM
-                </button>
-                <button type="button" class="bk-dt-time-btn" data-format="Regular" data-time="2:35 PM">
-                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  2:35 PM
-                </button>
-                <button type="button" class="bk-dt-time-btn" data-format="Regular" data-time="5:30 PM">
-                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  5:30 PM
-                </button>
-              </div>
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                11:30 AM
+              </button>
+              <button type="button" class="bk-dt-time-btn is-active" data-format="Regular" data-time="12:10 PM">
+                <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                12:10 PM
+              </button>
+              <button type="button" class="bk-dt-time-btn" data-format="Regular" data-time="2:35 PM">
+                <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                2:35 PM
+              </button>
+              <button type="button" class="bk-dt-time-btn" data-format="Regular" data-time="5:30 PM">
+                <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                5:30 PM
+              </button>
             </div>
-
-            <!-- IMAX Category -->
-            <div class="bk-dt-showtime-group" data-group-format="IMAX" style="margin-top: 1.4rem;">
-              <div class="bk-dt-cat-header">
-                <span class="bk-dt-cat-name">IMAX</span>
-                <span class="bk-dt-cat-count">2 showtimes</span>
-              </div>
-              <div class="bk-dt-time-row">
-                <button type="button" class="bk-dt-time-btn" data-format="IMAX" data-time="1:45 PM">
-                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  1:45 PM
-                </button>
-                <button type="button" class="bk-dt-time-btn" data-format="IMAX" data-time="6:15 PM">
-                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  6:15 PM
-                </button>
-              </div>
-            </div>
-
-            <!-- ScreenX Category -->
-            <div class="bk-dt-showtime-group" data-group-format="ScreenX" style="margin-top: 1.4rem;">
-              <div class="bk-dt-cat-header">
-                <span class="bk-dt-cat-name">ScreenX</span>
-                <span class="bk-dt-cat-count">2 showtimes</span>
-              </div>
-              <div class="bk-dt-time-row">
-                <button type="button" class="bk-dt-time-btn" data-format="ScreenX" data-time="7:30 PM">
-                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  7:30 PM
-                </button>
-                <button type="button" class="bk-dt-time-btn" data-format="ScreenX" data-time="9:45 PM">
-                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  9:45 PM
-                </button>
-              </div>
-            </div>
-
-            <!-- Director's Club Category -->
-            <div class="bk-dt-showtime-group" data-group-format="Director's Club" style="margin-top: 1.4rem;">
-              <div class="bk-dt-cat-header">
-                <span class="bk-dt-cat-name">Director's Club</span>
-                <span class="bk-dt-cat-count">2 showtimes</span>
-              </div>
-              <div class="bk-dt-time-row">
-                <button type="button" class="bk-dt-time-btn" data-format="Director's Club" data-time="7:30 PM">
-                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  7:30 PM
-                </button>
-                <button type="button" class="bk-dt-time-btn" data-format="Director's Club" data-time="9:45 PM">
-                  <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  9:45 PM
-                </button>
-              </div>
-            </div>
-
           </div>
+
+          <!-- IMAX Category -->
+          <div class="bk-dt-showtime-group" data-group-format="IMAX" style="margin-top: 1.4rem;">
+            <div class="bk-dt-cat-header">
+              <span class="bk-dt-cat-name">IMAX</span>
+              <span class="bk-dt-cat-count">2 showtimes</span>
+            </div>
+            <div class="bk-dt-time-row">
+              <button type="button" class="bk-dt-time-btn" data-format="IMAX" data-time="1:45 PM">
+                <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                1:45 PM
+              </button>
+              <button type="button" class="bk-dt-time-btn" data-format="IMAX" data-time="6:15 PM">
+                <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                6:15 PM
+              </button>
+            </div>
+          </div>
+
+          <!-- ScreenX Category -->
+          <div class="bk-dt-showtime-group" data-group-format="ScreenX" style="margin-top: 1.4rem;">
+            <div class="bk-dt-cat-header">
+              <span class="bk-dt-cat-name">ScreenX</span>
+              <span class="bk-dt-cat-count">2 showtimes</span>
+            </div>
+            <div class="bk-dt-time-row">
+              <button type="button" class="bk-dt-time-btn" data-format="ScreenX" data-time="7:30 PM">
+                <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                7:30 PM
+              </button>
+              <button type="button" class="bk-dt-time-btn" data-format="ScreenX" data-time="9:45 PM">
+                <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                9:45 PM
+              </button>
+            </div>
+          </div>
+
+          <!-- Director's Club Category -->
+          <div class="bk-dt-showtime-group" data-group-format="Director's Club" style="margin-top: 1.4rem;">
+            <div class="bk-dt-cat-header">
+              <span class="bk-dt-cat-name">Director's Club</span>
+              <span class="bk-dt-cat-count">2 showtimes</span>
+            </div>
+            <div class="bk-dt-time-row">
+              <button type="button" class="bk-dt-time-btn" data-format="Director's Club" data-time="7:30 PM">
+                <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                7:30 PM
+              </button>
+              <button type="button" class="bk-dt-time-btn" data-format="Director's Club" data-time="9:45 PM">
+                <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                9:45 PM
+              </button>
+            </div>
+          </div>
+          </div>
+
+        </div>
 
         </div> <!-- /.bk-dt-card-container -->
       </div>
@@ -710,6 +717,7 @@
                   <label class="bk-field-label" for="cardNum">Card Number</label>
                   <input type="text" class="bk-form-input" id="cardNum" placeholder="1234 1234 1234 1234" maxlength="19"
                     autocomplete="cc-number" inputmode="numeric">
+                  <div class="bk-field-error" id="cardNumError"></div>
                 </div>
 
                 <div class="bk-pay-row-2">
@@ -717,6 +725,7 @@
                     <label class="bk-field-label" for="cardExp">Expiration Date</label>
                     <input type="text" class="bk-form-input" id="cardExp" placeholder="MM/YY" maxlength="5"
                       autocomplete="cc-exp" inputmode="numeric">
+                    <div class="bk-field-error" id="cardExpError"></div>
                   </div>
                   <div class="bk-pay-field">
                     <label class="bk-field-label" for="cardCvc">CVV / CVC</label>
@@ -739,6 +748,7 @@
                         </svg>
                       </button>
                     </div>
+                    <div class="bk-field-error" id="cardCvcError"></div>
                   </div>
                 </div>
 
@@ -746,11 +756,13 @@
                   <label class="bk-field-label" for="cardName">Name on card</label>
                   <input type="text" class="bk-form-input" id="cardName" placeholder="First and Last Name"
                     autocomplete="cc-name">
+                  <div class="bk-field-error" id="cardNameError"></div>
                 </div>
 
                 <div class="bk-pay-field">
                   <label class="bk-field-label" for="payEmail">Email</label>
                   <input type="email" class="bk-form-input" id="payEmail" placeholder="Your email" autocomplete="email">
+                  <div class="bk-field-error" id="payEmailError"></div>
                 </div>
               </div>
             </div>
@@ -1257,6 +1269,7 @@
     </div>
   </div>
 
+  <script src="cinema-data.js"></script>
   <script src="booking.js"></script>
 
   <!-- ===== AUTH MODAL ===== -->
@@ -1450,7 +1463,6 @@
                   <input type="checkbox" id="authLoginRemember" checked>
                   Remember me
                 </label>
-                <a href="#" class="auth-forgot" onclick="return false;">Forgot Password?</a>
               </div>
 
               <button class="auth-submit" type="submit">Log in</button>

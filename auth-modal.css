@@ -327,6 +327,24 @@
   background: #191921;
 }
 
+.auth-input.is-invalid {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
+.auth-field-error {
+  color: #ef4444;
+  font-size: 0.74rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  padding-left: 0.5rem;
+  display: none;
+}
+
+.auth-field-error.is-visible {
+  display: block;
+}
+
 /* Password criteria */
 .auth-pwd-rules {
   margin-bottom: 1.1rem;

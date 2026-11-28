@@ -1630,6 +1630,10 @@ img {
   color: #a78bfa;
 }
 
+.format-label--imax {
+  color: #38bdf8;
+}
+
 .time-slots {
   display: flex;
   gap: 0.95rem;

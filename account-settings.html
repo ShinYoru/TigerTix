@@ -125,6 +125,7 @@
                 <label class="acct-label" for="acctEmail">Email Address</label>
                 <input class="acct-input" type="email" id="acctEmail" placeholder="Your email address"
                   autocomplete="email">
+                <div class="auth-field-error" id="acctEmailError"></div>
               </div>
               <div class="acct-field">
                 <label class="acct-label" for="acctPhone">Contact Number</label>
@@ -373,7 +374,6 @@
                   autocomplete="current-password" required></div>
               <div class="auth-options-row">
                 <label class="auth-remember"><input type="checkbox" id="authLoginRemember" checked>Remember me</label>
-                <a href="#" class="auth-forgot" onclick="return false;">Forgot Password?</a>
               </div>
               <button class="auth-submit" type="submit">Log in</button>
               <p class="auth-switch-prompt">New to TigerTix? <button type="button" id="authToSignup">Sign Up</button>
@@ -525,12 +525,63 @@
         });
       }
 
+      var acctEmailInput = document.getElementById('acctEmail');
+      if (acctEmailInput) {
+        acctEmailInput.addEventListener('input', function () {
+          acctEmailInput.classList.remove('is-invalid');
+          var err = document.getElementById('acctEmailError');
+          if (err) {
+            err.textContent = '';
+            err.classList.remove('is-visible');
+          }
+        });
+      }
+
+      function isValidEmail(val) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      }
+
       if (detailsForm) {
         detailsForm.addEventListener('submit', function (e) {
           e.preventDefault();
-          var name = (document.getElementById('acctName').value || '').trim();
-          var email = (document.getElementById('acctEmail').value || '').trim();
+          var nameInput = document.getElementById('acctName');
+          var emailInput = document.getElementById('acctEmail');
+          var emailErr = document.getElementById('acctEmailError');
+
+          var name = (nameInput ? nameInput.value || '' : '').trim();
+          var email = (emailInput ? emailInput.value || '' : '').trim();
           var phone = (document.getElementById('acctPhone').value || '').trim();
+
+          if (emailInput) emailInput.classList.remove('is-invalid');
+          if (emailErr) {
+            emailErr.textContent = '';
+            emailErr.classList.remove('is-visible');
+          }
+
+          if (!email) {
+            if (emailInput) {
+              emailInput.classList.add('is-invalid');
+              emailInput.focus();
+            }
+            if (emailErr) {
+              emailErr.textContent = 'Email address is required.';
+              emailErr.classList.add('is-visible');
+            }
+            return;
+          }
+
+          if (!isValidEmail(email)) {
+            if (emailInput) {
+              emailInput.classList.add('is-invalid');
+              emailInput.focus();
+            }
+            if (emailErr) {
+              emailErr.textContent = 'Please enter a valid email address (e.g., user@example.com).';
+              emailErr.classList.add('is-visible');
+            }
+            return;
+          }
+
           if (phone) {
             try { localStorage.setItem('tigertix_user_phone', phone); } catch (e) {}
           }

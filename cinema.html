@@ -366,7 +366,7 @@
         </div>
 
         <!-- Format Filter Capsule Track (Matching Date & Time Experience bar) -->
-        <div class="cinema-format-track" role="tablist" aria-label="Filter formats">
+        <div class="cinema-format-track" id="cinemaFormatTrack" role="tablist" aria-label="Filter formats">
           <button type="button" class="cinema-fmt-btn is-active" data-format="all" role="tab" aria-selected="true">
             <span class="cinema-fmt-txt">Experience</span>
             <span class="cinema-fmt-count">4</span>
@@ -386,96 +386,7 @@
         </div>
 
         <!-- Cinema Movies List -->
-        <div class="cinema-movies-list">
-
-          <!-- Movie 1: 2 Valid IDs -->
-          <article class="cinema-movie-item" data-movie="2 Valid IDs">
-            <div class="cinema-movie-poster">
-              <img src="images/2-valid-ids.jpeg" alt="">
-            </div>
-
-            <div class="cinema-movie-info">
-              <h3 class="cinema-movie-title">
-                2 Valid IDs
-                <span class="badge badge-pg">PG</span>
-              </h3>
-              <p class="cinema-movie-meta">Drama &bull; 1hr 33m &bull; Released October 14 2026</p>
-              <p class="cinema-movie-cast">Cast: Joey Marquez, Pokwang, Zaijan Jaranilla, Meryl Soriano, Joem Bascon</p>
-
-              <div class="showtime-rows">
-                <!-- Regular Format Row -->
-                <div class="showtime-row" data-format="regular">
-                  <span class="format-label format-label--regular">REGULAR</span>
-                  <div class="time-slots">
-                    <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Regular"
-                      data-time="11:30 PM">11:30 PM</button>
-                    <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Regular"
-                      data-time="12:10 PM">12:10 PM</button>
-                    <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Regular"
-                      data-time="2:35 PM">2:35 PM</button>
-                    <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Regular"
-                      data-time="5:00 PM">5:00 PM</button>
-                  </div>
-                </div>
-
-                <!-- Director's Club Format Row -->
-                <div class="showtime-row" data-format="directors-club">
-                  <span class="format-label format-label--directors-club">DIRECTOR'S CLUB</span>
-                  <div class="time-slots">
-                    <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Director's Club"
-                      data-time="7:30 PM">7:30 PM</button>
-                    <button type="button" class="time-btn" data-movie="2 Valid IDs" data-format="Director's Club"
-                      data-time="9:45 PM">9:45 PM</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Movie 2: The Odyssey -->
-          <article class="cinema-movie-item" data-movie="The Odyssey">
-            <div class="cinema-movie-poster">
-              <img src="images/the-odyssey.jpg" alt="">
-            </div>
-
-            <div class="cinema-movie-info">
-              <h3 class="cinema-movie-title">
-                The Odyssey
-                <span class="badge badge-pg">PG</span>
-              </h3>
-              <p class="cinema-movie-meta">Action &bull; 2hrs 53m &bull; Released July 15 2026</p>
-              <p class="cinema-movie-cast">Cast: Tom Holland, Robert Pattinson, Matt Damon, Anne Hathaway</p>
-
-              <div class="showtime-rows">
-                <!-- Regular Format Row -->
-                <div class="showtime-row" data-format="regular">
-                  <span class="format-label format-label--regular">REGULAR</span>
-                  <div class="time-slots">
-                    <button type="button" class="time-btn" data-movie="The Odyssey" data-format="Regular"
-                      data-time="11:30 PM">11:30 PM</button>
-                    <button type="button" class="time-btn" data-movie="The Odyssey" data-format="Regular"
-                      data-time="12:10 PM">12:10 PM</button>
-                    <button type="button" class="time-btn" data-movie="The Odyssey" data-format="Regular"
-                      data-time="2:35 PM">2:35 PM</button>
-                    <button type="button" class="time-btn" data-movie="The Odyssey" data-format="Regular"
-                      data-time="5:00 PM">5:00 PM</button>
-                  </div>
-                </div>
-
-                <!-- ScreenX Format Row -->
-                <div class="showtime-row" data-format="screenx">
-                  <span class="format-label format-label--screenx">SCREENX</span>
-                  <div class="time-slots">
-                    <button type="button" class="time-btn" data-movie="The Odyssey" data-format="ScreenX"
-                      data-time="7:30 PM">7:30 PM</button>
-                    <button type="button" class="time-btn" data-movie="The Odyssey" data-format="ScreenX"
-                      data-time="9:45 PM">9:45 PM</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-
+        <div class="cinema-movies-list" id="cinemaMoviesList">
         </div>
       </section>
     </div>
@@ -540,6 +451,7 @@
     </div>
   </footer>
 
+  <script src="cinema-data.js"></script>
   <script src="script.js"></script>
   <!-- ===== AUTH MODAL ===== -->
   <div class="auth-overlay" id="authOverlay" aria-hidden="true" role="dialog" aria-modal="true"
@@ -724,7 +636,6 @@
                   <input type="checkbox" id="authLoginRemember" checked>
                   Remember me
                 </label>
-                <a href="#" class="auth-forgot" onclick="return false;">Forgot Password?</a>
               </div>
 
               <button class="auth-submit" type="submit">Log in</button>

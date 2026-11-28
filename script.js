@@ -572,8 +572,159 @@ document.addEventListener('DOMContentLoaded', function () {
     if (directoryView) directoryView.hidden = true;
     if (detailView) {
       detailView.hidden = false;
+      renderCinemaDetailShowtimes(cinemaId);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+  }
+
+  // Render dynamic showtimes for selected cinema
+  function renderCinemaDetailShowtimes(cinemaId) {
+    var moviesContainer = document.getElementById('cinemaMoviesList');
+    var formatTrack = document.getElementById('cinemaFormatTrack');
+    if (!moviesContainer) return;
+
+    var cinemaKey = (typeof getCinemaKey === 'function') ? getCinemaKey(cinemaId) : cinemaId;
+    var cinemaInfo = (typeof TIGERTIX_DATA !== 'undefined' && TIGERTIX_DATA.cinemas) ? TIGERTIX_DATA.cinemas[cinemaKey] : null;
+
+    if (!cinemaInfo || !cinemaInfo.movies) {
+      moviesContainer.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:2rem;">No showtimes available for this location.</p>';
+      return;
+    }
+
+    // Determine all unique formats available in this cinema across its movies
+    var cinemaFormatsSet = {};
+    var moviesData = cinemaInfo.movies;
+
+    Object.keys(moviesData).forEach(function (movieTitle) {
+      var fmts = moviesData[movieTitle];
+      Object.keys(fmts).forEach(function (f) {
+        cinemaFormatsSet[f] = true;
+      });
+    });
+
+    // Update Format Capsule Track if present
+    if (formatTrack) {
+      var trackHtml = [];
+      trackHtml.push('<button type="button" class="cinema-fmt-btn is-active" data-format="all" role="tab" aria-selected="true">');
+      trackHtml.push('  <span class="cinema-fmt-txt">Experience</span>');
+      trackHtml.push('  <span class="cinema-fmt-count">' + Object.keys(cinemaFormatsSet).length + '</span>');
+      trackHtml.push('</button>');
+
+      var formatOrder = ['Regular', 'IMAX', 'ScreenX', "Director's Club"];
+      formatOrder.forEach(function (f) {
+        if (cinemaFormatsSet[f]) {
+          var fSlug = f.toLowerCase().replace(/['\s]/g, '-');
+          if (fSlug === "director-s-club") fSlug = "directors-club";
+          trackHtml.push('<button type="button" class="cinema-fmt-btn" data-format="' + fSlug + '" role="tab" aria-selected="false">');
+          trackHtml.push('  <span class="cinema-fmt-txt">' + escapeHtml(f) + '</span>');
+          trackHtml.push('</button>');
+        }
+      });
+      formatTrack.innerHTML = trackHtml.join('');
+
+      // Wire format buttons
+      var newFmtBtns = formatTrack.querySelectorAll('.cinema-fmt-btn');
+      newFmtBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          newFmtBtns.forEach(function (b) {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-selected', 'true');
+
+          var selFormat = btn.getAttribute('data-format'); // 'all', 'regular', etc.
+          var mItems = moviesContainer.querySelectorAll('.cinema-movie-item');
+
+          mItems.forEach(function (movieItem) {
+            var rows = movieItem.querySelectorAll('.showtime-row');
+            var visibleRowsCount = 0;
+
+            rows.forEach(function (row) {
+              var rowFormat = row.getAttribute('data-format');
+              if (selFormat === 'all' || rowFormat === selFormat) {
+                row.classList.remove('is-hidden');
+                visibleRowsCount++;
+              } else {
+                row.classList.add('is-hidden');
+              }
+            });
+
+            if (visibleRowsCount === 0) {
+              movieItem.style.opacity = '0.35';
+            } else {
+              movieItem.style.opacity = '1';
+            }
+          });
+        });
+      });
+    }
+
+    // Render Movie Items
+    var movieCardsHtml = [];
+
+    Object.keys(moviesData).forEach(function (movieTitle) {
+      var movieMeta = (TIGERTIX_DATA.movies && TIGERTIX_DATA.movies[movieTitle]) ? TIGERTIX_DATA.movies[movieTitle] : {
+        title: movieTitle,
+        badge: 'PG',
+        meta: 'Now Showing',
+        cast: '',
+        poster: 'images/2-valid-ids.jpeg'
+      };
+
+      var fmtsObj = moviesData[movieTitle];
+
+      movieCardsHtml.push('<article class="cinema-movie-item" data-movie="' + escapeHtml(movieTitle) + '">');
+      movieCardsHtml.push('  <div class="cinema-movie-poster">');
+      movieCardsHtml.push('    <img src="' + escapeHtml(movieMeta.poster) + '" alt="' + escapeHtml(movieTitle) + ' poster">');
+      movieCardsHtml.push('  </div>');
+      movieCardsHtml.push('  <div class="cinema-movie-info">');
+      movieCardsHtml.push('    <h3 class="cinema-movie-title">');
+      movieCardsHtml.push('      ' + escapeHtml(movieTitle));
+      movieCardsHtml.push('      <span class="badge badge-pg">' + escapeHtml(movieMeta.badge || 'PG') + '</span>');
+      movieCardsHtml.push('    </h3>');
+      movieCardsHtml.push('    <p class="cinema-movie-meta">' + escapeHtml(movieMeta.meta) + '</p>');
+      if (movieMeta.cast) {
+        movieCardsHtml.push('    <p class="cinema-movie-cast">' + escapeHtml(movieMeta.cast) + '</p>');
+      }
+      movieCardsHtml.push('    <div class="showtime-rows">');
+
+      Object.keys(fmtsObj).forEach(function (fmt) {
+        var fSlug = fmt.toLowerCase().replace(/['\s]/g, '-');
+        if (fSlug === "director-s-club") fSlug = "directors-club";
+
+        var labelClass = 'format-label--' + fSlug;
+        var times = fmtsObj[fmt] || [];
+
+        movieCardsHtml.push('      <div class="showtime-row" data-format="' + fSlug + '">');
+        movieCardsHtml.push('        <span class="format-label ' + labelClass + '">' + escapeHtml(fmt.toUpperCase()) + '</span>');
+        movieCardsHtml.push('        <div class="time-slots">');
+
+        times.forEach(function (t) {
+          movieCardsHtml.push('          <button type="button" class="time-btn" data-movie="' + escapeHtml(movieTitle) + '" data-format="' + escapeHtml(fmt) + '" data-time="' + escapeHtml(t) + '">' + escapeHtml(t) + '</button>');
+        });
+
+        movieCardsHtml.push('        </div>');
+        movieCardsHtml.push('      </div>');
+      });
+
+      movieCardsHtml.push('    </div>');
+      movieCardsHtml.push('  </div>');
+      movieCardsHtml.push('</article>');
+    });
+
+    moviesContainer.innerHTML = movieCardsHtml.join('');
+
+    // Wire newly rendered time buttons
+    var newTimeBtns = moviesContainer.querySelectorAll('.time-btn');
+    newTimeBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var movie = btn.getAttribute('data-movie') || 'Movie';
+        var format = btn.getAttribute('data-format') || 'Regular';
+        var time = btn.getAttribute('data-time') || btn.textContent.trim();
+        showBookingToast(movie, format, time);
+      });
+    });
   }
 
   // Back to Cinema Directory View

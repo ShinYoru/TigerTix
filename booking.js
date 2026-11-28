@@ -256,7 +256,7 @@
     name: '',
     email: '',
     phone: '',
-    payMethod: 'gcash',
+    payMethod: 'card',
     hasDiscount: false,
     ticketPrice: 350,
     refCode: ''
@@ -435,6 +435,10 @@
 
         state.cinema = card.getAttribute('data-cinema') || '';
         state.cinemaAddr = card.getAttribute('data-addr') || '';
+
+        // Dynamically update Step 2 available experiences and showtimes for this cinema
+        updateStep2ForCinema(state.cinema);
+
         updateBottomBar();
 
         // Update step 2 subtitle
@@ -502,6 +506,159 @@
 
     glider.style.width = width + 'px';
     glider.style.transform = 'translate3d(' + left + 'px, 0, 0)';
+  }
+
+  // Update Step 2 dynamic experiences tabs and showtimes per cinema & movie
+  function updateStep2ForCinema(cinemaName, preselectedFormat, preselectedTime) {
+    var cinemaKey = (typeof getCinemaKey === 'function') ? getCinemaKey(cinemaName) : 'glorietta';
+    var movieKey = window._bkMovieKey || DEFAULT_MOVIE;
+    var cinemaInfo = (typeof TIGERTIX_DATA !== 'undefined' && TIGERTIX_DATA.cinemas) ? TIGERTIX_DATA.cinemas[cinemaKey] : null;
+
+    if (!cinemaInfo || !cinemaInfo.movies) return;
+
+    var movieShowtimes = cinemaInfo.movies[movieKey];
+    // If this specific movie isn't in this cinema's list, fall back to first movie or default
+    if (!movieShowtimes) {
+      var availableMovieKeys = Object.keys(cinemaInfo.movies);
+      if (availableMovieKeys.length > 0) {
+        movieShowtimes = cinemaInfo.movies[availableMovieKeys[0]];
+      } else {
+        movieShowtimes = { 'Regular': ['11:30 AM', '2:30 PM', '5:30 PM'] };
+      }
+    }
+
+    var availableFormats = Object.keys(movieShowtimes);
+
+    // 1. Re-render experience filter track
+    var track = document.querySelector('.bk-dt-format-track');
+    if (track) {
+      var trackHtml = ['<div class="bk-dt-fmt-glider" id="bkFmtGlider" aria-hidden="true"></div>'];
+      trackHtml.push('<button type="button" class="bk-dt-fmt-btn is-active" data-format="all" role="tab" aria-selected="true">');
+      trackHtml.push('  <span class="bk-dt-fmt-label">All Experience</span>');
+      trackHtml.push('  <span class="bk-dt-fmt-count">' + availableFormats.length + '</span>');
+      trackHtml.push('</button>');
+
+      var allPossibleFormats = ['Regular', 'IMAX', 'ScreenX', "Director's Club"];
+      allPossibleFormats.forEach(function (fmt) {
+        if (movieShowtimes[fmt]) {
+          var count = movieShowtimes[fmt].length;
+          trackHtml.push('<button type="button" class="bk-dt-fmt-btn" data-format="' + escapeHtml(fmt) + '" role="tab" aria-selected="false">');
+          trackHtml.push('  <span class="bk-dt-fmt-label">' + escapeHtml(fmt) + '</span>');
+          trackHtml.push('  <span class="bk-dt-fmt-count">' + count + '</span>');
+          trackHtml.push('</button>');
+        }
+      });
+
+      track.innerHTML = trackHtml.join('');
+
+      // Re-attach listeners to new filter buttons
+      var newFmtBtns = track.querySelectorAll('.bk-dt-fmt-btn');
+      newFmtBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          newFmtBtns.forEach(function (b) {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-selected', 'true');
+          updateFormatGlider(btn);
+
+          var selectedFormat = btn.getAttribute('data-format') || 'all';
+          var showtimeGroups = document.querySelectorAll('.bk-dt-showtime-group');
+          showtimeGroups.forEach(function (group) {
+            var grpFormat = group.getAttribute('data-group-format');
+            if (selectedFormat === 'all' || grpFormat === selectedFormat) {
+              group.classList.remove('is-hidden');
+            } else {
+              group.classList.add('is-hidden');
+            }
+          });
+        });
+      });
+      setTimeout(function () { updateFormatGlider(); }, 40);
+    }
+
+    // 2. Re-render showtimes container
+    var container = document.getElementById('bkTimeSlotsContainer');
+    if (container) {
+      var groupsHtml = [];
+      var targetFormat = preselectedFormat || state.format;
+      var targetTime = preselectedTime || state.time;
+
+      // Determine initial selection
+      var firstFormat = availableFormats[0] || 'Regular';
+      var firstTimes = movieShowtimes[firstFormat] || ['11:30 AM'];
+      var chosenFormat = (targetFormat && movieShowtimes[targetFormat]) ? targetFormat : firstFormat;
+      var chosenTimes = movieShowtimes[chosenFormat] || firstTimes;
+      var chosenTime = (targetTime && chosenTimes.indexOf(targetTime) !== -1) ? targetTime : chosenTimes[0];
+
+      state.format = chosenFormat;
+      state.time = chosenTime;
+
+      var movieObj = window._bkMovie || {};
+      if (state.format === "Director's Club") {
+        state.ticketPrice = movieObj.priceDirectors || 600;
+      } else if (state.format === 'IMAX') {
+        state.ticketPrice = movieObj.priceIMAX || 500;
+      } else if (state.format === 'ScreenX') {
+        state.ticketPrice = movieObj.priceScreenX || 450;
+      } else {
+        state.ticketPrice = movieObj.priceRegular || 350;
+      }
+
+      availableFormats.forEach(function (fmt, idx) {
+        var times = movieShowtimes[fmt] || [];
+        var marginTop = idx > 0 ? ' style="margin-top: 1.4rem;"' : '';
+
+        groupsHtml.push('<div class="bk-dt-showtime-group" data-group-format="' + escapeHtml(fmt) + '"' + marginTop + '>');
+        groupsHtml.push('  <div class="bk-dt-cat-header">');
+        groupsHtml.push('    <span class="bk-dt-cat-name">' + escapeHtml(fmt) + '</span>');
+        groupsHtml.push('    <span class="bk-dt-cat-count">' + times.length + ' showtime' + (times.length === 1 ? '' : 's') + '</span>');
+        groupsHtml.push('  </div>');
+        groupsHtml.push('  <div class="bk-dt-time-row">');
+
+        times.forEach(function (t) {
+          var isAct = (fmt === chosenFormat && t === chosenTime) ? ' is-active' : '';
+          groupsHtml.push('    <button type="button" class="bk-dt-time-btn' + isAct + '" data-format="' + escapeHtml(fmt) + '" data-time="' + escapeHtml(t) + '">');
+          groupsHtml.push('      <svg class="bk-time-check-ico" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">');
+          groupsHtml.push('        <polyline points="20 6 9 17 4 12"></polyline>');
+          groupsHtml.push('      </svg>');
+          groupsHtml.push('      ' + escapeHtml(t));
+          groupsHtml.push('    </button>');
+        });
+
+        groupsHtml.push('  </div>');
+        groupsHtml.push('</div>');
+      });
+
+      container.innerHTML = groupsHtml.join('');
+
+      // Wire time buttons
+      var newTimeBtns = container.querySelectorAll('.bk-dt-time-btn');
+      newTimeBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          newTimeBtns.forEach(function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          state.format = btn.getAttribute('data-format') || 'Regular';
+          state.time = btn.getAttribute('data-time') || btn.textContent.trim();
+
+          var movie = window._bkMovie || {};
+          if (state.format === "Director's Club") {
+            state.ticketPrice = movie.priceDirectors || 600;
+          } else if (state.format === 'IMAX') {
+            state.ticketPrice = movie.priceIMAX || 500;
+          } else if (state.format === 'ScreenX') {
+            state.ticketPrice = movie.priceScreenX || 450;
+          } else {
+            state.ticketPrice = movie.priceRegular || 350;
+          }
+
+          updateBottomBar();
+        });
+      });
+    }
+
+    updateBottomBar();
   }
 
   function initStep2() {
@@ -809,6 +966,7 @@
         var rawVal = cardNumInput.value.replace(/\D/g, '').substring(0, 16);
         var parts = rawVal.match(/.{1,4}/g);
         cardNumInput.value = parts ? parts.join(' ') : rawVal;
+        clearFieldErr(cardNumInput, 'cardNumError');
       });
     }
 
@@ -822,6 +980,7 @@
         } else {
           cardExpInput.value = rawVal;
         }
+        clearFieldErr(cardExpInput, 'cardExpError');
       });
 
       cardExpInput.addEventListener('keydown', function (e) {
@@ -834,6 +993,21 @@
     if (cardCvcInput) {
       cardCvcInput.addEventListener('input', function () {
         cardCvcInput.value = cardCvcInput.value.replace(/\D/g, '').substring(0, 3);
+        clearFieldErr(cardCvcInput, 'cardCvcError');
+      });
+    }
+
+    var cardNameInput = document.getElementById('cardName');
+    if (cardNameInput) {
+      cardNameInput.addEventListener('input', function () {
+        clearFieldErr(cardNameInput, 'cardNameError');
+      });
+    }
+
+    var payEmailInput = document.getElementById('payEmail');
+    if (payEmailInput) {
+      payEmailInput.addEventListener('input', function () {
+        clearFieldErr(payEmailInput, 'payEmailError');
       });
     }
   }
@@ -875,6 +1049,34 @@
     return seatCount * state.ticketPrice;
   }
 
+  function isValidEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  }
+
+  function showFieldErr(input, errId, message) {
+    if (input) input.classList.add('is-invalid');
+    var errEl = document.getElementById(errId);
+    if (!errEl && input) {
+      errEl = input.parentElement ? input.parentElement.querySelector('.bk-field-error') : null;
+    }
+    if (errEl) {
+      errEl.textContent = message;
+      errEl.classList.add('is-visible');
+    }
+  }
+
+  function clearFieldErr(input, errId) {
+    if (input) input.classList.remove('is-invalid');
+    var errEl = document.getElementById(errId);
+    if (!errEl && input) {
+      errEl = input.parentElement ? input.parentElement.querySelector('.bk-field-error') : null;
+    }
+    if (errEl) {
+      errEl.textContent = '';
+      errEl.classList.remove('is-visible');
+    }
+  }
+
   /* =========================================================
      STEP 4 — Validation
      ========================================================= */
@@ -882,14 +1084,70 @@
     var payMethod = state.payMethod || 'card';
 
     if (payMethod === 'card') {
+      var numInput = document.getElementById('cardNum');
+      var expInput = document.getElementById('cardExp');
+      var cvcInput = document.getElementById('cardCvc');
       var nameInput = document.getElementById('cardName');
       var emailInput = document.getElementById('payEmail');
 
+      var numVal = numInput ? numInput.value.replace(/\D/g, '') : '';
+      var expVal = expInput ? expInput.value.trim() : '';
+      var cvcVal = cvcInput ? cvcInput.value.trim() : '';
       var nameVal = nameInput ? nameInput.value.trim() : '';
       var emailVal = emailInput ? emailInput.value.trim() : '';
 
-      state.name = nameVal || 'Juan dela Cruz';
-      state.email = emailVal || 'juan@email.com';
+      clearFieldErr(numInput, 'cardNumError');
+      clearFieldErr(expInput, 'cardExpError');
+      clearFieldErr(cvcInput, 'cardCvcError');
+      clearFieldErr(nameInput, 'cardNameError');
+      clearFieldErr(emailInput, 'payEmailError');
+
+      var firstErrorInput = null;
+
+      if (!numVal) {
+        showFieldErr(numInput, 'cardNumError', 'Card number is required.');
+        if (!firstErrorInput) firstErrorInput = numInput;
+      } else if (numVal.length !== 16) {
+        showFieldErr(numInput, 'cardNumError', 'Please enter a valid 16-digit card number.');
+        if (!firstErrorInput) firstErrorInput = numInput;
+      }
+
+      if (!expVal) {
+        showFieldErr(expInput, 'cardExpError', 'Expiration date is required.');
+        if (!firstErrorInput) firstErrorInput = expInput;
+      } else if (!/^\d{2}\/\d{2}$/.test(expVal)) {
+        showFieldErr(expInput, 'cardExpError', 'Enter expiration date in MM/YY format.');
+        if (!firstErrorInput) firstErrorInput = expInput;
+      }
+
+      if (!cvcVal) {
+        showFieldErr(cvcInput, 'cardCvcError', 'CVV/CVC is required.');
+        if (!firstErrorInput) firstErrorInput = cvcInput;
+      } else if (cvcVal.length !== 3) {
+        showFieldErr(cvcInput, 'cardCvcError', 'CVV/CVC must be 3 digits.');
+        if (!firstErrorInput) firstErrorInput = cvcInput;
+      }
+
+      if (!nameVal) {
+        showFieldErr(nameInput, 'cardNameError', 'Name on card is required.');
+        if (!firstErrorInput) firstErrorInput = nameInput;
+      }
+
+      if (!emailVal) {
+        showFieldErr(emailInput, 'payEmailError', 'Email address is required.');
+        if (!firstErrorInput) firstErrorInput = emailInput;
+      } else if (!isValidEmail(emailVal)) {
+        showFieldErr(emailInput, 'payEmailError', 'Please enter a valid email address (e.g., user@example.com).');
+        if (!firstErrorInput) firstErrorInput = emailInput;
+      }
+
+      if (firstErrorInput) {
+        firstErrorInput.focus();
+        return false;
+      }
+
+      state.name = nameVal;
+      state.email = emailVal;
     } else {
       state.name = 'Juan dela Cruz';
       state.email = 'juan@email.com';
@@ -1252,6 +1510,9 @@
       var s2info = document.getElementById('bkStep2Cinema');
       if (s2info) s2info.textContent = 'Cinema: ' + state.cinema;
     }
+
+    // Initialize or update Step 2 showtimes and experiences for current cinema and pre-selected format/time
+    updateStep2ForCinema(state.cinema, formatParam, timeParam);
 
     if (formatParam) {
       state.format = formatParam;

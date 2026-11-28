@@ -119,6 +119,37 @@
     }
   }
 
+  function isValidEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  }
+
+  function showInputError(input, message) {
+    if (!input) return;
+    input.classList.add('is-invalid');
+    var parent = input.closest('.auth-field') || input.parentElement;
+    if (!parent) return;
+    var err = parent.querySelector('.auth-field-error');
+    if (!err) {
+      err = document.createElement('div');
+      err.className = 'auth-field-error';
+      parent.appendChild(err);
+    }
+    err.textContent = message;
+    err.classList.add('is-visible');
+  }
+
+  function clearInputError(input) {
+    if (!input) return;
+    input.classList.remove('is-invalid');
+    var parent = input.closest('.auth-field') || input.parentElement;
+    if (!parent) return;
+    var err = parent.querySelector('.auth-field-error');
+    if (err) {
+      err.textContent = '';
+      err.classList.remove('is-visible');
+    }
+  }
+
   function resetForms() {
     var ids = [
       'authSignupName', 'authSignupEmail', 'authSignupPwd', 'authSignupConfirm',
@@ -127,6 +158,7 @@
     ids.forEach(function (id) {
       var el = document.getElementById(id);
       if (!el) return;
+      clearInputError(el);
       if (el.type === 'checkbox') { el.checked = true; }
       else { el.value = ''; }
     });
@@ -276,14 +308,52 @@
     /* Live password rules */
     if (pwdInput) pwdInput.addEventListener('input', function () { validatePwd(pwdInput.value); });
 
+    var signupNameEl = document.getElementById('authSignupName');
+    var signupEmailEl = document.getElementById('authSignupEmail');
+    var loginEmailEl = document.getElementById('authLoginEmail');
+
+    if (signupEmailEl) {
+      signupEmailEl.addEventListener('input', function () {
+        clearInputError(signupEmailEl);
+      });
+    }
+    if (loginEmailEl) {
+      loginEmailEl.addEventListener('input', function () {
+        clearInputError(loginEmailEl);
+      });
+    }
+
     /* ---- Sign Up form submit ---- */
     if (formSignup) {
       formSignup.addEventListener('submit', function (e) {
         e.preventDefault();
-        var name  = (document.getElementById('authSignupName').value  || '').trim() || 'User';
-        var email = (document.getElementById('authSignupEmail').value || '').trim() || 'user@email.com';
+        var nameInput = document.getElementById('authSignupName');
+        var emailInput = document.getElementById('authSignupEmail');
+        var pwdInput = document.getElementById('authSignupPwd');
+
+        var name = (nameInput ? nameInput.value : '').trim();
+        var email = (emailInput ? emailInput.value : '').trim();
+        var pwd = (pwdInput ? pwdInput.value : '').trim();
+
+        var hasError = false;
+
+        if (!name && nameInput) {
+          showInputError(nameInput, 'Name is required.');
+          hasError = true;
+        }
+
+        if (!email) {
+          showInputError(emailInput, 'Email address is required.');
+          hasError = true;
+        } else if (!isValidEmail(email)) {
+          showInputError(emailInput, 'Please enter a valid email address (e.g., user@example.com).');
+          hasError = true;
+        }
+
+        if (hasError) return;
+
         /* ↑ Replace with real API call. On success → TigerAuth.login(name, email) */
-        TigerAuth.login(name, email);
+        TigerAuth.login(name || 'User', email);
         closeModal();
       });
     }
@@ -292,7 +362,17 @@
     if (formLogin) {
       formLogin.addEventListener('submit', function (e) {
         e.preventDefault();
-        var email = (document.getElementById('authLoginEmail').value || '').trim() || 'user@email.com';
+        var emailInput = document.getElementById('authLoginEmail');
+        var email = (emailInput ? emailInput.value : '').trim();
+
+        if (!email) {
+          showInputError(emailInput, 'Email address is required.');
+          return;
+        } else if (!isValidEmail(email)) {
+          showInputError(emailInput, 'Please enter a valid email address (e.g., user@example.com).');
+          return;
+        }
+
         /* ↑ Replace with real API call. On success → TigerAuth.login(name, email) */
         /* Derive a display name from email prefix until backend is ready */
         var name = email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });

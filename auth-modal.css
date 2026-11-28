@@ -622,9 +622,10 @@
   display: flex;
   gap: 2rem;
   max-width: 900px;
-  margin: 2.5rem auto;
+  margin: 3.5rem auto 7rem;
   padding: 0 1.5rem 3rem;
   align-items: flex-start;
+  min-height: calc(100vh - 480px);
 }
 
 /* ---- Sidebar ---- */

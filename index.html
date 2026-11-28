@@ -128,7 +128,7 @@
               animated adventure is a fun-filled treat for the whole family!
             </p>
             <div class="hero-buttons">
-              <a href="#" class="btn btn-solid btn-sm">Play Trailer</a>
+              <button type="button" class="btn btn-solid btn-sm hero-trailer-btn" data-movie="Toy Story 5">Play Trailer</button>
               <a href="booking.html?movie=Toy+Story+5" class="btn btn-outline btn-sm">Book Now</a>
             </div>
           </div>
@@ -168,8 +168,8 @@
               is a powerful look at survival and dignity.
             </p>
             <div class="hero-buttons">
-              <a href="#" class="btn btn-solid btn-sm">Play Trailer</a>
-              <a href="#" class="btn btn-outline btn-sm">Book Now</a>
+              <button type="button" class="btn btn-solid btn-sm hero-trailer-btn" data-movie="2 Valid IDs">Play Trailer</button>
+              <a href="booking.html?movie=2+Valid+IDs" class="btn btn-outline btn-sm">Book Now</a>
             </div>
           </div>
         </article>
@@ -208,8 +208,8 @@
               resilience!
             </p>
             <div class="hero-buttons">
-              <a href="#" class="btn btn-solid btn-sm">Play Trailer</a>
-              <a href="#" class="btn btn-outline btn-sm">Book Now</a>
+              <button type="button" class="btn btn-solid btn-sm hero-trailer-btn" data-movie="The Odyssey">Play Trailer</button>
+              <a href="booking.html?movie=The+Odyssey" class="btn btn-outline btn-sm">Book Now</a>
             </div>
           </div>
         </article>
@@ -248,8 +248,8 @@
               a must-see for fans everywhere!
             </p>
             <div class="hero-buttons">
-              <a href="#" class="btn btn-solid btn-sm">Play Trailer</a>
-              <a href="#" class="btn btn-outline btn-sm">Remind Me</a>
+              <button type="button" class="btn btn-solid btn-sm hero-trailer-btn" data-movie="Wicked: For Good">Play Trailer</button>
+              <a href="booking.html?movie=Wicked%3A%20For%20Good&mode=coming-soon" class="btn btn-outline btn-sm">View Details</a>
             </div>
           </div>
         </article>
@@ -288,8 +288,8 @@
               spectacle!
             </p>
             <div class="hero-buttons">
-              <a href="#" class="btn btn-solid btn-sm">Play Trailer</a>
-              <a href="#" class="btn btn-outline btn-sm">Remind Me</a>
+              <button type="button" class="btn btn-solid btn-sm hero-trailer-btn" data-movie="Spider-Man: Brand New Day">Play Trailer</button>
+              <a href="booking.html?movie=Spider-Man%3A%20Brand%20New%20Day&mode=coming-soon" class="btn btn-outline btn-sm">View Details</a>
             </div>
           </div>
         </article>
@@ -475,6 +475,35 @@
     </div>
   </footer>
 
+  <!-- ================= WATCH TRAILER MODAL ================= -->
+  <div class="bk-trailer-modal-overlay" id="bkTrailerModal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="bkTrailerModalTitle">
+    <div class="bk-trailer-modal-dialog">
+      <div class="bk-trailer-screen">
+        <!-- Big Play Button Overlay -->
+        <button class="bk-trailer-play-circle" id="bkTrailerPlayBtn" type="button" aria-label="Play trailer">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </button>
+
+        <!-- Video Bottom Controls Strip -->
+        <div class="bk-trailer-bottom-bar">
+          <div class="bk-trailer-progress-wrap">
+            <div class="bk-trailer-progress-bar"></div>
+          </div>
+          <div class="bk-trailer-meta-row">
+            <span class="bk-trailer-title-txt" id="bkTrailerModalTitle">Toy Story 5 &bull; Official Trailer</span>
+            <span class="bk-trailer-time-txt" id="bkTrailerModalTime">01:30</span>
+          </div>
+          <div class="bk-trailer-actions">
+            <button class="bk-trailer-back-btn" id="bkTrailerCloseBtn" type="button">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     /* Hero carousel: centre banner keeps a fixed size, neighbours peek in from the sides */
     (function () {
@@ -621,7 +650,7 @@
 
       // Pointer events support both mouse drag & touch swipe
       stage.addEventListener('pointerdown', function (e) {
-        if (e.target.closest('button') || e.target.closest('.hero-controls')) return;
+        if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.hero-controls')) return;
         onDragStart(e.clientX);
         try { stage.setPointerCapture(e.pointerId); } catch (_) { }
       });
@@ -678,6 +707,71 @@
       pauseBtn.setAttribute('aria-label', playing ? 'Pause slideshow' : 'Play slideshow');
       render();
       start();
+    })();
+
+    /* Trailer Modal for Landing Page Hero */
+    (function () {
+      var modal = document.getElementById('bkTrailerModal');
+      var closeBtn = document.getElementById('bkTrailerCloseBtn');
+      var titleEl = document.getElementById('bkTrailerModalTitle');
+      var timeEl = document.getElementById('bkTrailerModalTime');
+      var playBtn = document.getElementById('bkTrailerPlayBtn');
+      var trailerBtns = document.querySelectorAll('.hero-trailer-btn');
+
+      var TRAILERS = {
+        'Toy Story 5': { title: 'Toy Story 5 \u2022 Official Trailer', duration: '01:30' },
+        '2 Valid IDs': { title: '2 Valid IDs \u2022 Official Trailer', duration: '01:45' },
+        'The Odyssey': { title: 'The Odyssey \u2022 Official Trailer', duration: '01:20' },
+        'Wicked: For Good': { title: 'Wicked: For Good \u2022 Official Trailer', duration: '02:18' },
+        'Spider-Man: Brand New Day': { title: 'Spider-Man: Brand New Day \u2022 Official Trailer', duration: '02:55' }
+      };
+
+      if (!modal) return;
+
+      function openModal(movieName) {
+        var info = TRAILERS[movieName] || { title: (movieName || 'Movie') + ' \u2022 Official Trailer', duration: '01:30' };
+        if (titleEl) titleEl.textContent = info.title;
+        if (timeEl) timeEl.textContent = info.duration;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      trailerBtns.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var movie = btn.getAttribute('data-movie') || 'Movie';
+          openModal(movie);
+        });
+      });
+
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+          closeModal();
+        }
+      });
+
+      if (playBtn) {
+        playBtn.addEventListener('click', function () {
+          playBtn.style.transform = 'translate(-50%, -50%) scale(0.92)';
+          setTimeout(function () {
+            playBtn.style.transform = '';
+          }, 180);
+        });
+      }
     })();
   </script>
   <script src="script.js"></script>

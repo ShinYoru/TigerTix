@@ -102,25 +102,33 @@
 
   /* ---- Populate movie hero from data ---- */
   
-  // Show / Hide toggle for password & CVC fields
+  // Show / Hide toggle for password & CVC fields (Event Delegation for reliability)
   function initPasswordToggles() {
-    document.querySelectorAll('.pw-field-wrap').forEach(function (wrap) {
-      var btn = wrap.querySelector('.pw-toggle-btn');
+    if (window._pwTogglesDelegated) return;
+    window._pwTogglesDelegated = true;
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.pw-toggle-btn');
+      if (!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
+
+      var wrap = btn.closest('.pw-field-wrap');
+      if (!wrap) return;
+
       var input = wrap.querySelector('input');
-      if (!btn || !input) return;
+      if (!input) return;
 
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        var isPassword = input.type === 'password';
-        input.type = isPassword ? 'text' : 'password';
+      var isPassword = input.type === 'password';
+      input.type = isPassword ? 'text' : 'password';
 
-        var eyeOn = btn.querySelector('.eye-icon');
-        var eyeOff = btn.querySelector('.eye-off-icon');
-        if (eyeOn && eyeOff) {
-          eyeOn.style.display = isPassword ? 'none' : 'block';
-          eyeOff.style.display = isPassword ? 'block' : 'none';
-        }
-      });
+      var eyeOn = btn.querySelector('.eye-icon');
+      var eyeOff = btn.querySelector('.eye-off-icon');
+
+      if (eyeOn && eyeOff) {
+        eyeOn.style.display = isPassword ? 'none' : '';
+        eyeOff.style.display = isPassword ? '' : 'none';
+      }
     });
   }
 
@@ -895,6 +903,7 @@
      ========================================================= */
   function populateEticket() {
     var key = window._bkMovieKey || DEFAULT_MOVIE;
+    var movieObj = MOVIES[key] || MOVIES[DEFAULT_MOVIE] || {};
 
     // Generate booking reference like TIX - 0001
     var refNum = Math.floor(1000 + Math.random() * 9000);
@@ -926,6 +935,31 @@
     if (el('etOrderSub'))   el('etOrderSub').textContent   = 'Order #' + orderNum + ' \u2022 ' + formatCurrency(total) + ' paid';
 
     if (el('confirmEmail')) el('confirmEmail').textContent = state.email || 'your email';
+
+    // Save this confirmed ticket to user bookings in localStorage
+    try {
+      var existing = [];
+      var stored = localStorage.getItem('tigertix_user_bookings');
+      if (stored) {
+        existing = JSON.parse(stored);
+      }
+      var newBooking = {
+        id: ref.replace(/\s+/g, ''),
+        movie: key,
+        cinema: state.cinema || 'Glorietta 4',
+        format: (state.format || 'Regular') + ' 2D',
+        showtime: month + ' ' + day + ', 2026 \u2022 ' + time,
+        seats: seatsText,
+        total: formatCurrency(total),
+        reference: ref,
+        poster: movieObj.poster || 'images/toystory-5.jpg',
+        status: 'upcoming',
+        btnText: 'View e-ticket',
+        btnAction: 'ticket'
+      };
+      existing.unshift(newBooking);
+      localStorage.setItem('tigertix_user_bookings', JSON.stringify(existing));
+    } catch (e) {}
   }
 
   function initTicketCopyAndPrint() {
@@ -1041,6 +1075,30 @@
         if (!canProceed()) return;
 
         if (currentStep === 4) {
+          // Check if user is logged in before proceeding to final ticket
+          var user = window.TigerAuth && window.TigerAuth.getUser ? window.TigerAuth.getUser() : null;
+          if (!user) {
+            try {
+              var raw = localStorage.getItem('tigertix_user');
+              if (raw) user = JSON.parse(raw);
+            } catch (e) {}
+          }
+
+          if (!user) {
+            alert('Please log in first to complete your reservation and view your e-ticket.');
+            if (window.TigerAuth && typeof window.TigerAuth.open === 'function') {
+              window.TigerAuth.open('login');
+            } else {
+              var authOverlay = document.getElementById('authOverlay');
+              if (authOverlay) {
+                authOverlay.classList.add('is-open');
+                authOverlay.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+              }
+            }
+            return;
+          }
+
           if (!validateStep4()) return;
           populateEticket();
         }
@@ -1109,7 +1167,19 @@
     initTrailerModal();
     initTicketCopyAndPrint();
     initNavigation();
-    goToStep(1);
+
+    // Check if directly viewing an existing ticket from account bookings
+    var viewParam = getUrlParam('view');
+    var refParam = getUrlParam('ref');
+    if (viewParam === 'ticket') {
+      var key = window._bkMovieKey || DEFAULT_MOVIE;
+      var el = function (id) { return document.getElementById(id); };
+      if (el('eTicketRef') && refParam) el('eTicketRef').textContent = refParam;
+      if (el('etTitle')) el('etTitle').textContent = key;
+      goToStep(5);
+    } else {
+      goToStep(1);
+    }
   });
 
 })();

@@ -41,7 +41,9 @@
     }
   };
 
-  /* Expose globally so account-settings.html can call TigerAuth.logout() */
+  /* Expose globally so other pages and scripts can check auth and trigger modal */
+  TigerAuth.open = openModal;
+  TigerAuth.close = closeModal;
   window.TigerAuth = TigerAuth;
 
   /* =====================================================================
@@ -187,25 +189,33 @@
      WIRE EVERYTHING
      ===================================================================== */
   
-  // Show / Hide toggle for password & CVC fields
+  // Show / Hide toggle for password & CVC fields (Event Delegation for reliability)
   function initPasswordToggles() {
-    document.querySelectorAll('.pw-field-wrap').forEach(function (wrap) {
-      var btn = wrap.querySelector('.pw-toggle-btn');
+    if (window._pwTogglesDelegated) return;
+    window._pwTogglesDelegated = true;
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.pw-toggle-btn');
+      if (!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
+
+      var wrap = btn.closest('.pw-field-wrap');
+      if (!wrap) return;
+
       var input = wrap.querySelector('input');
-      if (!btn || !input) return;
+      if (!input) return;
 
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        var isPassword = input.type === 'password';
-        input.type = isPassword ? 'text' : 'password';
+      var isPassword = input.type === 'password';
+      input.type = isPassword ? 'text' : 'password';
 
-        var eyeOn = btn.querySelector('.eye-icon');
-        var eyeOff = btn.querySelector('.eye-off-icon');
-        if (eyeOn && eyeOff) {
-          eyeOn.style.display = isPassword ? 'none' : 'block';
-          eyeOff.style.display = isPassword ? 'block' : 'none';
-        }
-      });
+      var eyeOn = btn.querySelector('.eye-icon');
+      var eyeOff = btn.querySelector('.eye-off-icon');
+
+      if (eyeOn && eyeOff) {
+        eyeOn.style.display = isPassword ? 'none' : '';
+        eyeOff.style.display = isPassword ? '' : 'none';
+      }
     });
   }
 

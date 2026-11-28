@@ -782,6 +782,195 @@
 
 .acct-btn-cancel:hover { background: rgba(255,255,255,0.12); color: #fff; }
 
+/* Bookings & Transactions history styling */
+.acct-bookings-header {
+  margin-bottom: 1.6rem;
+}
+
+.acct-panel-subtitle {
+  color: #71717a;
+  font-size: 0.88rem;
+  margin-bottom: 1.2rem;
+}
+
+.acct-filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.acct-filter-tab {
+  background: #1e1e24;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #a1a1aa;
+  padding: 0.45rem 1.15rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.acct-filter-tab:hover {
+  background: #27272e;
+  color: #fff;
+}
+
+.acct-filter-tab.is-active {
+  background: #f2c935;
+  color: #0d0d0f;
+  border-color: #f2c935;
+  font-weight: 700;
+}
+
+.acct-bookings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.acct-booking-card {
+  display: flex;
+  background: #18181c;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 1.1rem;
+  gap: 1.2rem;
+  align-items: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.acct-booking-card:hover {
+  border-color: rgba(242, 201, 53, 0.3);
+  transform: translateY(-2px);
+}
+
+.acct-booking-poster-wrap {
+  width: 72px;
+  height: 98px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #27272a;
+}
+
+.acct-booking-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.acct-booking-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.acct-booking-main-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.acct-booking-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.2rem;
+  letter-spacing: -0.01em;
+}
+
+.acct-booking-subtitle {
+  font-size: 0.78rem;
+  color: #8e8e98;
+  margin: 0;
+}
+
+.acct-booking-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.42rem 1.05rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.acct-booking-btn-ticket {
+  border: 1.5px solid #f2c935;
+  color: #f2c935;
+  background: transparent;
+}
+
+.acct-booking-btn-ticket:hover {
+  background: #f2c935;
+  color: #0d0d0f;
+}
+
+.acct-booking-btn-book {
+  border: 1.5px solid #f2c935;
+  color: #f2c935;
+  background: transparent;
+}
+
+.acct-booking-btn-book:hover {
+  background: #f2c935;
+  color: #0d0d0f;
+}
+
+.acct-booking-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+  padding-top: 0.2rem;
+}
+
+.acct-meta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.acct-meta-label {
+  font-size: 0.68rem;
+  color: #71717a;
+  text-transform: capitalize;
+}
+
+.acct-meta-val {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #e4e4e7;
+}
+
+.acct-empty-bookings {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #71717a;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .acct-booking-meta-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+  .acct-booking-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 /* Placeholder panels for Bookings & Change Password */
 .acct-placeholder {
   display: flex;
@@ -819,7 +1008,9 @@
   align-items: center;
 }
 
-.pw-field-wrap .auth-input {
+.pw-field-wrap .auth-input,
+.pw-field-wrap .acct-input,
+.pw-field-wrap .bk-form-input {
   width: 100%;
   padding-right: 2.8rem;
 }

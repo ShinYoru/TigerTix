@@ -15,7 +15,7 @@
   <!-- ================= HEADER ================= -->
   <header class="site-header">
     <a href="index.html" class="brand" aria-label="TigerTix home">
-      <img src="images/logo.jpeg" alt="TigerTix logo" class="brand-logo">
+      <img src="images/logo.png" alt="TigerTix logo" class="brand-logo">
       <span class="brand-text">TIGER<span>TIX</span></span>
     </a>
 
@@ -109,15 +109,18 @@
 
         <!-- BOOKINGS & TRANSACTIONS -->
         <div class="acct-view" id="panelBookings">
-          <h2 class="acct-panel-title">Bookings &amp; Transactions</h2>
-          <div class="acct-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="7" width="20" height="14" rx="2"/>
-              <path d="M16 3H8M12 3v4"/>
-              <line x1="8" y1="13" x2="16" y2="13"/>
-              <line x1="8" y1="17" x2="12" y2="17"/>
-            </svg>
-            <p>No bookings yet. Book a movie to see your tickets here!</p>
+          <div class="acct-bookings-header">
+            <h2 class="acct-panel-title" style="margin-bottom:0.25rem;">Bookings &amp; Transactions</h2>
+            <p class="acct-panel-subtitle">Your upcoming and past reservations.</p>
+            <div class="acct-filter-tabs">
+              <button type="button" class="acct-filter-tab is-active" data-filter="all">All</button>
+              <button type="button" class="acct-filter-tab" data-filter="upcoming">Upcoming</button>
+              <button type="button" class="acct-filter-tab" data-filter="history">History</button>
+            </div>
+          </div>
+
+          <div class="acct-bookings-list" id="acctBookingsList">
+            <!-- Populated dynamically via JS -->
           </div>
         </div>
 
@@ -127,15 +130,33 @@
           <form id="acctPasswordForm" novalidate>
             <div class="acct-field">
               <label class="acct-label" for="acctCurrentPwd">Current Password</label>
-              <input class="acct-input" type="password" id="acctCurrentPwd" placeholder="Enter current password" autocomplete="current-password">
+              <div class="pw-field-wrap">
+                <input class="acct-input" type="password" id="acctCurrentPwd" placeholder="Enter current password" autocomplete="current-password">
+                <button type="button" class="pw-toggle-btn" aria-label="Show/hide password">
+                  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
             </div>
             <div class="acct-field">
               <label class="acct-label" for="acctNewPwd">New Password</label>
-              <input class="acct-input" type="password" id="acctNewPwd" placeholder="At least 8 characters" autocomplete="new-password">
+              <div class="pw-field-wrap">
+                <input class="acct-input" type="password" id="acctNewPwd" placeholder="Enter your password" autocomplete="new-password">
+                <button type="button" class="pw-toggle-btn" aria-label="Show/hide password">
+                  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
             </div>
             <div class="acct-field">
               <label class="acct-label" for="acctConfirmPwd">Confirm New Password</label>
-              <input class="acct-input" type="password" id="acctConfirmPwd" placeholder="Re-enter new password" autocomplete="new-password">
+              <div class="pw-field-wrap">
+                <input class="acct-input" type="password" id="acctConfirmPwd" placeholder="Re-enter new password" autocomplete="new-password">
+                <button type="button" class="pw-toggle-btn" aria-label="Show/hide password">
+                  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
             </div>
             <div class="acct-panel-actions">
               <button class="acct-btn-save" type="submit">Update Password</button>
@@ -153,7 +174,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <a href="index.html" class="brand brand--lg" aria-label="TigerTix home">
-          <img src="images/logo.jpeg" alt="TigerTix logo" class="brand-logo brand-logo--lg">
+          <img src="images/logo.png" alt="TigerTix logo" class="brand-logo brand-logo--lg">
           <span class="brand-text">TIGER<span>TIX</span></span>
         </a>
         <p class="connect-label">Let's Connect</p>
@@ -206,7 +227,7 @@
     <div class="auth-card">
       <header class="auth-topbar">
         <a class="auth-topbar-brand" href="index.html" tabindex="-1">
-          <img src="images/logo.jpeg" alt="">
+          <img src="images/logo.png" alt="">
           <span>TIGER<span class="tix">TIX</span></span>
         </a>
         <button class="auth-close-btn" id="authCloseBtn" type="button" aria-label="Close">Back to home</button>
@@ -377,6 +398,140 @@
         pwdForm.reset();
       });
     }
+
+    /* ---- Bookings & Transactions history ---- */
+    var sampleBookings = [
+      {
+        id: 'TIX-001',
+        movie: 'Toy Story 5',
+        cinema: 'Glorietta 4',
+        format: 'Regular 2D',
+        showtime: 'Nov 20, 2026 \u2022 11:30 AM',
+        seats: 'F10',
+        total: '\u20b1350.00',
+        reference: 'TIX - 001',
+        poster: 'images/toystory-5.jpg',
+        status: 'upcoming',
+        btnText: 'View e-ticket',
+        btnAction: 'ticket'
+      },
+      {
+        id: 'TIX-002',
+        movie: '2 Valid IDs',
+        cinema: 'SM Mall of Asia',
+        format: 'Regular 2D',
+        showtime: 'Nov 6, 2026 \u2022 12:30 PM',
+        seats: 'B4, B5',
+        total: '\u20b1700.00',
+        reference: 'TIX - 002',
+        poster: 'images/2-valid-ids.jpeg',
+        status: 'history',
+        btnText: 'Book again',
+        btnAction: 'book'
+      },
+      {
+        id: 'TIX-003',
+        movie: 'The Odyssey',
+        cinema: 'Robinsons Galleria',
+        format: 'Regular 2D',
+        showtime: 'Nov 11, 2026 \u2022 1:30 PM',
+        seats: 'A6, A7',
+        total: '\u20b1700.00',
+        reference: 'TIX - 003',
+        poster: 'images/the-odyssey.jpg',
+        status: 'history',
+        btnText: 'Book again',
+        btnAction: 'book'
+      }
+    ];
+
+    function getBookings() {
+      try {
+        var stored = localStorage.getItem('tigertix_user_bookings');
+        if (stored) {
+          var parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed;
+          }
+        }
+      } catch (e) {}
+      return sampleBookings;
+    }
+
+    var currentFilter = 'all';
+
+    function renderBookings() {
+      var listEl = document.getElementById('acctBookingsList');
+      if (!listEl) return;
+
+      var all = getBookings();
+      var filtered = all.filter(function (b) {
+        if (currentFilter === 'all') return true;
+        return b.status === currentFilter;
+      });
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = '<div class="acct-empty-bookings"><p>No ' + currentFilter + ' reservations found.</p></div>';
+        return;
+      }
+
+      var html = '';
+      filtered.forEach(function (b) {
+        var isTicket = b.btnAction === 'ticket' || b.status === 'upcoming';
+        var actionAttr = isTicket
+          ? 'href="booking.html?movie=' + encodeURIComponent(b.movie) + '&view=ticket&ref=' + encodeURIComponent(b.reference) + '"'
+          : 'href="booking.html?movie=' + encodeURIComponent(b.movie) + '"';
+        var btnClass = isTicket ? 'acct-booking-btn acct-booking-btn-ticket' : 'acct-booking-btn acct-booking-btn-book';
+        var btnLabel = isTicket ? 'View e-ticket' : 'Book again';
+
+        html += '<div class="acct-booking-card" data-status="' + b.status + '">';
+        html += '  <div class="acct-booking-poster-wrap">';
+        html += '    <img src="' + (b.poster || 'images/logo.png') + '" alt="' + b.movie + '" class="acct-booking-poster" onerror="this.src=\'images/logo.png\'">';
+        html += '  </div>';
+        html += '  <div class="acct-booking-details">';
+        html += '    <div class="acct-booking-main-row">';
+        html += '      <div class="acct-booking-title-group">';
+        html += '        <h3 class="acct-booking-title">' + b.movie + '</h3>';
+        html += '        <p class="acct-booking-subtitle">' + b.cinema + ' \u2022 ' + b.format + '</p>';
+        html += '      </div>';
+        html += '      <a ' + actionAttr + ' class="' + btnClass + '">' + btnLabel + '</a>';
+        html += '    </div>';
+        html += '    <div class="acct-booking-meta-grid">';
+        html += '      <div class="acct-meta-col">';
+        html += '        <span class="acct-meta-label">Showtime</span>';
+        html += '        <span class="acct-meta-val">' + b.showtime + '</span>';
+        html += '      </div>';
+        html += '      <div class="acct-meta-col">';
+        html += '        <span class="acct-meta-label">Seats</span>';
+        html += '        <span class="acct-meta-val">' + b.seats + '</span>';
+        html += '      </div>';
+        html += '      <div class="acct-meta-col">';
+        html += '        <span class="acct-meta-label">Total</span>';
+        html += '        <span class="acct-meta-val">' + b.total + '</span>';
+        html += '      </div>';
+        html += '      <div class="acct-meta-col">';
+        html += '        <span class="acct-meta-label">Reference</span>';
+        html += '        <span class="acct-meta-val">' + b.reference + '</span>';
+        html += '      </div>';
+        html += '    </div>';
+        html += '  </div>';
+        html += '</div>';
+      });
+
+      listEl.innerHTML = html;
+    }
+
+    // Filter tabs click handling
+    document.querySelectorAll('.acct-filter-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll('.acct-filter-tab').forEach(function (t) { t.classList.remove('is-active'); });
+        tab.classList.add('is-active');
+        currentFilter = tab.dataset.filter || 'all';
+        renderBookings();
+      });
+    });
+
+    renderBookings();
 
     /* Run after auth-modal.js has fired */
     if (document.readyState === 'loading') {

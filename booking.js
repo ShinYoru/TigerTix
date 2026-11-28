@@ -262,6 +262,20 @@
     refCode: ''
   };
 
+  function updatePriceForFormat(fmt) {
+    var movie = window._bkMovie || {};
+    var format = fmt || state.format;
+    if (format === "Director's Club") {
+      state.ticketPrice = movie.priceDirectors || 600;
+    } else if (format === 'IMAX') {
+      state.ticketPrice = movie.priceIMAX || 500;
+    } else if (format === 'ScreenX') {
+      state.ticketPrice = movie.priceScreenX || 450;
+    } else {
+      state.ticketPrice = movie.priceRegular || 350;
+    }
+  }
+
   function goToStep(n) {
     if (n < 1 || n > TOTAL_STEPS) return;
 
@@ -328,7 +342,9 @@
     }
 
     if (n === 3) {
+      updatePriceForFormat();
       buildSeatMap();
+      updateSeatSummary();
       var s3info = document.getElementById('bkStep3Info');
       if (s3info) {
         var dayPart = (state.dayName ? state.dayName + ' ' : '') + state.day + ' ' + (state.month || 'Nov');
@@ -337,6 +353,7 @@
     }
 
     if (n === 4) {
+      updatePriceForFormat();
       updateOrderSummary();
     }
 
@@ -574,6 +591,15 @@
               group.classList.add('is-hidden');
             }
           });
+
+          // If a specific experience tab is selected and current format does not match it,
+          // automatically select the first available showtime in that experience group
+          if (selectedFormat !== 'all' && state.format !== selectedFormat) {
+            var firstTimeInFmt = container.querySelector('.bk-dt-showtime-group[data-group-format="' + selectedFormat + '"] .bk-dt-time-btn');
+            if (firstTimeInFmt) {
+              firstTimeInFmt.click();
+            }
+          }
         });
       });
       setTimeout(function () { updateFormatGlider(); }, 40);
@@ -704,6 +730,14 @@
             group.classList.add('is-hidden');
           }
         });
+
+        if (selectedFormat !== 'all' && state.format !== selectedFormat) {
+          var timeContainer = document.getElementById('bkTimeSlotsContainer');
+          var firstTimeInFmt = timeContainer ? timeContainer.querySelector('.bk-dt-showtime-group[data-group-format="' + selectedFormat + '"] .bk-dt-time-btn') : null;
+          if (firstTimeInFmt) {
+            firstTimeInFmt.click();
+          }
+        }
       });
     });
 

@@ -621,16 +621,17 @@
 .acct-page {
   display: flex;
   gap: 2rem;
-  max-width: 900px;
+  max-width: 1100px;
   margin: 3.5rem auto 7rem;
-  padding: 0 1.5rem 3rem;
+  padding: 0 2rem 3rem;
   align-items: flex-start;
   min-height: calc(100vh - 480px);
+  box-sizing: border-box;
 }
 
 /* ---- Sidebar ---- */
 .acct-sidebar {
-  width: 220px;
+  width: 260px;
   flex-shrink: 0;
   background: #111114;
   border: 1px solid rgba(255,255,255,0.08);

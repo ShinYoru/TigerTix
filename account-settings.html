@@ -115,7 +115,7 @@
               </div>
               <div class="acct-info-row">
                 <span class="acct-info-label">Contact Number</span>
-                <span class="acct-info-val" id="viewPhone">+63 0912 345 678</span>
+                <span class="acct-info-val" id="viewPhone"></span>
               </div>
             </div>
           </div>
@@ -127,6 +127,7 @@
               <div class="acct-field">
                 <label class="acct-label" for="acctName">Full Name</label>
                 <input class="acct-input" type="text" id="acctName" placeholder="Your full name" autocomplete="name">
+                <div class="auth-field-error" id="acctNameError"></div>
               </div>
               <div class="acct-field">
                 <label class="acct-label" for="acctEmail">Email Address</label>
@@ -137,6 +138,7 @@
               <div class="acct-field">
                 <label class="acct-label" for="acctPhone">Contact Number</label>
                 <input class="acct-input" type="tel" id="acctPhone" placeholder="+63 9XX XXX XXXX" autocomplete="tel">
+                <div class="auth-field-error" id="acctPhoneError"></div>
               </div>
               <div class="acct-panel-actions">
                 <button class="acct-btn-save" type="submit">Save Changes</button>
@@ -187,6 +189,7 @@
                   </svg>
                 </button>
               </div>
+              <div class="auth-field-error" id="acctCurrentPwdError"></div>
             </div>
             <div class="acct-field">
               <label class="acct-label" for="acctNewPwd">New Password</label>
@@ -208,6 +211,22 @@
                   </svg>
                 </button>
               </div>
+              <div class="auth-pwd-rules" style="margin-top: 0.6rem;">
+                <p class="auth-pwd-rules-title">Your password must include at least:</p>
+                <div class="auth-pwd-rule" id="acctRuleLen"><span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>8 characters</div>
+                <div class="auth-pwd-rule" id="acctRuleUpper"><span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>1 uppercase letter (A–Z)</div>
+                <div class="auth-pwd-rule" id="acctRuleNum"><span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>1 number (0–9)</div>
+                <div class="auth-pwd-rule" id="acctRuleSpecial"><span class="auth-rule-dot"><svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></span>1 special character (!@#$%^&amp;*)</div>
+              </div>
+              <div class="auth-field-error" id="acctNewPwdError"></div>
             </div>
             <div class="acct-field">
               <label class="acct-label" for="acctConfirmPwd">Confirm New Password</label>
@@ -229,9 +248,10 @@
                   </svg>
                 </button>
               </div>
+              <div class="auth-field-error" id="acctConfirmPwdError"></div>
             </div>
             <div class="acct-panel-actions">
-              <button class="acct-btn-save" type="submit">Update Password</button>
+              <button class="acct-btn-save" id="acctUpdatePwdBtn" type="submit" disabled>Update Password</button>
               <button class="acct-btn-cancel" type="button" id="acctCancelPwd">Cancel</button>
             </div>
           </form>
@@ -407,6 +427,22 @@
     </div>
   </div>
 
+  <!-- ================= PASSWORD UPDATED SUCCESS ALERT MODAL ================= -->
+  <div class="acct-alert-overlay" id="acctPwdSuccessModal" role="dialog" aria-modal="true" aria-labelledby="acctPwdAlertTitle" aria-hidden="true">
+    <div class="acct-alert-card acct-pwd-alert-card">
+      <div class="acct-alert-icon-wrap acct-alert-lock-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          <circle cx="12" cy="16" r="1"></circle>
+        </svg>
+      </div>
+      <h3 class="acct-alert-title" id="acctPwdAlertTitle">Password updated</h3>
+      <p class="acct-alert-desc">Your password has been changed. Use your new password the next time you log in to TigerTix.</p>
+      <button type="button" class="acct-alert-btn" id="acctPwdAlertDoneBtn">Done</button>
+    </div>
+  </div>
+
   <script src="auth-modal.js"></script>
 
   <script>
@@ -422,6 +458,21 @@
           window.location.href = 'index.html';
           return;
         }
+
+        // Wipe any legacy/old phone number keys that may contain the mock phone
+        ['tigertix_user_phone', 'tigertix_user_phone_' + (user.email || '').toLowerCase().trim()].forEach(function (k) {
+          var val = localStorage.getItem(k);
+          if (val && (val.indexOf('0912') > -1 || val.indexOf('345') > -1 || val.indexOf('678') > -1 || val === '+63 0912 345 678')) {
+            try { localStorage.removeItem(k); } catch (e) {}
+          }
+        });
+
+        // Also if user object in localStorage has the mock phone, clean it
+        if (user.phone && (user.phone.indexOf('0912') > -1 || user.phone.indexOf('345') > -1 || user.phone.indexOf('678') > -1)) {
+          delete user.phone;
+          try { localStorage.setItem('tigertix_user', JSON.stringify(user)); } catch (e) {}
+        }
+
         var sidebarName = document.getElementById('sidebarName');
         var sidebarEmail = document.getElementById('sidebarEmail');
         var acctName = document.getElementById('acctName');
@@ -433,17 +484,22 @@
 
         var nameVal = user.name || 'Tiger Tix';
         var emailVal = user.email || 'tigertix@gmail.com';
-        var phoneVal = user.phone || localStorage.getItem('tigertix_user_phone') || '+63 0912 345 678';
+        var userEmail = (user.email || '').toLowerCase().trim();
+        var storedPhone = localStorage.getItem('tigertix_user_phone_' + userEmail) || localStorage.getItem('tigertix_user_phone') || '';
+        if (storedPhone.indexOf('0912') > -1 || storedPhone.indexOf('345 678') > -1) {
+          storedPhone = '';
+        }
+        var phoneVal = (user.phone && user.phone.indexOf('0912') === -1) ? user.phone : storedPhone;
 
         if (sidebarName) sidebarName.textContent = nameVal;
         if (sidebarEmail) sidebarEmail.textContent = emailVal;
         if (viewName) viewName.textContent = nameVal;
         if (viewEmail) viewEmail.textContent = emailVal;
-        if (viewPhone) viewPhone.textContent = phoneVal;
+        if (viewPhone) viewPhone.textContent = phoneVal || '';
 
         if (acctName) acctName.value = nameVal;
         if (acctEmail) acctEmail.value = emailVal;
-        if (acctPhone) acctPhone.value = phoneVal;
+        if (acctPhone) acctPhone.value = phoneVal || '';
       }
 
       /* ---- Toggle between Display Mode and Edit Mode ---- */
@@ -451,7 +507,20 @@
       var acctDetailsEdit = document.getElementById('acctDetailsEdit');
       var acctEditBtn = document.getElementById('acctEditBtn');
 
+      function clearDetailsErrors() {
+        ['acctName', 'acctEmail', 'acctPhone'].forEach(function (id) {
+          var input = document.getElementById(id);
+          var err = document.getElementById(id + 'Error');
+          if (input) input.classList.remove('is-invalid');
+          if (err) {
+            err.textContent = '';
+            err.classList.remove('is-visible');
+          }
+        });
+      }
+
       function setEditMode(isEditing) {
+        clearDetailsErrors();
         if (acctDetailsDisplay) acctDetailsDisplay.style.display = isEditing ? 'none' : 'block';
         if (acctDetailsEdit) acctDetailsEdit.style.display = isEditing ? 'block' : 'none';
       }
@@ -532,17 +601,19 @@
         });
       }
 
-      var acctEmailInput = document.getElementById('acctEmail');
-      if (acctEmailInput) {
-        acctEmailInput.addEventListener('input', function () {
-          acctEmailInput.classList.remove('is-invalid');
-          var err = document.getElementById('acctEmailError');
-          if (err) {
-            err.textContent = '';
-            err.classList.remove('is-visible');
-          }
-        });
-      }
+      ['acctName', 'acctEmail', 'acctPhone'].forEach(function (id) {
+        var input = document.getElementById(id);
+        if (input) {
+          input.addEventListener('input', function () {
+            input.classList.remove('is-invalid');
+            var err = document.getElementById(id + 'Error');
+            if (err) {
+              err.textContent = '';
+              err.classList.remove('is-visible');
+            }
+          });
+        }
+      });
 
       function isValidEmail(val) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
@@ -553,48 +624,66 @@
           e.preventDefault();
           var nameInput = document.getElementById('acctName');
           var emailInput = document.getElementById('acctEmail');
+          var phoneInput = document.getElementById('acctPhone');
+          var nameErr = document.getElementById('acctNameError');
           var emailErr = document.getElementById('acctEmailError');
+          var phoneErr = document.getElementById('acctPhoneError');
 
           var name = (nameInput ? nameInput.value || '' : '').trim();
           var email = (emailInput ? emailInput.value || '' : '').trim();
-          var phone = (document.getElementById('acctPhone').value || '').trim();
+          var phone = (phoneInput ? phoneInput.value || '' : '').trim();
 
-          if (emailInput) emailInput.classList.remove('is-invalid');
-          if (emailErr) {
-            emailErr.textContent = '';
-            emailErr.classList.remove('is-visible');
+          clearDetailsErrors();
+
+          var hasError = false;
+          var firstErrorInput = null;
+
+          if (!name) {
+            if (nameInput) nameInput.classList.add('is-invalid');
+            if (nameErr) {
+              nameErr.textContent = 'Full name is required.';
+              nameErr.classList.add('is-visible');
+            }
+            hasError = true;
+            if (!firstErrorInput) firstErrorInput = nameInput;
           }
 
           if (!email) {
-            if (emailInput) {
-              emailInput.classList.add('is-invalid');
-              emailInput.focus();
-            }
+            if (emailInput) emailInput.classList.add('is-invalid');
             if (emailErr) {
               emailErr.textContent = 'Email address is required.';
               emailErr.classList.add('is-visible');
             }
-            return;
-          }
-
-          if (!isValidEmail(email)) {
-            if (emailInput) {
-              emailInput.classList.add('is-invalid');
-              emailInput.focus();
-            }
+            hasError = true;
+            if (!firstErrorInput) firstErrorInput = emailInput;
+          } else if (!isValidEmail(email)) {
+            if (emailInput) emailInput.classList.add('is-invalid');
             if (emailErr) {
               emailErr.textContent = 'Please enter a valid email address (e.g., user@example.com).';
               emailErr.classList.add('is-visible');
             }
+            hasError = true;
+            if (!firstErrorInput) firstErrorInput = emailInput;
+          }
+
+          if (hasError) {
+            if (firstErrorInput) firstErrorInput.focus();
             return;
           }
 
-          if (phone) {
-            try { localStorage.setItem('tigertix_user_phone', phone); } catch (e) {}
-          }
+          try {
+            var cleanEmail = (email || '').toLowerCase().trim();
+            if (cleanEmail) {
+              localStorage.setItem('tigertix_user_phone_' + cleanEmail, phone);
+            }
+            localStorage.setItem('tigertix_user_phone', phone);
+          } catch (e) {}
+
           if (window.TigerAuth && name) {
-            /* ↑ Replace with real API call. On success → TigerAuth.login(name, email) */
-            window.TigerAuth.login(name, email);
+            /* Update stored profile details while preserving phone */
+            try {
+              localStorage.setItem('tigertix_user', JSON.stringify({ name: name, email: email, phone: phone || null }));
+            } catch (e) {}
           }
           fillUserData();
           setEditMode(false);
@@ -611,27 +700,184 @@
         });
       }
 
-      var cancelPwd = document.getElementById('acctCancelPwd');
-      if (cancelPwd) {
-        cancelPwd.addEventListener('click', function () {
-          document.getElementById('acctPasswordForm').reset();
+      /* ---- Password Updated Modal ---- */
+      var pwdSuccessModal = document.getElementById('acctPwdSuccessModal');
+      var pwdAlertDoneBtn = document.getElementById('acctPwdAlertDoneBtn');
+
+      function showPwdSuccessModal() {
+        if (pwdSuccessModal) {
+          pwdSuccessModal.classList.add('is-active');
+          pwdSuccessModal.setAttribute('aria-hidden', 'false');
+        }
+      }
+
+      function hidePwdSuccessModal() {
+        if (pwdSuccessModal) {
+          pwdSuccessModal.classList.remove('is-active');
+          pwdSuccessModal.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      if (pwdAlertDoneBtn) {
+        pwdAlertDoneBtn.addEventListener('click', hidePwdSuccessModal);
+      }
+
+      if (pwdSuccessModal) {
+        pwdSuccessModal.addEventListener('click', function (e) {
+          if (e.target === pwdSuccessModal) {
+            hidePwdSuccessModal();
+          }
         });
       }
 
-      /* ---- Change Password form ---- */
+      /* ---- Change Password Form Validation & Rules ---- */
       var pwdForm = document.getElementById('acctPasswordForm');
+      var currentPwdInput = document.getElementById('acctCurrentPwd');
+      var newPwdInput = document.getElementById('acctNewPwd');
+      var confirmPwdInput = document.getElementById('acctConfirmPwd');
+      var updatePwdBtn = document.getElementById('acctUpdatePwdBtn');
+
+      var currentPwdErr = document.getElementById('acctCurrentPwdError');
+      var newPwdErr = document.getElementById('acctNewPwdError');
+      var confirmPwdErr = document.getElementById('acctConfirmPwdError');
+
+      var cancelPwd = document.getElementById('acctCancelPwd');
+
+      function resetPwdRules() {
+        ['acctRuleLen', 'acctRuleUpper', 'acctRuleNum', 'acctRuleSpecial'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.classList.remove('met');
+        });
+        [currentPwdInput, newPwdInput, confirmPwdInput].forEach(function (inp) {
+          if (inp) inp.classList.remove('is-invalid');
+        });
+        [currentPwdErr, newPwdErr, confirmPwdErr].forEach(function (err) {
+          if (err) {
+            err.textContent = '';
+            err.classList.remove('is-visible');
+          }
+        });
+      }
+
+      function checkPasswordCriteria(val) {
+        var rules = {
+          acctRuleLen:     val.length >= 8,
+          acctRuleUpper:   /[A-Z]/.test(val),
+          acctRuleNum:     /[0-9]/.test(val),
+          acctRuleSpecial: /[!@#$%^&*()\-_=+\[\]{};:'",.<>?/\\|`~]/.test(val)
+        };
+        Object.keys(rules).forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.classList.toggle('met', rules[id]);
+        });
+        return rules.acctRuleLen && rules.acctRuleUpper && rules.acctRuleNum && rules.acctRuleSpecial;
+      }
+
+      function updatePwdSubmitState() {
+        var cur = currentPwdInput ? currentPwdInput.value : '';
+        var npw = newPwdInput ? newPwdInput.value : '';
+        var cpw = confirmPwdInput ? confirmPwdInput.value : '';
+
+        var criteriaMet = checkPasswordCriteria(npw);
+        var curFilled = cur.trim().length > 0;
+        var confirmFilled = cpw.length > 0;
+        var match = npw === cpw;
+
+        // Button is only enabled if all requirements are fulfilled
+        if (updatePwdBtn) {
+          updatePwdBtn.disabled = !(curFilled && criteriaMet && confirmFilled && match);
+        }
+      }
+
+      [currentPwdInput, newPwdInput, confirmPwdInput].forEach(function (inp) {
+        if (!inp) return;
+        inp.addEventListener('input', function () {
+          inp.classList.remove('is-invalid');
+          var errEl = document.getElementById(inp.id + 'Error');
+          if (errEl) {
+            errEl.textContent = '';
+            errEl.classList.remove('is-visible');
+          }
+          updatePwdSubmitState();
+        });
+      });
+
+      if (cancelPwd) {
+        cancelPwd.addEventListener('click', function () {
+          if (pwdForm) pwdForm.reset();
+          resetPwdRules();
+          updatePwdSubmitState();
+        });
+      }
+
       if (pwdForm) {
         pwdForm.addEventListener('submit', function (e) {
           e.preventDefault();
-          var newPwd = document.getElementById('acctNewPwd').value;
-          var confirmPwd = document.getElementById('acctConfirmPwd').value;
-          if (newPwd !== confirmPwd) {
-            alert('Passwords do not match.');
+          var cur = (currentPwdInput ? currentPwdInput.value : '').trim();
+          var npw = newPwdInput ? newPwdInput.value : '';
+          var cpw = confirmPwdInput ? confirmPwdInput.value : '';
+
+          var criteriaMet = checkPasswordCriteria(npw);
+
+          var hasError = false;
+          var firstErrorInput = null;
+
+          if (!cur) {
+            if (currentPwdInput) currentPwdInput.classList.add('is-invalid');
+            if (currentPwdErr) {
+              currentPwdErr.textContent = 'Current password is required.';
+              currentPwdErr.classList.add('is-visible');
+            }
+            hasError = true;
+            if (!firstErrorInput) firstErrorInput = currentPwdInput;
+          }
+
+          if (!npw) {
+            if (newPwdInput) newPwdInput.classList.add('is-invalid');
+            if (newPwdErr) {
+              newPwdErr.textContent = 'New password is required.';
+              newPwdErr.classList.add('is-visible');
+            }
+            hasError = true;
+            if (!firstErrorInput) firstErrorInput = newPwdInput;
+          } else if (!criteriaMet) {
+            if (newPwdInput) newPwdInput.classList.add('is-invalid');
+            if (newPwdErr) {
+              newPwdErr.textContent = 'Please meet all password requirements.';
+              newPwdErr.classList.add('is-visible');
+            }
+            hasError = true;
+            if (!firstErrorInput) firstErrorInput = newPwdInput;
+          }
+
+          if (!cpw) {
+            if (confirmPwdInput) confirmPwdInput.classList.add('is-invalid');
+            if (confirmPwdErr) {
+              confirmPwdErr.textContent = 'Please confirm your new password.';
+              confirmPwdErr.classList.add('is-visible');
+            }
+            hasError = true;
+            if (!firstErrorInput) firstErrorInput = confirmPwdInput;
+          } else if (npw !== cpw) {
+            if (confirmPwdInput) confirmPwdInput.classList.add('is-invalid');
+            if (confirmPwdErr) {
+              confirmPwdErr.textContent = 'Passwords do not match.';
+              confirmPwdErr.classList.add('is-visible');
+            }
+            hasError = true;
+            if (!firstErrorInput) firstErrorInput = confirmPwdInput;
+          }
+
+          if (hasError) {
+            if (firstErrorInput) firstErrorInput.focus();
             return;
           }
-          /* ↑ Replace with real API call */
-          alert('Password updated successfully!');
+
+          /* Password successfully changed */
           pwdForm.reset();
+          resetPwdRules();
+          updatePwdSubmitState();
+          showPwdSuccessModal();
         });
       }
 

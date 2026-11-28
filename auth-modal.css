@@ -773,6 +773,11 @@
   background: #1e1e25;
 }
 
+.acct-input.is-invalid {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
 .acct-panel-actions {
   display: flex;
   gap: 0.9rem;
@@ -790,14 +795,21 @@
   border-radius: 999px;
   padding: 0.78rem 1.8rem;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
   box-shadow: 0 4px 18px rgba(242,201,53,0.35);
 }
 
-.acct-btn-save:hover {
+.acct-btn-save:hover:not(:disabled) {
   background: #ffd84d;
   transform: translateY(-2px);
   box-shadow: 0 7px 22px rgba(242,201,53,0.45);
+}
+
+.acct-btn-save:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
 
 .acct-btn-cancel {
@@ -930,6 +942,18 @@
 
 .acct-alert-icon-wrap svg {
   color: #eab308;
+  width: 26px;
+  height: 26px;
+}
+
+.acct-alert-lock-icon {
+  width: 58px;
+  height: 58px;
+  background: #2a2618;
+}
+
+.acct-alert-lock-icon svg {
+  color: #f2c935;
   width: 26px;
   height: 26px;
 }

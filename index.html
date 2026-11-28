@@ -500,11 +500,7 @@
       if (!n) return;
 
       var half = Math.floor(n / 2);
-      var DELAY = 5000;
       var current = 0;
-      var timer = null;
-      var trailerModalOpen = false;
-      var playing = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
       var isTransitioning = false;
       var TRANSITION_COOLDOWN = 1000; // 1-second interval to prevent spamming slides
 
@@ -526,30 +522,14 @@
         });
       }
 
-      function stop() {
-        if (timer) { clearInterval(timer); timer = null; }
-      }
-
-      function start() {
-        stop();
-        if (playing && n > 1 && !document.hidden && !trailerModalOpen) {
-          timer = setInterval(function () {
-            if (!isTransitioning) {
-              go((current + 1) % n, true);
-            }
-          }, DELAY);
-        }
-      }
-
-      function go(i, isAuto) {
-        if (!isAuto && isTransitioning) return;
+      function go(i) {
+        if (isTransitioning) return;
         var next = (i + n) % n;
-        if (next === current && !isAuto) return;
+        if (next === current) return;
 
         isTransitioning = true;
         current = next;
         render();
-        start();
 
         setTimeout(function () {
           isTransitioning = false;
@@ -596,7 +576,6 @@
         dragStartX = clientX;
         dragDiffX = 0;
         stage.classList.add('is-dragging');
-        stop();
       }
 
       function onDragMove(clientX) {
@@ -616,8 +595,6 @@
 
         if (Math.abs(dragDiffX) > 40) {
           go(current + (dragDiffX < 0 ? 1 : -1));
-        } else {
-          start();
         }
         dragDiffX = 0;
       }
@@ -660,12 +637,6 @@
         }
       }, true);
 
-      // Pause carousel while hovering slider
-      hero.addEventListener('mouseenter', stop);
-      hero.addEventListener('mouseleave', function () {
-        if (playing && !isDragging) start();
-      });
-
       // Keyboard arrow navigation
       hero.addEventListener('keydown', function (e) {
         if (e.key === 'ArrowLeft') {
@@ -675,18 +646,7 @@
         }
       });
 
-      document.addEventListener('visibilitychange', start);
-      document.addEventListener('tigertix:trailer-open', function () {
-        trailerModalOpen = true;
-        stop();
-      });
-      document.addEventListener('tigertix:trailer-close', function () {
-        trailerModalOpen = false;
-        start();
-      });
-
       render();
-      start();
     })();
 
     /* Trailer Modal for Landing Page Hero (YouTube Iframe) */

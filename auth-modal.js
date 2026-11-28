@@ -29,14 +29,22 @@
     /** Persist a signed-in user and refresh the navbar */
     login: function (name, email) {
       try {
-        localStorage.setItem(this.KEY, JSON.stringify({ name: name, email: email }));
+        localStorage.setItem(this.KEY, JSON.stringify({ name: name, email: email, phone: null }));
+        // For every new login, reset contact number to null/empty
+        localStorage.removeItem('tigertix_user_phone');
+        if (email) {
+          localStorage.removeItem('tigertix_user_phone_' + email.toLowerCase().trim());
+        }
       } catch (e) {}
       updateNavbar();
     },
 
     /** Clear the stored user and refresh the navbar */
     logout: function () {
-      try { localStorage.removeItem(this.KEY); } catch (e) {}
+      try {
+        localStorage.removeItem(this.KEY);
+        localStorage.removeItem('tigertix_user_phone');
+      } catch (e) {}
       updateNavbar();
     }
   };

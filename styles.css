@@ -1020,6 +1020,7 @@ img {
   border-radius: var(--radius);
   padding: 1rem 1rem 1.2rem;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
 }
 
 .movie-card:hover {

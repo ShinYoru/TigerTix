@@ -2183,3 +2183,110 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* Password & CVC eye toggle inside input container */
+.pw-field-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.pw-field-wrap .bk-form-input {
+  width: 100%;
+  padding-right: 2.8rem;
+}
+
+.pw-field-wrap .pw-toggle-btn {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #71717a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  z-index: 2;
+  transition: color 0.2s ease;
+}
+
+.pw-field-wrap .pw-toggle-btn:hover {
+  color: var(--accent, #f2c935);
+}
+
+/* Embedded Coming Soon Trailer Section */
+.bk-coming-soon-trailer-section {
+  padding: 3.5rem 1.5rem 5rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.bk-cs-trailer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bk-cs-header {
+  text-align: center;
+}
+
+.bk-cs-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--accent, #f2c935);
+  background: rgba(242, 201, 53, 0.12);
+  border: 1px solid rgba(242, 201, 53, 0.3);
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 0.8rem;
+}
+
+.bk-cs-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent, #f2c935);
+  box-shadow: 0 0 8px var(--accent, #f2c935);
+}
+
+.bk-cs-title {
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.4rem;
+}
+
+.bk-cs-subtitle {
+  font-size: 0.9rem;
+  color: #a1a1aa;
+}
+
+.bk-cs-player-card {
+  background: #0d0d12;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+}
+
+.bk-cs-player-screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: radial-gradient(circle at center, #262730 0%, #121318 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.8rem;
+  box-sizing: border-box;
+}

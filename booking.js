@@ -24,6 +24,39 @@
       priceDirectors: 600,
       priceScreenX: 450
     },
+    'Wicked: For Good': {
+      title: 'Wicked: For Good',
+      badge: 'PG',
+      meta: 'Fantasy/Adventure • 2hr 18m • Releasing November 2026',
+      desc: 'Elphaba and Glinda navigate their complex friendship and the pressures of Oz as their destinies begin to diverge towards greatness and infamy.',
+      cast: 'Cast: Cynthia Erivo, Ariana Grande, Jonathan Bailey, Ethan Slater, Jeff Goldblum',
+      poster: 'images/wicked.jpeg',
+      themeBg: '#132e18',
+      trailerTitle: 'Wicked: For Good • Official Trailer',
+      trailerDuration: '02:18'
+    },
+    'Moana': {
+      title: 'Moana',
+      badge: 'PG',
+      meta: 'Animation • 1hr 55m • Releasing December 2026',
+      desc: 'An adventurous teenager sails out on a daring mission to save her people, fulfilling the ancient quest of her ancestors alongside the demigod Maui.',
+      cast: "Cast: Auli'i Cravalho, Dwayne Johnson, Rachel House, Temuera Morrison",
+      poster: 'images/moana.jpeg',
+      themeBg: '#0e2b3d',
+      trailerTitle: 'Moana • Official Trailer',
+      trailerDuration: '01:55'
+    },
+    'Spider-Man: Brand New Day': {
+      title: 'Spider-Man: Brand New Day',
+      badge: 'PG',
+      meta: 'Action/Adventure • 2hr 55m • Releasing December 2026',
+      desc: 'Peter Parker begins a whole new chapter as Spider-Man facing uncharted threats across New York City with newly forged alliances.',
+      cast: 'Cast: Tom Holland, Zendaya, Jacob Batalon',
+      poster: 'images/spiderman.jpeg',
+      themeBg: '#341417',
+      trailerTitle: 'Spider-Man: Brand New Day • Official Trailer',
+      trailerDuration: '02:55'
+    },
     'The Odyssey': {
       title: 'The Odyssey',
       badge: 'PG',
@@ -68,6 +101,29 @@
   }
 
   /* ---- Populate movie hero from data ---- */
+  
+  // Show / Hide toggle for password & CVC fields
+  function initPasswordToggles() {
+    document.querySelectorAll('.pw-field-wrap').forEach(function (wrap) {
+      var btn = wrap.querySelector('.pw-toggle-btn');
+      var input = wrap.querySelector('input');
+      if (!btn || !input) return;
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+
+        var eyeOn = btn.querySelector('.eye-icon');
+        var eyeOff = btn.querySelector('.eye-off-icon');
+        if (eyeOn && eyeOff) {
+          eyeOn.style.display = isPassword ? 'none' : 'block';
+          eyeOff.style.display = isPassword ? 'block' : 'none';
+        }
+      });
+    });
+  }
+
   function populateMovieHero() {
     var key = getUrlParam('movie') || DEFAULT_MOVIE;
     var movie = MOVIES[key] || MOVIES[DEFAULT_MOVIE];
@@ -90,6 +146,82 @@
     if (bgEl && movie.themeBg) {
       bgEl.style.backgroundColor = movie.themeBg;
     }
+
+    
+    // Check if coming-soon mode
+    var isComingSoon = getUrlParam('mode') === 'coming-soon' || (movie.meta && movie.meta.toLowerCase().indexOf('releasing') !== -1);
+    var flowSection = document.getElementById('bkFlowSection');
+    var trailerBtn = document.getElementById('bkOpenTrailerBtn');
+    var eyebrowEl = document.querySelector('.bk-eyebrow');
+
+    if (isComingSoon) {
+      if (eyebrowEl) eyebrowEl.textContent = 'Coming Soon';
+      if (flowSection) flowSection.style.display = 'none';
+      if (trailerBtn) trailerBtn.style.display = 'none';
+
+      // Insert embedded sample trailer player in place of the booking flow
+      var existingTrailerSection = document.getElementById('bkComingSoonTrailerSection');
+      if (!existingTrailerSection) {
+        var trailerSection = document.createElement('section');
+        trailerSection.id = 'bkComingSoonTrailerSection';
+        trailerSection.className = 'bk-coming-soon-trailer-section';
+        trailerSection.innerHTML = [
+          '<div class="bk-cs-trailer-container">',
+          '  <div class="bk-cs-header">',
+          '    <div class="bk-cs-tag"><span class="bk-cs-dot"></span> OFFICIAL TRAILER</div>',
+          '    <h2 class="bk-cs-title">' + escapeHtml(movie.trailerTitle || (movie.title + ' • Official Trailer')) + '</h2>',
+          '    <p class="bk-cs-subtitle">Tickets will become available closer to the release date.</p>',
+          '  </div>',
+          '  <div class="bk-cs-player-card">',
+          '    <div class="bk-cs-player-screen">',
+          '      <button class="bk-trailer-play-circle" id="bkCsPlayBtn" type="button" aria-label="Play trailer">',
+          '        <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
+          '      </button>',
+          '      <div class="bk-trailer-bottom-bar">',
+          '        <div class="bk-trailer-progress-wrap"><div class="bk-trailer-progress-bar" id="bkCsProgressBar"></div></div>',
+          '        <div class="bk-trailer-meta-row">',
+          '          <span class="bk-trailer-title-txt">' + escapeHtml(movie.trailerTitle || (movie.title + ' • Official Trailer')) + '</span>',
+          '          <span class="bk-trailer-time-txt" id="bkCsTimeTxt">00:00 / ' + escapeHtml(movie.trailerDuration || '02:00') + '</span>',
+          '        </div>',
+          '      </div>',
+          '    </div>',
+          '  </div>',
+          '</div>'
+        ].join('');
+
+        if (flowSection && flowSection.parentNode) {
+          flowSection.parentNode.insertBefore(trailerSection, flowSection.nextSibling);
+        }
+
+        // Add play animation
+        var playBtn = document.getElementById('bkCsPlayBtn');
+        var pBar = document.getElementById('bkCsProgressBar');
+        var pTime = document.getElementById('bkCsTimeTxt');
+        var isPlaying = false;
+        var playInterval = null;
+        var currentSec = 0;
+
+        if (playBtn) {
+          playBtn.addEventListener('click', function () {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+              playBtn.innerHTML = '<svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+              playInterval = setInterval(function () {
+                currentSec += 1;
+                var mins = String(Math.floor(currentSec / 60)).padStart(2, '0');
+                var secs = String(currentSec % 60).padStart(2, '0');
+                if (pTime) pTime.textContent = mins + ':' + secs + ' / ' + (movie.trailerDuration || '02:00');
+                if (pBar) pBar.style.width = Math.min(100, (currentSec / 120) * 100) + '%';
+              }, 1000);
+            } else {
+              playBtn.innerHTML = '<svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+              if (playInterval) clearInterval(playInterval);
+            }
+          });
+        }
+      }
+    }
+
 
     // Store current movie globally for order summary
     window._bkMovie = movie;
@@ -658,6 +790,44 @@
     });
 
     updateOrderSummary();
+
+    // Card Input Auto-formatting & constraints
+    var cardNumInput = document.getElementById('cardNum');
+    var cardExpInput = document.getElementById('cardExp');
+    var cardCvcInput = document.getElementById('cardCvc');
+
+    if (cardNumInput) {
+      cardNumInput.addEventListener('input', function () {
+        var rawVal = cardNumInput.value.replace(/\D/g, '').substring(0, 16);
+        var parts = rawVal.match(/.{1,4}/g);
+        cardNumInput.value = parts ? parts.join(' ') : rawVal;
+      });
+    }
+
+    if (cardExpInput) {
+      cardExpInput.addEventListener('input', function (e) {
+        var rawVal = cardExpInput.value.replace(/\D/g, '').substring(0, 4);
+        if (rawVal.length >= 3) {
+          cardExpInput.value = rawVal.substring(0, 2) + '/' + rawVal.substring(2, 4);
+        } else if (rawVal.length === 2 && e.inputType !== 'deleteContentBackward') {
+          cardExpInput.value = rawVal + '/';
+        } else {
+          cardExpInput.value = rawVal;
+        }
+      });
+
+      cardExpInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Backspace' && cardExpInput.value.length === 3 && cardExpInput.value.endsWith('/')) {
+          cardExpInput.value = cardExpInput.value.substring(0, 2);
+        }
+      });
+    }
+
+    if (cardCvcInput) {
+      cardCvcInput.addEventListener('input', function () {
+        cardCvcInput.value = cardCvcInput.value.replace(/\D/g, '').substring(0, 3);
+      });
+    }
   }
 
   function updateOrderSummary() {
@@ -929,6 +1099,7 @@
      ========================================================= */
   document.addEventListener('DOMContentLoaded', function () {
     populateMovieHero();
+    initPasswordToggles();
     initStep1();
     initStep2();
     buildSeatMap();

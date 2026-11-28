@@ -810,3 +810,37 @@
   .acct-page { flex-direction: column; }
   .acct-sidebar { width: 100%; }
 }
+
+/* Password eye toggle inside input container for auth modal */
+.pw-field-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.pw-field-wrap .auth-input {
+  width: 100%;
+  padding-right: 2.8rem;
+}
+
+.pw-field-wrap .pw-toggle-btn {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #71717a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  z-index: 2;
+  transition: color 0.2s ease;
+}
+
+.pw-field-wrap .pw-toggle-btn:hover {
+  color: #f2c935;
+}

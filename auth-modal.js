@@ -186,7 +186,31 @@
   /* =====================================================================
      WIRE EVERYTHING
      ===================================================================== */
+  
+  // Show / Hide toggle for password & CVC fields
+  function initPasswordToggles() {
+    document.querySelectorAll('.pw-field-wrap').forEach(function (wrap) {
+      var btn = wrap.querySelector('.pw-toggle-btn');
+      var input = wrap.querySelector('input');
+      if (!btn || !input) return;
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+
+        var eyeOn = btn.querySelector('.eye-icon');
+        var eyeOff = btn.querySelector('.eye-off-icon');
+        if (eyeOn && eyeOff) {
+          eyeOn.style.display = isPassword ? 'none' : 'block';
+          eyeOff.style.display = isPassword ? 'block' : 'none';
+        }
+      });
+    });
+  }
+
   function setup() {
+    initPasswordToggles();
     var overlay    = document.getElementById('authOverlay');
     var closeBtn   = document.getElementById('authCloseBtn');
     var tabSignup  = document.getElementById('authTabSignup');

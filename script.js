@@ -812,4 +812,18 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
+
+  // Make entire movie container for Now Showing and Coming Soon clickable
+  var movieCards = document.querySelectorAll('.movie-grid .movie-card');
+  movieCards.forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      // If user directly clicked the action button/link, let default link action occur
+      if (e.target.closest('a') || e.target.closest('button')) return;
+
+      var link = card.querySelector('a.btn');
+      if (link && link.href) {
+        link.click();
+      }
+    });
+  });
 });

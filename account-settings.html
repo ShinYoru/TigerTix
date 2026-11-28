@@ -91,26 +91,51 @@
 
         <!-- ACCOUNT DETAILS -->
         <div class="acct-view is-active" id="panelDetails">
-          <h2 class="acct-panel-title">Edit Details</h2>
-          <form id="acctDetailsForm" novalidate>
-            <div class="acct-field">
-              <label class="acct-label" for="acctName">Full Name</label>
-              <input class="acct-input" type="text" id="acctName" placeholder="Your full name" autocomplete="name">
+          <!-- Read-only Display Mode (matches photo) -->
+          <div id="acctDetailsDisplay">
+            <div class="acct-panel-header-row">
+              <h2 class="acct-panel-title">Account Details</h2>
+              <button type="button" class="acct-btn-edit-trigger" id="acctEditBtn">Edit Details</button>
             </div>
-            <div class="acct-field">
-              <label class="acct-label" for="acctEmail">Email Address</label>
-              <input class="acct-input" type="email" id="acctEmail" placeholder="Your email address"
-                autocomplete="email">
+            <div class="acct-info-list">
+              <div class="acct-info-row">
+                <span class="acct-info-label">Full Name</span>
+                <span class="acct-info-val" id="viewName">Tiger Tix</span>
+              </div>
+              <div class="acct-info-row">
+                <span class="acct-info-label">Email Address</span>
+                <span class="acct-info-val" id="viewEmail">tigertix@gmail.com</span>
+              </div>
+              <div class="acct-info-row">
+                <span class="acct-info-label">Contact Number</span>
+                <span class="acct-info-val" id="viewPhone">+63 0912 345 678</span>
+              </div>
             </div>
-            <div class="acct-field">
-              <label class="acct-label" for="acctPhone">Contact Number</label>
-              <input class="acct-input" type="tel" id="acctPhone" placeholder="+63 9XX XXX XXXX" autocomplete="tel">
-            </div>
-            <div class="acct-panel-actions">
-              <button class="acct-btn-save" type="submit">Save Changes</button>
-              <button class="acct-btn-cancel" type="button" id="acctCancelDetails">Cancel</button>
-            </div>
-          </form>
+          </div>
+
+          <!-- Edit Form Mode -->
+          <div id="acctDetailsEdit" style="display:none;">
+            <h2 class="acct-panel-title">Edit Details</h2>
+            <form id="acctDetailsForm" novalidate>
+              <div class="acct-field">
+                <label class="acct-label" for="acctName">Full Name</label>
+                <input class="acct-input" type="text" id="acctName" placeholder="Your full name" autocomplete="name">
+              </div>
+              <div class="acct-field">
+                <label class="acct-label" for="acctEmail">Email Address</label>
+                <input class="acct-input" type="email" id="acctEmail" placeholder="Your email address"
+                  autocomplete="email">
+              </div>
+              <div class="acct-field">
+                <label class="acct-label" for="acctPhone">Contact Number</label>
+                <input class="acct-input" type="tel" id="acctPhone" placeholder="+63 9XX XXX XXXX" autocomplete="tel">
+              </div>
+              <div class="acct-panel-actions">
+                <button class="acct-btn-save" type="submit">Save Changes</button>
+                <button class="acct-btn-cancel" type="button" id="acctCancelDetails">Cancel</button>
+              </div>
+            </form>
+          </div>
         </div>
 
         <!-- BOOKINGS & TRANSACTIONS -->
@@ -251,7 +276,7 @@
       <nav class="footer-col" aria-label="Customer care">
         <h4>Customer Care</h4>
         <ul>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
         </ul>
       </nav>
     </div>
@@ -379,11 +404,40 @@
         var sidebarEmail = document.getElementById('sidebarEmail');
         var acctName = document.getElementById('acctName');
         var acctEmail = document.getElementById('acctEmail');
+        var acctPhone = document.getElementById('acctPhone');
+        var viewName = document.getElementById('viewName');
+        var viewEmail = document.getElementById('viewEmail');
+        var viewPhone = document.getElementById('viewPhone');
 
-        if (sidebarName) sidebarName.textContent = user.name || 'User';
-        if (sidebarEmail) sidebarEmail.textContent = user.email || '';
-        if (acctName) acctName.value = user.name || '';
-        if (acctEmail) acctEmail.value = user.email || '';
+        var nameVal = user.name || 'Tiger Tix';
+        var emailVal = user.email || 'tigertix@gmail.com';
+        var phoneVal = user.phone || localStorage.getItem('tigertix_user_phone') || '+63 0912 345 678';
+
+        if (sidebarName) sidebarName.textContent = nameVal;
+        if (sidebarEmail) sidebarEmail.textContent = emailVal;
+        if (viewName) viewName.textContent = nameVal;
+        if (viewEmail) viewEmail.textContent = emailVal;
+        if (viewPhone) viewPhone.textContent = phoneVal;
+
+        if (acctName) acctName.value = nameVal;
+        if (acctEmail) acctEmail.value = emailVal;
+        if (acctPhone) acctPhone.value = phoneVal;
+      }
+
+      /* ---- Toggle between Display Mode and Edit Mode ---- */
+      var acctDetailsDisplay = document.getElementById('acctDetailsDisplay');
+      var acctDetailsEdit = document.getElementById('acctDetailsEdit');
+      var acctEditBtn = document.getElementById('acctEditBtn');
+
+      function setEditMode(isEditing) {
+        if (acctDetailsDisplay) acctDetailsDisplay.style.display = isEditing ? 'none' : 'block';
+        if (acctDetailsEdit) acctDetailsEdit.style.display = isEditing ? 'block' : 'none';
+      }
+
+      if (acctEditBtn) {
+        acctEditBtn.addEventListener('click', function () {
+          setEditMode(true);
+        });
       }
 
       /* ---- Panel switching ---- */
@@ -432,18 +486,28 @@
           e.preventDefault();
           var name = (document.getElementById('acctName').value || '').trim();
           var email = (document.getElementById('acctEmail').value || '').trim();
+          var phone = (document.getElementById('acctPhone').value || '').trim();
+          if (phone) {
+            try { localStorage.setItem('tigertix_user_phone', phone); } catch (e) {}
+          }
           if (window.TigerAuth && name) {
             /* ↑ Replace with real API call. On success → TigerAuth.login(name, email) */
             window.TigerAuth.login(name, email);
           }
           fillUserData();
+          setEditMode(false);
           alert('Changes saved!');
         });
       }
 
       /* ---- Cancel buttons ---- */
       var cancelDetails = document.getElementById('acctCancelDetails');
-      if (cancelDetails) cancelDetails.addEventListener('click', fillUserData);
+      if (cancelDetails) {
+        cancelDetails.addEventListener('click', function () {
+          fillUserData();
+          setEditMode(false);
+        });
+      }
 
       var cancelPwd = document.getElementById('acctCancelPwd');
       if (cancelPwd) {

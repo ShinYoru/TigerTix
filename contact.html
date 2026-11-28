@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | TigerTix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="auth-modal.css">
+  <link rel="stylesheet" href="contact.css">
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <a href="index.html" class="brand" aria-label="TigerTix home">
+      <img src="images/logo.png" alt="TigerTix logo" class="brand-logo">
+      <span class="brand-text">TIGER<span>TIX</span></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html">Movies</a>
+      <a href="cinema.html">Cinema</a>
+      <a href="experience.html">Experience</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Search Component -->
+      <div class="search-widget" id="searchWidget">
+        <div class="search-pill" id="searchPill">
+          <button class="search-btn" id="searchBtn" type="button" aria-label="Search movies" aria-expanded="false"
+            title="Search movies">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          <input type="text" class="search-input" id="searchInput" placeholder="Search movies..."
+            aria-label="Search movies" autocomplete="off" spellcheck="false">
+          <button class="search-clear" id="searchClear" type="button" aria-label="Clear search" title="Clear">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Live Search Dropdown -->
+        <div class="search-dropdown" id="searchDropdown" role="listbox" aria-label="Search results" hidden>
+          <div class="search-dropdown-header">
+            <span class="search-dropdown-title">Movies</span>
+            <span class="search-count-badge" id="searchCountBadge">0 found</span>
+          </div>
+          <div class="search-results-list" id="searchResultsList"></div>
+        </div>
+      </div>
+
+      <!-- GUEST STATE -->
+      <a href="#" class="btn btn-outline btn-sm" id="navSignInBtn">Sign In</a>
+
+      <!-- SIGNED-IN STATE (hidden by default; JS reveals it) -->
+      <div class="nav-user-area" id="navUserArea" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false"
+        aria-label="User menu">
+        <div class="nav-avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
+          </svg>
+        </div>
+        <span class="nav-greeting" id="navGreeting">Hi, User!</span>
+        <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+        <div class="nav-dropdown" id="navDropdown" role="menu">
+          <a href="account-settings.html" role="menuitem">Account Details</a>
+          <a href="account-settings.html#bookings" role="menuitem">Bookings &amp; Transactions</a>
+          <a href="account-settings.html#password" role="menuitem">Change Password</a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="#" class="nav-signout" id="navSignOut" role="menuitem">Log Out</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="contact-hero">
+      <p class="contact-eyebrow">CUSTOMER CARE</p>
+      <h1 class="contact-title">Contact Us</h1>
+      <p class="contact-subtitle">Questions about a booking, payment or cinema? Send us a message and we will get back to you</p>
+    </section>
+
+    <!-- ================= CONTACT MAIN ================= -->
+    <section class="contact-container">
+
+      <!-- LEFT COLUMN: Get in touch -->
+      <div class="contact-card">
+        <h2 class="contact-card-title">Get in touch</h2>
+
+        <div class="contact-info-list">
+          <!-- Address -->
+          <div class="contact-info-item">
+            <div class="contact-info-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div class="contact-info-text">
+              <span class="contact-info-label">Address</span>
+              <span class="contact-info-val">TigerTix Entertainment Inc.<br>España Boulevard, Sampaloc<br>Manila 1008, Philippines</span>
+            </div>
+          </div>
+
+          <!-- Phone number -->
+          <div class="contact-info-item">
+            <div class="contact-info-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </div>
+            <div class="contact-info-text">
+              <span class="contact-info-label">Phone number</span>
+              <span class="contact-info-val"><a href="tel:+63123456789">+63 1 2345 6789</a></span>
+            </div>
+          </div>
+
+          <!-- Email address -->
+          <div class="contact-info-item">
+            <div class="contact-info-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="contact-info-text">
+              <span class="contact-info-label">Email address</span>
+              <span class="contact-info-val"><a href="mailto:support@tigertix.ph">support@tigertix.ph</a></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Map iframe -->
+        <div class="contact-map-wrapper">
+          <iframe 
+            src="https://maps.google.com/maps?q=14.6098055,120.9895794&z=17&output=embed" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade" 
+            title="TigerTix Location Map"
+            aria-label="Google Map showing TigerTix location">
+          </iframe>
+        </div>
+
+        <!-- Socials -->
+        <div class="contact-social-section">
+          <span class="contact-social-label">Follow us</span>
+          <div class="contact-social-icons">
+            <a href="#" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z" />
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <circle cx="12" cy="12" r="4"></circle>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+              </svg>
+            </a>
+            <a href="#" aria-label="X (Twitter)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+          </div>
+          <span class="contact-social-handle">@tigertixph</span>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Send us a message -->
+      <div class="contact-card">
+        <h2 class="contact-card-title">Send us a message</h2>
+
+        <div id="contactSuccessAlert" class="contact-alert" style="display:none;">
+          Thank you for reaching out! We have received your message and will get back to you shortly.
+        </div>
+
+        <form id="contactForm" class="contact-form" novalidate>
+          <div class="contact-field">
+            <label class="contact-label" for="contactName">Full Name</label>
+            <input type="text" id="contactName" class="contact-input" placeholder="Your full name" required>
+          </div>
+
+          <div class="contact-field">
+            <label class="contact-label" for="contactEmail">Email Address</label>
+            <input type="email" id="contactEmail" class="contact-input" placeholder="Enter your email address" required>
+          </div>
+
+          <div class="contact-field">
+            <label class="contact-label">What is this about?</label>
+            <div class="contact-topics-group" role="radiogroup" aria-label="Message topic">
+              <label class="contact-topic-pill">
+                <input type="radio" name="topic" value="General Inquiry" checked>
+                <span>General Inquiry</span>
+              </label>
+              <label class="contact-topic-pill">
+                <input type="radio" name="topic" value="Booking">
+                <span>Booking</span>
+              </label>
+              <label class="contact-topic-pill">
+                <input type="radio" name="topic" value="Payment & refund">
+                <span>Payment &amp; refund</span>
+              </label>
+              <label class="contact-topic-pill">
+                <input type="radio" name="topic" value="Feedback">
+                <span>Feedback</span>
+              </label>
+              <label class="contact-topic-pill">
+                <input type="radio" name="topic" value="Partnerships">
+                <span>Partnerships</span>
+              </label>
+              <label class="contact-topic-pill">
+                <input type="radio" name="topic" value="Others">
+                <span>Others</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="contact-field">
+            <label class="contact-label" for="contactMessage">Message</label>
+            <textarea id="contactMessage" class="contact-textarea" placeholder="How can we help? Include your booking reference if you have one." required></textarea>
+          </div>
+
+          <div class="contact-form-actions">
+            <button type="submit" class="contact-submit-btn">Send message</button>
+          </div>
+        </form>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="index.html" class="brand brand--lg" aria-label="TigerTix home">
+          <img src="images/logo.png" alt="TigerTix logo" class="brand-logo brand-logo--lg">
+          <span class="brand-text">TIGER<span>TIX</span></span>
+        </a>
+
+        <p class="connect-label">Let's Connect</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+            </svg>
+          </a>
+          <a href="#" aria-label="X (Twitter)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <nav class="footer-col" aria-label="Categories">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="index.html">Movies</a></li>
+          <li><a href="cinema.html">Cinema</a></li>
+          <li><a href="experience.html">Experience</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Customer care">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>Developed by Group 6 2ITG</p>
+      <p>&copy; 2026 TigerTix. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- AUTH MODAL -->
+  <div class="auth-overlay" id="authOverlay" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="authDialogTitle">
+    <div class="auth-card">
+      <header class="auth-topbar">
+        <a class="auth-topbar-brand" href="index.html" tabindex="-1">
+          <img src="images/logo.png" alt="">
+          <span>TIGER<span class="tix">TIX</span></span>
+        </a>
+        <button class="auth-close-btn" id="authCloseBtn" type="button" aria-label="Close">Back to home</button>
+      </header>
+
+      <div class="auth-body">
+        <div class="auth-promo" aria-hidden="true">
+          <div class="auth-film-left" id="authFilmLeft"></div>
+          <div class="auth-film-right" id="authFilmRight"></div>
+          <p class="auth-promo-eyebrow">Welcome to TigerTix</p>
+          <h2 class="auth-promo-title" id="authDialogTitle">Your seat is<br>waiting.</h2>
+          <p class="auth-promo-desc">Log in or sign up to reserve seats and get your e-ticket via email.</p>
+          <div class="auth-ticket">
+            <div class="auth-ticket-header">
+              <span class="auth-ticket-title">TIGERTIX PASS</span>
+              <span class="auth-ticket-admit">ADMIT ONE</span>
+            </div>
+            <div class="auth-ticket-row">
+              <span class="auth-ticket-label">Movie</span>
+              <div class="auth-ticket-bar w70"></div>
+            </div>
+            <div class="auth-ticket-row">
+              <span class="auth-ticket-label">Cinema</span>
+              <div class="auth-ticket-bar w55"></div>
+            </div>
+            <div class="auth-ticket-row">
+              <span class="auth-ticket-label">Seat</span>
+              <div class="auth-ticket-bar w35"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-form-panel">
+          <div class="auth-tabs" role="tablist">
+            <button class="auth-tab active" id="authTabSignup" type="button" role="tab" aria-selected="true"
+              aria-controls="authViewSignup">Sign Up</button>
+            <button class="auth-tab" id="authTabLogin" type="button" role="tab" aria-selected="false"
+              aria-controls="authViewLogin">Log In</button>
+          </div>
+
+          <!-- SIGN UP VIEW -->
+          <div class="auth-view active" id="authViewSignup" role="tabpanel">
+            <h3 class="auth-view-title">Create your account</h3>
+            <form id="authFormSignup" novalidate>
+              <div class="auth-field">
+                <label class="auth-label" for="authSignupName">Full name</label>
+                <input class="auth-input" type="text" id="authSignupName" placeholder="Enter your full name"
+                  autocomplete="name" required>
+              </div>
+
+              <div class="auth-field">
+                <label class="auth-label" for="authSignupEmail">Email Address</label>
+                <input class="auth-input" type="email" id="authSignupEmail" placeholder="Enter your email address"
+                  autocomplete="email" required>
+              </div>
+
+              <div class="auth-field">
+                <label class="auth-label" for="authSignupPwd">Password</label>
+                <div class="pw-field-wrap">
+                  <input class="auth-input" type="password" id="authSignupPwd" placeholder="At least 8 characters"
+                    autocomplete="new-password" required>
+                  <button type="button" class="pw-toggle-btn" aria-label="Show/hide password">
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" style="display:none">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="auth-pwd-rules">
+                <p class="auth-pwd-rules-title">Your password must include at least:</p>
+                <div class="auth-pwd-rule" id="authRuleLen">
+                  <span class="auth-rule-dot">
+                    <svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  8 characters
+                </div>
+                <div class="auth-pwd-rule" id="authRuleUpper">
+                  <span class="auth-rule-dot">
+                    <svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  1 uppercase letter (A–Z)
+                </div>
+                <div class="auth-pwd-rule" id="authRuleNum">
+                  <span class="auth-rule-dot">
+                    <svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  1 number (0–9)
+                </div>
+                <div class="auth-pwd-rule" id="authRuleSpecial">
+                  <span class="auth-rule-dot">
+                    <svg viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  1 special character (!@#$%^&amp;*)
+                </div>
+              </div>
+
+              <div class="auth-field">
+                <label class="auth-label" for="authSignupConfirm">Confirm password</label>
+                <div class="pw-field-wrap">
+                  <input class="auth-input" type="password" id="authSignupConfirm" placeholder="Re-enter your password"
+                    autocomplete="new-password" required>
+                  <button type="button" class="pw-toggle-btn" aria-label="Show/hide password">
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" style="display:none">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <button class="auth-submit" type="submit">Sign Up</button>
+
+              <p class="auth-switch-prompt">Already have an account? <button type="button" id="authToLogin">Log
+                  In</button></p>
+            </form>
+          </div>
+
+          <!-- LOG IN VIEW -->
+          <div class="auth-view" id="authViewLogin" role="tabpanel">
+            <h3 class="auth-view-title">Welcome back</h3>
+            <form id="authFormLogin" novalidate>
+              <div class="auth-field">
+                <label class="auth-label" for="authLoginEmail">Email Address</label>
+                <input class="auth-input" type="email" id="authLoginEmail" placeholder="Enter your email address"
+                  autocomplete="email" required>
+              </div>
+
+              <div class="auth-field">
+                <label class="auth-label" for="authLoginPwd">Password</label>
+                <div class="pw-field-wrap">
+                  <input class="auth-input" type="password" id="authLoginPwd" placeholder="Enter your password"
+                    autocomplete="current-password" required>
+                  <button type="button" class="pw-toggle-btn" aria-label="Show/hide password">
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" style="display:none">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="auth-options-row">
+                <label class="auth-remember">
+                  <input type="checkbox" id="authLoginRemember" checked>
+                  Remember me
+                </label>
+                <a href="#" class="auth-forgot" onclick="return false;">Forgot Password?</a>
+              </div>
+
+              <button class="auth-submit" type="submit">Log in</button>
+
+              <p class="auth-switch-prompt">New to TigerTix? <button type="button" id="authToSignup">Sign Up</button>
+              </p>
+            </form>
+          </div>
+
+        </div><!-- /.auth-form-panel -->
+      </div><!-- /.auth-body -->
+    </div><!-- /.auth-card -->
+  </div><!-- /.auth-overlay -->
+
+  <script src="auth-modal.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Autofill contact name and email if logged in
+    (function () {
+      if (window.TigerAuth) {
+        var user = window.TigerAuth.getUser();
+        if (user) {
+          var nameInput = document.getElementById('contactName');
+          var emailInput = document.getElementById('contactEmail');
+          if (nameInput && user.name) nameInput.value = user.name;
+          if (emailInput && user.email) emailInput.value = user.email;
+        }
+      }
+
+      var form = document.getElementById('contactForm');
+      var alertBox = document.getElementById('contactSuccessAlert');
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var name = (document.getElementById('contactName').value || '').trim();
+          var email = (document.getElementById('contactEmail').value || '').trim();
+          var msg = (document.getElementById('contactMessage').value || '').trim();
+          if (!name || !email || !msg) {
+            alert('Please fill out all required fields.');
+            return;
+          }
+          if (alertBox) {
+            alertBox.classList.add('is-visible');
+            alertBox.style.display = 'block';
+            alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          form.reset();
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>

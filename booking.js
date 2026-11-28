@@ -1222,8 +1222,12 @@
 
     // Save this confirmed ticket to user bookings in localStorage
     try {
+      var authUser = window.TigerAuth && window.TigerAuth.getUser ? window.TigerAuth.getUser() : null;
+      var bookingUserEmail = (authUser && authUser.email ? authUser.email : (state.email || '')).toLowerCase().trim();
+
       var existing = [];
-      var stored = localStorage.getItem('tigertix_user_bookings');
+      var userKey = bookingUserEmail ? 'tigertix_user_bookings_' + bookingUserEmail : 'tigertix_user_bookings';
+      var stored = localStorage.getItem(userKey);
       if (stored) {
         existing = JSON.parse(stored);
       }
@@ -1233,6 +1237,7 @@
 
       var newBooking = {
         id: ref.replace(/\s+/g, ''),
+        userEmail: bookingUserEmail,
         movie: key,
         cinema: state.cinema || 'Glorietta 4',
         format: (state.format || 'Regular') + ' 2D',
@@ -1247,7 +1252,16 @@
         btnAction: 'ticket'
       };
       existing.unshift(newBooking);
-      localStorage.setItem('tigertix_user_bookings', JSON.stringify(existing));
+      localStorage.setItem(userKey, JSON.stringify(existing));
+
+      // Also mirror to global tigertix_user_bookings
+      try {
+        var globalExisting = [];
+        var globalStored = localStorage.getItem('tigertix_user_bookings');
+        if (globalStored) globalExisting = JSON.parse(globalStored);
+        globalExisting.unshift(newBooking);
+        localStorage.setItem('tigertix_user_bookings', JSON.stringify(globalExisting));
+      } catch (ge) {}
     } catch (e) {}
   }
 
@@ -1363,8 +1377,8 @@
       continueBtn.addEventListener('click', function () {
         if (!canProceed()) return;
 
-        if (currentStep === 4) {
-          // Check if user is logged in before proceeding to final ticket
+        // Step 3 (Seats) -> Proceed to Payment: Must be logged in
+        if (currentStep === 3) {
           var user = window.TigerAuth && window.TigerAuth.getUser ? window.TigerAuth.getUser() : null;
           if (!user) {
             try {
@@ -1402,7 +1416,9 @@
             }
             return;
           }
+        }
 
+        if (currentStep === 4) {
           if (!validateStep4()) return;
           populateEticket();
         }

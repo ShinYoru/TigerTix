@@ -411,6 +411,14 @@
         if (hasError) return;
 
         /* ↑ Replace with real API call. On success → TigerAuth.login(name, email) */
+        // For a new sign up, ensure bookings list is initialized empty
+        try {
+          var cleanEmail = email.toLowerCase().trim();
+          if (cleanEmail) {
+            localStorage.setItem('tigertix_user_bookings_' + cleanEmail, JSON.stringify([]));
+          }
+        } catch (e) {}
+
         TigerAuth.login(name || 'User', email);
         closeModal();
       });

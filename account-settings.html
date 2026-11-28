@@ -303,7 +303,7 @@
           <img src="images/logo.png" alt="">
           <span>TIGER<span class="tix">TIX</span></span>
         </a>
-        <button class="auth-close-btn" id="authCloseBtn" type="button" aria-label="Close">Back to home</button>
+        <button class="auth-close-btn" id="authCloseBtn" type="button" aria-label="Close dialog">&times;</button>
       </header>
       <div class="auth-body">
         <div class="auth-promo" aria-hidden="true">
@@ -636,65 +636,34 @@
       }
 
       /* ---- Bookings & Transactions history ---- */
-      var sampleBookings = [
-        {
-          id: 'TIX-001',
-          movie: 'Toy Story 5',
-          cinema: 'Glorietta 4',
-          format: 'Regular 2D',
-          showtime: 'Nov 20, 2026 \u2022 11:30 AM',
-          purchaseDate: 'Nov 18, 2026',
-          seats: 'F10',
-          total: '\u20b1350.00',
-          reference: 'TIX - 001',
-          poster: 'images/toystory-5.jpg',
-          status: 'upcoming',
-          btnText: 'View e-ticket',
-          btnAction: 'ticket'
-        },
-        {
-          id: 'TIX-002',
-          movie: '2 Valid IDs',
-          cinema: 'SM Mall of Asia',
-          format: 'Regular 2D',
-          showtime: 'Nov 6, 2026 \u2022 12:30 PM',
-          purchaseDate: 'Nov 5, 2026',
-          seats: 'B4, B5',
-          total: '\u20b1700.00',
-          reference: 'TIX - 002',
-          poster: 'images/2-valid-ids.jpeg',
-          status: 'history',
-          btnText: 'Book again',
-          btnAction: 'book'
-        },
-        {
-          id: 'TIX-003',
-          movie: 'The Odyssey',
-          cinema: 'Robinsons Galleria',
-          format: 'Regular 2D',
-          showtime: 'Nov 11, 2026 \u2022 1:30 PM',
-          purchaseDate: 'Nov 10, 2026',
-          seats: 'A6, A7',
-          total: '\u20b1700.00',
-          reference: 'TIX - 003',
-          poster: 'images/the-odyssey.jpg',
-          status: 'history',
-          btnText: 'Book again',
-          btnAction: 'book'
-        }
-      ];
-
       function getBookings() {
         try {
+          var user = window.TigerAuth && window.TigerAuth.getUser();
+          var userEmail = user && user.email ? user.email.toLowerCase().trim() : '';
+
+          // 1. Check user-specific bookings first
+          if (userEmail) {
+            var userStored = localStorage.getItem('tigertix_user_bookings_' + userEmail);
+            if (userStored) {
+              var userParsed = JSON.parse(userStored);
+              if (Array.isArray(userParsed)) return userParsed;
+            }
+          }
+
+          // 2. Fallback check for global tigertix_user_bookings only if it belongs to this user
           var stored = localStorage.getItem('tigertix_user_bookings');
           if (stored) {
             var parsed = JSON.parse(stored);
-            if (Array.isArray(parsed) && parsed.length > 0) {
-              return parsed;
+            if (Array.isArray(parsed)) {
+              if (!userEmail) return [];
+              // Only return items matching current user's email
+              return parsed.filter(function (b) {
+                return b.userEmail && b.userEmail.toLowerCase().trim() === userEmail;
+              });
             }
           }
         } catch (e) { }
-        return sampleBookings;
+        return [];
       }
 
       var currentFilter = 'all';

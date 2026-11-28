@@ -331,6 +331,7 @@
     // Show panel
     var panel = document.getElementById('bkPanel' + n);
     if (panel) panel.classList.add('is-active');
+    document.body.classList.toggle('bk-is-ticket-step', n === 5);
 
     if (n === 2) {
       requestAnimationFrame(function () {
@@ -1334,6 +1335,21 @@
 
     if (printBtn) {
       printBtn.addEventListener('click', function () {
+        var ticketPanel = document.getElementById('bkPanel5');
+        if (!ticketPanel || !ticketPanel.classList.contains('is-active')) return;
+        document.body.classList.add('bk-is-ticket-step');
+
+        var prevTitle = document.title;
+        var refEl = document.getElementById('eTicketRef');
+        var refText = state.refCode || (refEl ? refEl.textContent.trim() : '');
+        if (refText) {
+          document.title = 'TigerTix E-Ticket - ' + refText;
+        }
+
+        window.addEventListener('afterprint', function () {
+          document.title = prevTitle;
+        }, { once: true });
+
         window.print();
       });
     }

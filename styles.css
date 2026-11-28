@@ -897,7 +897,7 @@ img {
   white-space: nowrap;
 }
 
-/* Pause button + dots, pinned to the bottom centre of the active banner */
+/* Slide dots, pinned to the bottom centre of the active banner */
 .hero-controls {
   position: absolute;
   left: 50%;
@@ -906,39 +906,10 @@ img {
   z-index: 5;
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-}
-
-.hero-pause {
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
-  padding: 0;
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-}
-
-.hero-pause:hover {
-  color: var(--accent);
-}
-
-.hero-pause .ico-play {
-  display: none;
-}
-
-.hero.is-paused .hero-pause .ico-play {
-  display: block;
-}
-
-.hero.is-paused .hero-pause .ico-pause {
-  display: none;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
 }
 
 .hero-dots {
@@ -967,7 +938,6 @@ img {
   background: var(--accent);
 }
 
-.hero-pause:focus-visible,
 .hero-dot:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;

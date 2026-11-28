@@ -309,17 +309,8 @@
           </svg>
         </button>
 
-        <!-- Pause button + slide dots -->
+        <!-- Slide dots -->
         <div class="hero-controls">
-          <button type="button" class="hero-pause" aria-label="Pause slideshow">
-            <svg class="ico-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <rect x="5" y="4" width="5" height="16" rx="1"></rect>
-              <rect x="14" y="4" width="5" height="16" rx="1"></rect>
-            </svg>
-            <svg class="ico-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"></path>
-            </svg>
-          </button>
           <div class="hero-dots">
             <button type="button" class="hero-dot" aria-label="Go to slide 1"></button>
             <button type="button" class="hero-dot" aria-label="Go to slide 2"></button>
@@ -504,7 +495,6 @@
 
       var slides = Array.prototype.slice.call(hero.querySelectorAll('.hero-slide'));
       var dots = Array.prototype.slice.call(hero.querySelectorAll('.hero-dot'));
-      var pauseBtn = hero.querySelector('.hero-pause');
       var stage = hero.querySelector('.hero-stage');
       var n = slides.length;
       if (!n) return;
@@ -566,13 +556,6 @@
         }, TRANSITION_COOLDOWN);
       }
 
-      function setPlaying(value) {
-        playing = value;
-        hero.classList.toggle('is-paused', !value);
-        pauseBtn.setAttribute('aria-label', value ? 'Pause slideshow' : 'Play slideshow');
-        start();
-      }
-
       dots.forEach(function (dot, i) {
         dot.addEventListener('click', function () { go(i); });
       });
@@ -582,8 +565,6 @@
           if (i !== current && !slide.classList.contains('is-hidden')) go(i);
         });
       });
-
-      pauseBtn.addEventListener('click', function () { setPlaying(!playing); });
 
       /* Arrow buttons */
       var prevBtn = hero.querySelector('.hero-arrow--prev');
@@ -704,8 +685,6 @@
         start();
       });
 
-      hero.classList.toggle('is-paused', !playing);
-      pauseBtn.setAttribute('aria-label', playing ? 'Pause slideshow' : 'Play slideshow');
       render();
       start();
     })();

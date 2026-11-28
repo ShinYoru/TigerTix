@@ -2554,3 +2554,118 @@
   color: #ffd84d;
   border-color: #ffd84d;
 }
+
+/* =========================================================
+   PRINT E-TICKET — Isolate & preserve exact original ticket
+   ========================================================= */
+@media print {
+  @page {
+    size: auto;
+    margin: 10mm;
+  }
+
+  html:has(body.bk-is-ticket-step),
+  body.bk-is-ticket-step {
+    background: #ffffff !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+
+  body.bk-is-ticket-step,
+  body.bk-is-ticket-step .bk-ticket-outer-container,
+  body.bk-is-ticket-step .bk-ticket-outer-container * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Exclude site navbar, hero, stepper, confirmation banner, actions, footer, and modals */
+  body.bk-is-ticket-step > :not(main),
+  body.bk-is-ticket-step main > :not(#bkFlowSection),
+  body.bk-is-ticket-step #bkFlowSection > :not(#bkPanel5),
+  body.bk-is-ticket-step #bkPanel5 > :not(.bk-ticket-outer-container),
+  body.bk-is-ticket-step .bk-ticket-outer-container > :not(.bk-pass-ticket),
+  body.bk-is-ticket-step .bk-pass-copy-btn {
+    display: none !important;
+  }
+
+  body.bk-is-ticket-step main,
+  body.bk-is-ticket-step #bkFlowSection,
+  body.bk-is-ticket-step #bkPanel5 {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    animation: none !important;
+  }
+
+  /* Preserve original outer container & ticket card formatting/colors regardless of print width */
+  body.bk-is-ticket-step .bk-ticket-outer-container {
+    background: #141417 !important;
+    border: 1.5px solid #232329 !important;
+    border-radius: 24px !important;
+    padding: 2.2rem !important;
+    max-width: 760px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65) !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  body.bk-is-ticket-step .bk-pass-ticket {
+    display: flex !important;
+    flex-direction: row !important;
+    background: #202023 !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7) !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  body.bk-is-ticket-step .bk-pass-stub-divider {
+    width: 28px !important;
+    height: auto !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    background: transparent !important;
+  }
+
+  body.bk-is-ticket-step .bk-stub-notch {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    background: #141417 !important;
+  }
+
+  body.bk-is-ticket-step .bk-stub-notch.top {
+    margin: -14px 0 0 0 !important;
+  }
+
+  body.bk-is-ticket-step .bk-stub-notch.bottom {
+    margin: 0 0 -14px 0 !important;
+  }
+
+  body.bk-is-ticket-step .bk-stub-dashed-line {
+    flex: 1 !important;
+    width: 0 !important;
+    height: auto !important;
+    border-left: 2px dashed #3a3a42 !important;
+    border-top: none !important;
+    margin: 6px 0 !important;
+  }
+
+  body.bk-is-ticket-step .bk-pass-right {
+    flex: 0 0 220px !important;
+    width: 220px !important;
+    background: #1c1c1f !important;
+  }
+}
